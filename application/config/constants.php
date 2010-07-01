@@ -50,36 +50,40 @@ define('TBL_IMAGES', 'images');
 
 /*
 |--------------------------------------------------------------------------
-| MENSAJES DE ERROR
+| MENSAJES DE ERROR PARA UPLOAD
 |--------------------------------------------------------------------------
 */
 define('ERR_UPLOAD_NOTUPLOAD', 'El archivo no ha podido llegar al servidor.');
 define('ERR_UPLOAD_MAXSIZE', 'El tamaño del archivo debe ser menor a %s MB.');
 define('ERR_UPLOAD_FILETYPE', 'El tipo de archivo es incompatible.');
 
-define('ERR_DB_UPDATE', 'Ha ocurrido un error al tratar de actualizar la tabla "%s".');
-define('ERR_DB_INSERT', 'Ha ocurrido un error al tratar de insertar datos en la tabla "%s".');
-define('ERR_DB_DELETE', 'Ha ocurrido un error al tratar de eliminar datos en la tabla "%s".');
-
 /*
 |--------------------------------------------------------------------------
-| EMAIL FORM REGISTRO
+| EMAIL FORM CONTACTO
 |--------------------------------------------------------------------------
 */
-$msg = 'Hola, %s.<br /><br />';
-$msg.= 'Por favor confirme su cuenta de AlquileresTemporarios.org haciendo click en este link:<br /><br />';
-$msg.= '<a href="%s">%s</a><br /><br />';
-$msg.= 'Una vez confirmado, usted tendra acceso completo a AlquileresTemporarios.org y todas las notificaciones futuras seran enviadas a esta cuenta de email.<br /><br />';
-$msg.= 'Muchas Gracias!<br />AlquileresTemporarios.org';
-
-define('EMAIL_REG_FROM', 'no-reply@alquilerestemporarios.org');
-define('EMAIL_REG_NAME', 'AlquileresTemporarios.org');
-define('EMAIL_REG_SUBJECT', 'Confirme su cuenta de AlquileresTemporarios.org');
-define('EMAIL_REG_MESSAGE', $msg);
+$msg = '<b>Nombre:</b> %s<br /><br />';
+$msg = '<b>Email:</b> %s<br /><br />';
+$msg.= '<b>Consulta:</b><hr color="#000000" />%s';
+define('EMAIL_CONTACT_TO', 'ivan@mydesign.com.ar');
+define('EMAIL_CONTACT_SUBJECT', 'Formulario de Consulta');
+define('EMAIL_CONTACT_MESSAGE', $msg);
 
 /*
 |--------------------------------------------------------------------------
-| UPLOAD FILE
+| EMAIL FORM TRABAJE CON NOSOTROS
+|--------------------------------------------------------------------------
+*/
+$msg = '<b>Nombre:</b> %s<br /><br />';
+$msg = '<b>Email:</b> %s<br /><br />';
+$msg.= '<b>Comentario:</b><hr color="#000000" />%s';
+define('EMAIL_TCN_TO', 'ivan@mydesign.com.ar');
+define('EMAIL_TCN_SUBJECT', 'RRHH');
+define('EMAIL_TCN_MESSAGE', $msg);
+
+/*
+|--------------------------------------------------------------------------
+| UPLOAD FILE PARA IMAGENES
 |--------------------------------------------------------------------------
 */
 define('UPLOAD_DIR', './uploads/');
@@ -92,6 +96,58 @@ define('IMAGE_THUMB_WIDTH', 115);
 define('IMAGE_THUMB_HEIGHT', 90);
 define('IMAGE_ORIGINAL_WIDTH', 800);
 define('IMAGE_ORIGINAL_HEIGHT', 600);
+
+/*
+|--------------------------------------------------------------------------
+| UPLOAD FILE PARA CURRICULUM
+|--------------------------------------------------------------------------
+*/
+define('UPLOAD_DIR_CV', './uploads/cv/');
+define('UPLOAD_FILETYPE_CV', 'doc|pdf|docx|odt');
+define('UPLOAD_MAXSIZE_CV', 2048); //Expresado en Kylobytes
+
+
+
+/*
+|--------------------------------------------------------------------------
+| METADATA TITLE
+|--------------------------------------------------------------------------
+*/
+define('TITLE_GLOBAL', 'Ingenieria Termomecanica Priolo - ');
+define('TITLE_INDEX', 'Empresa');
+define('TITLE_OBRAS', 'Obras');
+define('TITLE_SERVICIOS', 'Servicios');
+define('TITLE_PRODUCTS', 'Productos');
+define('TITLE_TRABAJECONNOSOTROS', 'Trabaje con Nosotros');
+define('TITLE_CONTACT', 'Contacto');
+
+/*
+|--------------------------------------------------------------------------
+| METADATA KEYWORDS
+|--------------------------------------------------------------------------
+*/
+define('META_KEYWORDS_GLOBAL', '');
+define('META_KEYWORDS_INDEX', '');
+define('META_KEYWORDS_OBRAS', '');
+define('META_KEYWORDS_SERVICIOS', '');
+define('META_KEYWORDS_PRODUCTS', '');
+define('META_KEYWORDS_TRABAJECONNOSOTROS', '');
+define('META_KEYWORDS_CONTACT', '');
+
+
+/*
+|--------------------------------------------------------------------------
+| METADATA DESCRIPTIONS
+|--------------------------------------------------------------------------
+*/
+define('META_DESCRIPTION_GLOBAL', '');
+define('META_DESCRIPTION_INDEX', '');
+define('META_DESCRIPTION_OBRAS', '');
+define('META_DESCRIPTION_SERVICIOS', '');
+define('META_DESCRIPTION_PRODUCTS', '');
+define('META_DESCRIPTION_TRABAJECONNOSOTROS', '');
+define('META_DESCRIPTION_CONTACT', '');
+
 
 
 /* End of file constants.php */

@@ -1,0 +1,402 @@
+/*------------------------------------------------------------------------------
+ - ESTILO GENERAL
+ -----------------------------------------------------------------------------*/
+.float-left{float:left !important;}
+.float-right{float:right !important;}
+.padding-null{padding:0 !important;}
+.margin-null{margin:0 !important;}
+.tag-center{margin: 0 auto !important;}
+.text-center{text-align: center !important;}
+.prepend-top-small{margin-top:10px !important;}
+.border{border:1px solid red !important;}
+
+
+h1.title_header{
+    float:left;
+    font-size: 240%;
+    color:#06529D;
+    margin:40px 0 0 10px;
+}
+h1.title_section{
+    font-size: 120%;
+    font-weight: normal;
+    background: url(../images/line_title.jpg) repeat-x bottom;
+    height: 45px;
+    color:#2252A2;
+    margin-bottom: 0;
+}
+
+h2{
+    font-size: 100%;
+    font-weight: bold;
+    color: #000;
+}
+h3{
+    font-size: 80%;
+    margin: 5px 0 5px 0;
+}
+
+.row{
+    float:left;
+    clear: both;
+    margin: 5px 0 5px 0;
+    width: 100%;
+}
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LINK
+ -----------------------------------------------------------------------------*/
+a{
+    font-family:Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+a.link{
+    color:#684C1D;
+    font-weight:bold;
+    font-size: inherit !important;
+}
+    a.link:hover{
+        text-decoration: underline;
+    }
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LABEL
+ -----------------------------------------------------------------------------*/
+label{
+    font-size: 90%;
+   font-weight: normal;
+ }
+.label-contact{
+    width: 100px;
+    margin-right: 5px;
+    float:left;
+    font-weight: bold;
+    color:#2252A2;
+    text-align: right;
+}
+.label-legend{
+    font-size: 80%;
+    color:#87A9CD;
+}
+.label-login{
+    float: left;
+    width: 80px;
+    margin-right: 5px;
+    text-align: right;
+}
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA INPUT
+ -----------------------------------------------------------------------------*/
+input[type=text],input[type=password], textarea{
+    border:1px solid #003366;
+    background-color:#EEF3F6;
+    /*padding:0 0 2px 5px;*/
+    padding:3px;
+    text-align:left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:90%;
+    margin:0 !important;
+    letter-spacing: 1px;
+}
+
+input.input-contact{
+    float:left;
+    width: 250px;
+}
+input.input-login{
+    float:left;
+    width: 150px;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TEXTAREA
+ -----------------------------------------------------------------------------*/
+textarea.textarea-large{
+    width: 320px;
+    height: 220px;
+}
+textarea.textarea-large2{
+    width: 320px;
+    height: 150px;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA BUTTON
+ -----------------------------------------------------------------------------*/
+button{
+    display: block;
+    background: url(../images/button.jpg) no-repeat;
+    width: 72px;
+    height: 24px;
+    text-align: center;
+    color:#fff;
+    border: none;
+}
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA SELECT
+ -----------------------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TEXTOS
+ -----------------------------------------------------------------------------*/
+
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL HEADER
+ -----------------------------------------------------------------------------*/
+.header_slider{
+    width:940px;
+    height:250px;
+    margin: 0 auto;
+    background-color: #ccc;
+    margin-top: -18px;
+}
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL MENU
+ -----------------------------------------------------------------------------*/
+ul.menu{
+    float: left;
+    margin: 10px 0 0 10px;
+}
+    ul.menu li{
+        background: url(../images/menu.jpg) repeat-x;
+        float:left;
+        display: inline;
+        list-style-type: none;
+        width: 150px;
+        height: 24px;
+        padding-top: 2px;
+        text-align: center;
+        margin-right: 3px;        
+    }
+        ul.menu li a{
+            display: block;
+            font-size: 90%;
+            color: #fff;
+        }
+    
+    ul.menu li.current{
+        background: url(../images/menu_over.jpg) repeat-x;
+        border-left: 1px solid #8098B4;
+        border-right: 1px solid #8098B4;
+    }
+        ul.menu li.current a{
+            color: #173E77;
+        }
+
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL CONTAINER
+ -----------------------------------------------------------------------------*/
+.main-container{
+    padding-left:18px;
+}
+
+    .main-container .frame{
+        float:left;
+        width: inherit;
+        height: inherit;
+        margin: -5px 0 20px 0;
+    }
+        .main-container .frame .top{
+            float:left;
+            background: url(../images/container_top.jpg) repeat-x left top;
+            width: 642px;
+            height: 5px;
+        }
+        .main-container .frame .middle{
+            float:left;
+            clear: left;
+            width: 622px;
+            height: auto;
+            padding: 10px;
+            background-color: #ECECEC;
+            color:#4D4D4D;
+        }
+            .main-container .frame .middle img.image{
+                float:left;
+                margin-right: 15px;
+                border: 1px solid #06529D;
+            }
+        .main-container .frame .bottom{
+            float:left;
+            clear: left;
+            background: url(../images/container_bottom.jpg) no-repeat;
+            width: 642px;
+            height: 9px;
+        }
+
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL FOOTER
+ -----------------------------------------------------------------------------*/
+.footer{
+    background: url(../images/line_footer.png) repeat-x top left;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+    .footer .column1{
+        float: left;
+        margin: 25px 0 0 15px;
+        width: 200px;
+    }
+    .footer .column2{
+        float: right;
+        margin: 45px 0 0 15px;
+        padding-right: 10px;
+        width: 700px;
+        font-size: 90%;
+    }
+    .footer .footer-bottom{
+        text-align: center;
+        font-size: 80%;
+        margin-top: 5px;
+    }
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL SIDEBAR
+ -----------------------------------------------------------------------------*/
+.sidebar{
+    float: left;
+    width: inherit;
+    height: inherit;
+}
+    .sidebar .top{
+        float: left;
+        background: url(../images/sidebar_top.jpg) no-repeat top left;
+        width: 200px;
+        height: 15px;
+    }
+    .sidebar .middle{
+        float: left;
+        background: url(../images/sidebar_middle.jpg) repeat-y top left;
+        width: 200px;
+        height: auto;
+        padding-left: 15px;
+    }
+        .sidebar .middle .line{
+            float: left;
+            clear: left;
+            background: url(../images/line.jpg) repeat-x top left;
+            width: 166px;
+            margin-bottom: 4px;
+            border:1px solid red;
+        }
+    .sidebar .bottom{
+        float: left;
+        clear: left;
+        background: url(../images/sidebar_bottom.jpg) no-repeat top left;
+        width: 200px;
+        height: 15px;
+    }
+
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TABLAS (general)
+ -----------------------------------------------------------------------------*/
+table.tbl-list{
+    font-size: 80%;
+    width: 633px;
+    margin-top: 20px;
+}
+table.tbl-list thead{
+    background: url(../images/bg_table_top.png) repeat-x top left;
+}
+    table.tbl-list thead tr td{
+        font-weight: bold;
+        padding-left: 10px;
+    }
+        table.tbl-list thead tr td a{
+            color: #684C1D !important;
+            font-size: 100% !important;
+            font-weight: bold !important;
+        }
+        table.tbl-list thead tr td a:hover{
+            text-decoration: underline;
+        }
+table.tbl-list tbody{
+    background-color: #FAF8E9;
+    font-weight: normal;
+}
+    table.tbl-list tbody tr td{
+        padding:5px 0 5px 10px;
+    }
+    table.tbl-list tbody .row-par{
+        background-color: #FDFDF5;
+    }
+    table.tbl-list tbody .row-hover:hover{
+        cursor: default;
+        background-color: #F1CB65;
+    }
+.tbl-list td.cell-1{
+    width: 10px;
+    border-right: 1px solid #CFD0CB;
+    padding-left:5px;
+}
+    .tbl-list td.cell-1 input{margin:0;padding:0;}
+
+    /*table tbody td{border-right: 1px solid red;}*/
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TABLAS "PROPIEDADES"  PANEL USUARIO
+ -----------------------------------------------------------------------------*/
+.tbl-list .tbl-propuser .cell-2{
+    width: 85px;
+    border-right: 1px solid #CFD0CB;
+}
+.tbl-list .tbl-propuser .cell-3{
+    width: 340px;
+    border-right: 1px solid #CFD0CB;
+    vertical-align: top;
+}
+.tbl-list .tbl-propuser .cell-4{
+    width:150px;
+    vertical-align: top;
+}
+    .tbl-list .tbl-propuser tbody tr .cell-4{color:#FC7F07;}
+
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA FORM CONTACT
+ -----------------------------------------------------------------------------*/
+.contact-col1{
+    float:left;
+    width:435px;
+}
+.contact-footer{
+    float:left;
+    clear:left;
+    background: url(../images/contact_footer.jpg) no-repeat top left;
+    width: 532px;
+    height: 63px;
+    margin-top: 70px;
+    padding: 2px 0 0 100px;
+    font-size: 80%;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LOGIN
+ -----------------------------------------------------------------------------*/
+.login{
+    width:250px;
+    height: inherit;
+    margin: 20px auto;
+    padding:10px 10px 0 10px;
+    border:2px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}

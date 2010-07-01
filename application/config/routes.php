@@ -43,6 +43,13 @@
 $route['default_controller'] = "index";
 $route['scaffolding_trigger'] = "";
 
+$route['empresa'] = "index";
+
+$route['trabaje-con-nosotros'] = "trabajeconnostros";
+$route['trabaje-con-nosotros/send'] = "trabajeconnostros/send";
+
+//$route['panel'] = "panel/index";
+$route['panel/login'] = "panel/index/login";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

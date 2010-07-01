@@ -111,38 +111,6 @@ function arr_search ( $array, $expression ) {
     return $result;
 }
 
-function construct_bloq($config){
-    // ===== [config] =====
-    // result            : array
-    // tag_open          : string
-    // tag_close         : string
-    // tag_open_special  : string
-    // tag_link          : boolean
-    // field             : string
-    // total_row         : integer
-
-    $col=$n=0;
-    foreach( $config['result'] as $row ){
-        $n++;
-        if( $n==1 ){
-            $col++;
-            if( $col==1 ) echo $config['tag_open'];
-            else echo $config['tag_open_special'];
-        }
-
-        if( $n<=$config['total_row'] ){
-            $name = $row[$config['field']];
-            $tag = isset($config['tag_link']) ? '<a href="'. site_url('index/searcher/city/'.$name) .'" class="link1">'.$name.'</a>' : $name;
-            echo '<li>'. $tag .'</li>';
-        }
-
-        if( $n==$config['total_row'] || $n==count($config['result']) ){
-            echo $config['tag_close'];
-            $n=0;
-        }
-    }
-}
-
 function array_implode($parent, $arr){
     $ret="";
     foreach( $arr as $key=>$val ){

@@ -43,10 +43,6 @@ class Simplelogin{
                 return array('status'=>'error', 'error'=>'loginfaild');
             }
 
-            if( $row['level']==0 && $row['active']==0 ){
-                return array('status'=>'error', 'error'=>'userinactive');
-            }
-
             //Destroy old session
             $this->CI->session->sess_destroy();
 
@@ -71,9 +67,6 @@ class Simplelogin{
     }
 
     public function logout() {
-        //Delete User online
-        $this->CI->db->delete(TBL_USERSONLINE, array('user_id' => $this->CI->session->userdata('user_id')));
-
         //Destroy session
         $this->CI->session->sess_destroy();
     }
