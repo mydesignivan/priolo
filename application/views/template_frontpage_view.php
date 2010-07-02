@@ -27,8 +27,11 @@
         <!-- ================  END HEADER  ================ -->
 
         <!-- =============== CONTAINER =============== -->
-        <div class="clear span-18 main-container"> 
-            <h1 class="title_section"><?=$tlp_title_section;?></h1>
+        <div class="clear span-18 main-container">
+            <?php if( isset($tlp_title_section) ){?>
+                <h1 class="title_section"><?=$tlp_title_section;?></h1>
+            <?php }?>
+                
             <?php require($tlp_section);?>
         </div>
         <!-- =============== END CONTAINER =============== -->

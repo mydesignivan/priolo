@@ -23,9 +23,8 @@ class Index extends Controller {
     public function index(){
         $this->load->library("encpss");
 
-        echo $this->encpss->encode('Priolo2010');
-
-        die();
+        //die($this->encpss->encode('Priolo2010'));
+        
         if( $this->session->userdata('logged_in') ) {
             redirect('/panel/myaccount/');
         }else{

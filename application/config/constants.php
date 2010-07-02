@@ -44,8 +44,11 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',	'x+b');
 */
 define('TBL_USERS', 'users');
 define('TBL_PRODUCTS', 'products');
-define('TBL_CATEGORY', 'category');
+define('TBL_PRODUCTSCATEGORIES', 'products_to_categories');
+define('TBL_CATEGORIES', 'categories');
 define('TBL_IMAGES', 'images');
+define('TBL_OBRAS', 'obras');
+define('TBL_OBRASGALLERY', 'obras_gallery');
 
 
 /*
@@ -81,21 +84,40 @@ define('EMAIL_TCN_TO', 'ivan@mydesign.com.ar');
 define('EMAIL_TCN_SUBJECT', 'RRHH');
 define('EMAIL_TCN_MESSAGE', $msg);
 
+
 /*
 |--------------------------------------------------------------------------
-| UPLOAD FILE PARA IMAGENES
+| UPLOAD FILE PARA IMAGENES EN GENERAL
 |--------------------------------------------------------------------------
 */
-define('UPLOAD_DIR', './uploads/');
-define('UPLOAD_DIR_TMP', './uploads/.tmp/');
-define('UPLOAD_DIR_WATERMARK', './images/logo_watermark1.png');
-define('UPLOAD_FILETYPE', 'gif|jpg|png');
-define('UPLOAD_MAXSIZE', 2048); //Expresado en Kylobytes
+define('UPLOAD_FILETYPE_IMG', 'gif|jpg|png');
+define('UPLOAD_MAXSIZE_IMG', 2048); //Expresado en Kylobytes
 
-define('IMAGE_THUMB_WIDTH', 115);
-define('IMAGE_THUMB_HEIGHT', 90);
-define('IMAGE_ORIGINAL_WIDTH', 800);
-define('IMAGE_ORIGINAL_HEIGHT', 600);
+/*
+|--------------------------------------------------------------------------
+| UPLOAD FILE PARA IMAGENES OBRAS
+|--------------------------------------------------------------------------
+*/
+define('UPLOAD_DIR_OBRAS', './uploads/obras/');
+define('UPLOAD_DIR_TMP_OBRAS', './uploads/obras/.tmp/');
+
+define('IMAGE_THUMB_WIDTH_OBRAS', 153);
+define('IMAGE_THUMB_HEIGHT_OBRAS', 103);
+define('IMAGE_ORIGINAL_WIDTH_OBRAS', 800);
+define('IMAGE_ORIGINAL_HEIGHT_OBRAS', 600);
+
+/*
+|--------------------------------------------------------------------------
+| UPLOAD FILE PARA IMAGENES PRODUCTOS
+|--------------------------------------------------------------------------
+*/
+define('UPLOAD_DIR_PRODUCTS', './uploads/products/');
+define('UPLOAD_DIR_TMP_PRODUCTS', './uploads/products/.tmp/');
+
+define('IMAGE_THUMB_WIDTH_PRODUCTS', 152);
+define('IMAGE_THUMB_HEIGHT_PRODUCTS', 152);
+define('IMAGE_ORIGINAL_WIDTH_PRODUCTS', 800);
+define('IMAGE_ORIGINAL_HEIGHT_PRODUCTS', 600);
 
 /*
 |--------------------------------------------------------------------------
@@ -113,13 +135,14 @@ define('UPLOAD_MAXSIZE_CV', 2048); //Expresado en Kylobytes
 | METADATA TITLE
 |--------------------------------------------------------------------------
 */
-define('TITLE_GLOBAL', 'Ingenieria Termomecanica Priolo - ');
-define('TITLE_INDEX', 'Empresa');
-define('TITLE_OBRAS', 'Obras');
-define('TITLE_SERVICIOS', 'Servicios');
-define('TITLE_PRODUCTS', 'Productos');
-define('TITLE_TRABAJECONNOSOTROS', 'Trabaje con Nosotros');
-define('TITLE_CONTACT', 'Contacto');
+define('TITLE_GLOBAL', 'Ingenieria Termomecanica Priolo');
+define('TITLE_INDEX', '');
+define('TITLE_EMPRESA', ' - Empresa');
+define('TITLE_OBRAS', ' - Obras');
+define('TITLE_SERVICIOS', ' - Servicios');
+define('TITLE_PRODUCTS', ' - Productos');
+define('TITLE_TRABAJECONNOSOTROS', ' - Trabaje con Nosotros');
+define('TITLE_CONTACT', ' - Contacto');
 
 /*
 |--------------------------------------------------------------------------
@@ -128,6 +151,7 @@ define('TITLE_CONTACT', 'Contacto');
 */
 define('META_KEYWORDS_GLOBAL', '');
 define('META_KEYWORDS_INDEX', '');
+define('META_KEYWORDS_EMPRESA', '');
 define('META_KEYWORDS_OBRAS', '');
 define('META_KEYWORDS_SERVICIOS', '');
 define('META_KEYWORDS_PRODUCTS', '');
@@ -142,6 +166,7 @@ define('META_KEYWORDS_CONTACT', '');
 */
 define('META_DESCRIPTION_GLOBAL', '');
 define('META_DESCRIPTION_INDEX', '');
+define('META_DESCRIPTION_EMPRESA', '');
 define('META_DESCRIPTION_OBRAS', '');
 define('META_DESCRIPTION_SERVICIOS', '');
 define('META_DESCRIPTION_PRODUCTS', '');

@@ -6,11 +6,11 @@ class Contacto extends Controller {
     function __construct(){
         parent::Controller();
 
+        $this->load->model('users_model');
         $this->load->library('dataview', array(
             'tlp_section'          => 'frontpage/contacto_view.php',
             'tlp_title'            => TITLE_CONTACT,
             'tlp_title_section'    => "Contacto",
-            'tlp_script'           => array('validator', 'contact'),
             'tlp_meta_description' => META_DESCRIPTION_CONTACT,
             'tlp_meta_keywords'    => META_KEYWORDS_CONTACT
         ));
@@ -23,7 +23,12 @@ class Contacto extends Controller {
 
     /* PUBLIC FUNCTIONS
      **************************************************************************/
-    public function index(){
+    public function index(){        
+
+        $this->_data = $this->dataview->set_data(array(
+            'tlp_script'    => array('validator', 'contact'),
+            'info'          => $this->users_model->get_info()
+        ));
         $this->load->view('template_frontpage_view', $this->_data);
     }
 
@@ -36,9 +41,14 @@ class Contacto extends Controller {
                 $_POST['txtEmail'],
                 nl2br($_POST['txtConsult'])
             );
+            
+            $datauser = $this->users_model->get_info();
+
+            $to = $datauser['email'];
+            //$to = "ivan@mydesign.com.ar";
 
             $this->email->from($_POST['txtEmail'], $_POST['txtName']);
-            $this->email->to(EMAIL_CONTACT_TO);
+            $this->email->to($to);
             $this->email->subject(EMAIL_CONTACT_SUBJECT);
             $this->email->message($message);
             $status = $this->email->send();

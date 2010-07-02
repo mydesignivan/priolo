@@ -6,6 +6,7 @@ class Trabajeconnostros extends Controller {
     function __construct(){
         parent::Controller();
 
+        $this->load->model('users_model');
         $this->load->library('dataview', array(
             'tlp_section'          =>  'frontpage/trabajeconnostros_view.php',
             'tlp_title'            =>  TITLE_TRABAJECONNOSOTROS,
@@ -41,8 +42,13 @@ class Trabajeconnostros extends Controller {
                     nl2br($_POST['txtComment'])
                 );
 
+                $usersdata = $this->users_model->get_info();
+                //$to = $usersdata['email'];
+                $to = 'ivan@mydesign.com.ar';
+
+
                 $this->email->from($_POST['txtEmail'], $_POST['txtName']);
-                $this->email->to(EMAIL_TCN_TO);
+                $this->email->to($to);
                 $this->email->subject(EMAIL_TCN_SUBJECT);
                 $this->email->attach(UPLOAD_DIR_CV . $this->_filename);
                 $this->email->message($message);

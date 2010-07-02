@@ -9,7 +9,6 @@ class Index extends Controller {
         $this->load->library('dataview', array(
             'tlp_section'          =>  'frontpage/index_view.php',
             'tlp_title'            =>  TITLE_INDEX,
-            'tlp_title_section'    =>  "Empresa",
             'tlp_meta_description' => META_DESCRIPTION_INDEX,
             'tlp_meta_keywords'    => META_KEYWORDS_INDEX
         ));

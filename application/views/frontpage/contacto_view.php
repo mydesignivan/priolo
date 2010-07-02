@@ -38,9 +38,9 @@
     </div>
 
     <div class="contact-footer">
-        - ingpriolo@speedy.com.ar<br />
-        - Laprida 228 – Ciudad - Mendoza Tel./FAX (0261) 4200441 – 4250361<br />
-        - Parque Industrial Eje Norte entre calle 7 esq. 4 - Las Heras - Mendoza Tel. (0261) 4473336
+        - <?=$info['email']?><br />
+        - <?=$info['address1']?> Tel./FAX <?=$info['phone1']?><br />
+        - <?=$info['address2']?> Tel. <?=$info['phone2']?>
     </div>
 </form>
 

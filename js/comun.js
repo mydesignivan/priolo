@@ -1,7 +1,3 @@
-var panelName = "";
-if( location.pathname.indexOf('/paneluser/')!=-1 ) panelName='/paneluser/';
-else if( location.pathname.indexOf('/paneladmin/')!=-1 ) panelName='/paneladmin/';
-
 
 function checkRow(td){
     var checkbox = $(td).parent().find('input:checkbox')[0];

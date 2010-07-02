@@ -14,7 +14,7 @@
 h1.title_header{
     float:left;
     font-size: 240%;
-    color:#06529D;
+    color:#00509C;
     margin:40px 0 0 10px;
 }
 h1.title_section{
@@ -22,7 +22,7 @@ h1.title_section{
     font-weight: normal;
     background: url(../images/line_title.jpg) repeat-x bottom;
     height: 45px;
-    color:#2252A2;
+    color:#00509C;
     margin-bottom: 0;
 }
 
@@ -31,6 +31,23 @@ h2{
     font-weight: bold;
     color: #000;
 }
+h2.title-obras{
+    float: left;
+    width: 705px;
+    background: url(../images/menu.jpg) repeat-x top left #154585;
+    font-size: 90%;
+    color:#fff;
+    padding: 2px 0 2px 5px;
+}
+h2.title-product{
+    width: 100%;
+    text-align: right;
+    border-bottom: 1px solid #666666;
+    font-size: 90%;
+    color:#144D91;
+}
+
+
 h3{
     font-size: 80%;
     margin: 5px 0 5px 0;
@@ -51,12 +68,12 @@ a{
     font-family:Arial, Helvetica, sans-serif;
     text-decoration: none;
 }
-a.link{
-    color:#684C1D;
+a.link1{
+    color:#00509C;
     font-weight:bold;
-    font-size: inherit !important;
+    font-size: 90%;
 }
-    a.link:hover{
+    a.link1:hover{
         text-decoration: underline;
     }
 
@@ -65,14 +82,14 @@ a.link{
  -----------------------------------------------------------------------------*/
 label{
     font-size: 90%;
-   font-weight: normal;
+    font-weight: normal;
+    color:#2252A2;
  }
 .label-contact{
     width: 100px;
     margin-right: 5px;
     float:left;
     font-weight: bold;
-    color:#2252A2;
     text-align: right;
 }
 .label-legend{
@@ -84,6 +101,13 @@ label{
     width: 80px;
     margin-right: 5px;
     text-align: right;
+}
+.label-medium{
+    float: left;
+    width: 140px;
+    margin-right: 5px;
+    text-align: right;
+    font-weight: bold;
 }
 
 
@@ -128,9 +152,9 @@ textarea.textarea-large2{
  -----------------------------------------------------------------------------*/
 button{
     display: block;
-    background: url(../images/button.jpg) no-repeat;
+    background: url(../images/menu.jpg) repeat-x;
     width: 72px;
-    height: 24px;
+    height: 26px;
     text-align: center;
     color:#fff;
     border: none;
@@ -138,25 +162,77 @@ button{
 
 
 /*------------------------------------------------------------------------------
- - ESTILOS PARA SELECT
+ - ESTILOS PARA FORMULARIO FIELDSET
  -----------------------------------------------------------------------------*/
-
+fieldset{
+    float:left;
+    width: 665px;
+    border: 1px solid #ccc;
+}
+    fieldset legend{
+        font-size: 90%;
+        font-weight: bold;
+    }
 
 /*------------------------------------------------------------------------------
- - ESTILOS PARA TEXTOS
+ - ESTILOS PARA EL LISTADO DE CATEGORIAS
  -----------------------------------------------------------------------------*/
+.lst-category{
+    float:left;
+    background-color: #fff;
+    margin-left: 0;
+    font-size: 90%;
+}
+    .lst-category ul{
+        margin: 0;
+    }
+    .lst-category li{
+        list-style-type: none;
+        display: list-item;
+        width: 200px;
+        margin-bottom: 2px;
+        margin-left: 0;
+    }
+    .lst-category li a:hover{
+        /*background-color: #C4E8F7;*/
+    }
 
+    .lst-category > .option{
+        background: url(../images/menu.jpg) repeat-x top left #fff;
+        padding:3px 0 3px 5px;
+    }
+        .lst-category > .option a{
+            color:#fff;
+        }
+
+    .lst-subcategory{
+        margin: 2px 0 0 -5px !important;
+    }
+    .lst-subcategory > .option{
+        padding:3px 0 3px 5px;
+    }
+        .lst-subcategory > .option a{
+            color: #666666;
+            margin-left: 20px;
+        }
+    .lst-subcategory > .option-select{
+        background-color: #C4E8F7;
+    }
+        .lst-subcategory > .option-select a{
+            color: #144D91;
+        }
 
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA EL HEADER
  -----------------------------------------------------------------------------*/
 .header_slider{
-    width:940px;
-    height:250px;
+    width:942px;
+    height:323px;
     margin: 0 auto;
     background-color: #ccc;
     margin-top: -18px;
+    overflow: hidden;
 }
 
 
@@ -172,8 +248,8 @@ ul.menu{
         float:left;
         display: inline;
         list-style-type: none;
-        width: 150px;
-        height: 24px;
+        /*width: 130px;*/
+        height: 50px;
         padding-top: 2px;
         text-align: center;
         margin-right: 3px;        
@@ -182,15 +258,25 @@ ul.menu{
             display: block;
             font-size: 90%;
             color: #fff;
+            padding: 0 32px 0 32px;
+        }
+        ul.menu li div.shadow{
+            float:left;
+            clear: left;
+            /*width:150px;*/
+            width: 100%;
+            height:24px;            
+            margin-top: 2px;
+            background: url(../images/menu_sombra.jpg) repeat-x bottom left;
         }
     
     ul.menu li.current{
         background: url(../images/menu_over.jpg) repeat-x;
-        border-left: 1px solid #8098B4;
-        border-right: 1px solid #8098B4;
     }
         ul.menu li.current a{
             color: #173E77;
+            border-left: 1px solid #8098B4;
+            border-right: 1px solid #8098B4;
         }
 
 
@@ -211,17 +297,18 @@ ul.menu{
         .main-container .frame .top{
             float:left;
             background: url(../images/container_top.jpg) repeat-x left top;
-            width: 642px;
+            width: 710px;
             height: 5px;
         }
         .main-container .frame .middle{
             float:left;
             clear: left;
-            width: 622px;
+            width: 690px;
             height: auto;
             padding: 10px;
             background-color: #ECECEC;
             color:#4D4D4D;
+            font-size: 90%;
         }
             .main-container .frame .middle img.image{
                 float:left;
@@ -231,9 +318,9 @@ ul.menu{
         .main-container .frame .bottom{
             float:left;
             clear: left;
-            background: url(../images/container_bottom.jpg) no-repeat;
-            width: 642px;
-            height: 9px;
+            background: url(../images/container_bottom.png) no-repeat;
+            width: 710px;
+            height: 13px;
         }
 
 
@@ -289,10 +376,10 @@ ul.menu{
         .sidebar .middle .line{
             float: left;
             clear: left;
-            background: url(../images/line.jpg) repeat-x top left;
-            width: 166px;
+            background: url(../images/sidebar_line.jpg) repeat-x top left;
+            width: 170px;
+            height: 17px;
             margin-bottom: 4px;
-            border:1px solid red;
         }
     .sidebar .bottom{
         float: left;
@@ -399,4 +486,65 @@ table.tbl-list tbody{
     border:2px solid #ccc;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA GALERIA DE FOTOS DE OBRAS
+ -----------------------------------------------------------------------------*/
+ul.gallery{
+    margin: 0 0 20px;
+    float: left;
+    clear: left;
+}
+    ul.gallery li{
+        list-style-type: none;
+        display: inline;
+        float: left;
+        margin: 0 5px 5px 0;
+    }
+        ul.gallery li a{
+            display: block;
+            padding: 2px;
+            width: 153px;
+            height: 103px;
+            border:1px solid #00509C;
+        }
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA GALERIA DE FOTOS DE PRODUCTOS
+ -----------------------------------------------------------------------------*/
+ul.gallery-product{
+    margin: 0 0 20px;
+    float: left;
+    clear: left;
+}
+    ul.gallery-product li{
+        list-style-type: none;
+        display: inline;
+        float: left;
+        width: 152px;
+        height: inherit;
+        margin: 0 5px 20px 0;
+        /*border: 1px solid;*/
+    }
+        ul.gallery-product li a{
+            float: left;
+            display: block;
+            width: 152px;
+            height: 152px;
+            padding: 2px;
+        }
+        ul.gallery-product li span{
+            float: left;
+            clear: left;
+            font-size: 90%;
+            margin-top: 2px;
+        }
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LA SECCION PRODUCTOS
+ -----------------------------------------------------------------------------*/
+.column-product{
+    float:right;
+    width: 482px;
 }

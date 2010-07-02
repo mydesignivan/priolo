@@ -6,6 +6,7 @@ class Productos extends Controller {
     function __construct(){
         parent::Controller();
 
+        $this->load->model(array('products_model', 'categories_model'));
         $this->load->library('dataview', array(
             'tlp_section'          =>  'frontpage/products_view.php',
             'tlp_title'            =>  TITLE_PRODUCTS,
@@ -23,6 +24,9 @@ class Productos extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
+        $this->_data = $this->dataview->set_data(array(
+            'listCategory'  => $this->categories_model->get_list_categories()
+        ));
         $this->load->view('template_frontpage_view', $this->_data);
     }
 
