@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-07-2010 a las 04:15:46
--- Versión del servidor: 5.1.41
--- Versión de PHP: 5.3.1
+-- Tiempo de generación: 05-07-2010 a las 19:02:04
+-- Versión del servidor: 5.1.37
+-- Versión de PHP: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -70,7 +70,10 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('49ee41ff0345032e1ca0809440300f9d', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.2.3', 1278280191, 'a:10:{s:7:"user_id";s:1:"1";s:8:"username";s:5:"admin";s:5:"email";s:23:"ingpriolo@speedy.com.ar";s:6:"phone1";s:26:"(0261) 4200441 – 4250361";s:6:"phone2";s:14:"(0261) 4473336";s:8:"address1";s:32:"Laprida 228 – Ciudad - Mendoza";s:8:"address2";s:70:"Parque Industrial Eje Norte entre calle 7 esq. 4 - Las Heras - Mendoza";s:10:"date_added";s:19:"2010-06-15 00:00:00";s:13:"last_modified";s:19:"2010-07-01 17:54:10";s:9:"logged_in";s:1:"1";}');
+('2084350fa76c5feb3283324694bb1231', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1278339664, ''),
+('45eb7b6076fb1f1035d31dd56f3d5307', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1278330680, ''),
+('e254745f632c902a31341f28c1621e73', '192.168.0.2', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1278332373, ''),
+('2f0e1f6c32cc1b7b5e69065ac66c8131', '192.168.0.3', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; es-AR; rv', 1278332403, '');
 
 -- --------------------------------------------------------
 
@@ -118,12 +121,18 @@ CREATE TABLE IF NOT EXISTS `obras_gallery` (
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`obrasgallery_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcar la base de datos para la tabla `obras_gallery`
 --
 
+INSERT INTO `obras_gallery` (`obrasgallery_id`, `obra_id`, `image`, `thumb`, `order`, `date_added`, `last_modified`) VALUES
+(1, 1, '100_0338.JPG', '100_0338.JPG', 1, '2010-07-02 12:05:47', '0000-00-00 00:00:00'),
+(2, 1, '100_0619.JPG', '100_0619.JPG', 2, '2010-07-02 12:05:51', '0000-00-00 00:00:00'),
+(3, 1, '100_0628.JPG', '100_0628.JPG', 3, '2010-07-02 12:05:54', '0000-00-00 00:00:00'),
+(4, 2, '100_0338.JPG', '100_0338.JPG', 1, '2010-07-02 12:06:14', '0000-00-00 00:00:00'),
+(5, 2, '100_0619.JPG', '100_0619.JPG', 2, '2010-07-02 12:06:17', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
