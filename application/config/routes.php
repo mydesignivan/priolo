@@ -46,6 +46,8 @@ $route['scaffolding_trigger'] = "";
 $route['trabaje-con-nosotros'] = "trabajeconnostros";
 $route['trabaje-con-nosotros/send'] = "trabajeconnostros/send";
 
+$route['productos/:any'] = "productos/show_products/$1";
+
 //$route['panel'] = "panel/index";
 $route['panel/login'] = "panel/index/login";
 

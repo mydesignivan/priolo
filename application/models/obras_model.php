@@ -26,6 +26,11 @@ class Obras_model extends Model {
         
         return $result;
     }
+
+    public function get_list2(){
+        $this->db->order_by('order', 'asc');
+        return $this->db->get(TBL_OBRAS)->result_array();
+    }
     
 }
 ?>
