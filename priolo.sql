@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-07-2010 a las 19:02:04
+-- Tiempo de generación: 07-07-2010 a las 19:23:52
 -- Versión del servidor: 5.1.37
 -- Versión de PHP: 5.3.0
 
@@ -18,6 +18,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Base de datos: `priolo`
 --
+CREATE DATABASE `priolo` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `priolo`;
 
 -- --------------------------------------------------------
 
@@ -70,10 +72,9 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('2084350fa76c5feb3283324694bb1231', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1278339664, ''),
-('45eb7b6076fb1f1035d31dd56f3d5307', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1278330680, ''),
-('e254745f632c902a31341f28c1621e73', '192.168.0.2', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1278332373, ''),
-('2f0e1f6c32cc1b7b5e69065ac66c8131', '192.168.0.3', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; es-AR; rv', 1278332403, '');
+('07bf1b911459647883b4ee989e444bf0', '192.168.0.3', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; es-AR; rv', 1278455210, ''),
+('dc39ce0b5e8c09a38b40e8c875d18a5c', '192.168.0.3', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; es-AR; rv', 1278506828, ''),
+('943952580e6088f0af48e833de471e1d', '192.168.0.3', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; es-AR; rv', 1278510227, '');
 
 -- --------------------------------------------------------
 
