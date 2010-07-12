@@ -26,7 +26,7 @@ class Obras extends Controller {
     public function index(){
         $this->_data = $this->dataview->set_data(array(
             'tlp_script' => array('fancybox'),
-            'list'  => $this->obras_model->get_list()
+            'list'  => $this->obras_model->get_list_front()
         ));
         $this->load->view('template_frontpage_view', $this->_data);
     }

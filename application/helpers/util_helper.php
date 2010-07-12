@@ -47,7 +47,7 @@ function file_search_special($dir, $filename_search){
  }
 
 function delete_images_temp(){
-    $d = opendir(UPLOAD_DIR_TMP);
+    $d = opendir(UPLOAD_DIR_OBRAS.".tmp/");
     $CI =& get_instance();
     while( $file = readdir($d) ){
         if( $file!="." AND $file!=".." ){

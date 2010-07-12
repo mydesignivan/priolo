@@ -76,6 +76,15 @@ a.link1{
     a.link1:hover{
         text-decoration: underline;
     }
+a.link2{
+    color:#00509C;
+    font-weight:bold;
+    font-size: 80%;
+}
+    a.link2:hover{
+        text-decoration: none;
+        color:#466FA3;
+    }
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LABEL
@@ -168,6 +177,8 @@ fieldset{
     float:left;
     width: 665px;
     border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
     fieldset legend{
         font-size: 90%;
@@ -479,13 +490,14 @@ ul.menu{
  - ESTILOS PARA LOGIN
  -----------------------------------------------------------------------------*/
 .login{
-    width:250px;
+    width:280px;
     height: inherit;
     margin: 20px auto;
     padding:10px 10px 0 10px;
     border:2px solid #ccc;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    font-size: 90%;
 }
 
 /*------------------------------------------------------------------------------
@@ -540,6 +552,33 @@ ul.gallery-product{
             font-size: 90%;
             margin-top: 2px;
         }
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA GALERIA DE FOTOS PARA (OBRAS PANEL)
+ -----------------------------------------------------------------------------*/
+.gallery-panel{
+    float:left;
+    width: 600px;
+    /*height: 250px;*/
+    overflow: auto;
+    padding-top: 10px;
+}
+    .gallery-panel ul{
+        margin:0;
+        padding:0;
+    }
+        .gallery-panel ul li{
+            list-style-type: none;
+            display: inline;
+            float:left;
+            margin: 0 8px 8px 0;
+            padding:5px;
+            background-color: #EEF3F6;
+            border: 1px solid #003366;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+        }
+
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LA SECCION PRODUCTOS

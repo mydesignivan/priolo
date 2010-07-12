@@ -33,9 +33,8 @@ class Myaccount extends Controller {
 
     public function save(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            /*$res = $this->users_model->save();
-            $this->session->set_flashdata('status', $res ? "ok" : "error");*/
-            $this->session->set_flashdata('status', "error");
+            $res = $this->users_model->save();
+            $this->session->set_flashdata('status', $res ? "ok" : "error");
             redirect('/panel/myaccount/');
         }
     }

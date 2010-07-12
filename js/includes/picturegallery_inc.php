@@ -1,0 +1,1 @@
+<script type="text/javascript" src="js/plugins/picturegallery<?=$this->config->item('sufix_pack_js');?>.js"></script>

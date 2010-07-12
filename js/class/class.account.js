@@ -1,3 +1,9 @@
+$(document).ready(function(){
+    $('input[type=password]').each(function(){
+        this.value="";
+    });
+});
+
 var Account = new (function(){
 
     /* PUBLIC METHODS

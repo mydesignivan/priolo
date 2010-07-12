@@ -28,22 +28,74 @@ class Obras extends Controller {
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'   =>  'panel/obras_list_view.php',
             'tlp_script'    =>  array('sortable'),
-            'listObras'     =>  $this->obras_model->get_list2()
+            'listObras'     =>  $this->obras_model->get_list_panel()
         ));
         $this->load->view('template_panel_view', $this->_data);
     }
 
     public function form(){
-        $this->_data = $this->dataview->set_data(array(
-            'tlp_section'   =>  'panel/obras_list_view.php',
-            'tlp_script'    =>  array('sortable')
-            //'info'          =>  $this->users_model->get_info()
-        ));
+        $id = $this->uri->segment(4);
+
+        $tlp_script = array('fancybox', 'validator', 'json', 'picturegallery', 'obras');
+
+        if( $id ){  // Edit
+            $this->_data = $this->dataview->set_data(array(
+                'tlp_section'        =>  'panel/obras_form_view.php',
+                'tlp_script'         =>  $tlp_script,
+                'tlp_title_section'  =>  'Modificar Obra',
+                'info'               =>  $this->obras_model->get_info($id)
+            ));
+
+        }else{    // New
+            $this->_data = $this->dataview->set_data(array(
+                'tlp_section'        =>  'panel/obras_form_view.php',
+                'tlp_script'         =>  $tlp_script,
+                'tlp_title_section'  =>  'Nueva Obra'
+            ));
+        }
+
         $this->load->view('template_panel_view', $this->_data);
+    }
+
+    public function create(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+
+            $res = $this->obras_model->create();
+            if( $res['status']=="error" ){
+                $this->session->set_flashdata('msgerror', $res['msgerror']);
+            }
+
+            redirect($res['status']=="ok" ? '/panel/obras/' : '/panel/obras/form/');
+        }
+    }
+
+    public function edit(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+
+            $res = $this->_upload();
+
+            if( $res['status']=="ok" ){
+                if( !empty($this->_file['tmp_name']) && $_POST['filename']!=$this->_filename ) $this->_delete_images($_POST['filename']);
+
+                $res = $this->products_model->edit($_POST['product_id'], $this->_filename);
+
+                if( $res['status']=="error" ) $this->_delete_images($this->_filename);
+            }
+
+            if( $res['status']=="error" ){
+                $this->session->set_flashdata('savestatus', $res['status']);
+                $this->session->set_flashdata('msgerror', @$res['msgerror']);
+            }
+
+            redirect($res['status']=="ok" ? '/panel/products/' : '/panel/products/form/'.$_POST['product_id']);
+        }
     }
 
     /* AJAX FUNCTIONS
      **************************************************************************/
+    public function ajax_check_exists(){
+        die($this->obras_model->check() ? "yes" : "no");
+    }
 
     /* PRIVATE FUNCTIONS
      **************************************************************************/
