@@ -27,7 +27,7 @@ class Obras extends Controller {
 
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'   =>  'panel/obras_list_view.php',
-            'tlp_script'    =>  array('sortable'),
+            'tlp_script'    =>  array('sortable', 'obras_list'),
             'listObras'     =>  $this->obras_model->get_list_panel()
         ));
         $this->load->view('template_panel_view', $this->_data);
@@ -36,7 +36,7 @@ class Obras extends Controller {
     public function form(){
         $id = $this->uri->segment(4);
 
-        $tlp_script = array('fancybox', 'validator', 'json', 'picturegallery', 'obras');
+        $tlp_script = array('fancybox', 'validator', 'json', 'picturegallery', 'sortable', 'obras_form');
 
         if( $id ){  // Edit
             $this->_data = $this->dataview->set_data(array(
@@ -62,34 +62,37 @@ class Obras extends Controller {
 
             $res = $this->obras_model->create();
             if( $res['status']=="error" ){
-                $this->session->set_flashdata('msgerror', $res['msgerror']);
+                $this->session->set_flashdata('status', 'error');
+                $this->session->set_flashdata('message', 'Los datos no han podido ser guardado.');
             }
 
-            redirect($res['status']=="ok" ? '/panel/obras/' : '/panel/obras/form/');
+            redirect($res['status']=="success" ? '/panel/obras/' : '/panel/obras/form/');
         }
     }
 
     public function edit(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
 
-            $res = $this->_upload();
-
-            if( $res['status']=="ok" ){
-                if( !empty($this->_file['tmp_name']) && $_POST['filename']!=$this->_filename ) $this->_delete_images($_POST['filename']);
-
-                $res = $this->products_model->edit($_POST['product_id'], $this->_filename);
-
-                if( $res['status']=="error" ) $this->_delete_images($this->_filename);
-            }
-
+            $res = $this->obras_model->edit();
+            $this->session->set_flashdata('status', $res['status']);
             if( $res['status']=="error" ){
-                $this->session->set_flashdata('savestatus', $res['status']);
-                $this->session->set_flashdata('msgerror', @$res['msgerror']);
+                $this->session->set_flashdata('message', 'Los datos no han podido ser guardado.');
+            }else{
+                $this->session->set_flashdata('message', 'Los datos han sido guardado con &eacute;xito.');
             }
 
-            redirect($res['status']=="ok" ? '/panel/products/' : '/panel/products/form/'.$_POST['product_id']);
+            redirect('/panel/obras/form/'.$_POST['obra_id']);
         }
     }
+
+    public function delete(){
+        if( !$this->obras_model->delete($this->uri->segment(4)) ){
+            $this->session->set_flashdata('status', 'error');
+            $this->session->set_flashdata('message', 'No se pudo eliminar la obra seleccionada.');
+        }
+        redirect('/panel/obras/');
+    }
+
 
     /* AJAX FUNCTIONS
      **************************************************************************/

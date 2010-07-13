@@ -19,8 +19,21 @@ var Obras = new (function(){
             sel_button     : '#btnUpload',
             sel_ajaxloader : '#ajax-loader1',
             sel_form       : '#form1',
-            sel_gallery    : '#gallery-image'
+            sel_gallery    : '#gallery-image',
+            callback       : function(){
+                $('a.jq-image').fancybox();
+            }
         });
+
+        $("#gallery-image").sortable({
+                                stop : function(){
+                                    $('a.jq-image').fancybox();
+                                }
+                           })
+                           .disableSelection()
+                           .sortable({ handle: '.handle' })
+
+       MessageShowHide(document, _params.status);
     };
 
     this.save = function(btn){
@@ -29,15 +42,14 @@ var Obras = new (function(){
 
         $.validator.validate('#form1 .validate', function(error){
             if( !error ){
-                var data = new Array();
-                var n=0;
-                $('#gallery-image li').each(function(){
-                    n++;
-                    var dat = $(this).data('au-data');
-                    dat.order = n;
-                    data.push(dat);
-                });
-                if( data.length>0 ) $('#json').val(JSON.encode(data));
+                var data={};
+                data.images_new = PictureGallery.get_images_new();
+                if( _params.mode=='edit' ) {
+                    data.images_del = PictureGallery.get_images_del();
+                    data.images_order = PictureGallery.get_orders();
+                }
+
+                $('#json').val(JSON.encode(data));
 
                 $('#form1').attr('action', baseURI+'panel/obras/'+_params.mode)
                            .attr('enctype', 'application/x-www-form-urlencoded')

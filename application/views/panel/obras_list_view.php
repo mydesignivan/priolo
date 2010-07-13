@@ -1,5 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
+<?php if( $this->session->flashdata('status')!='' ){?>
+    <div class="<?=$this->session->flashdata('status')?>">
+        <?=$this->session->flashdata('message')?>
+    </div>
+    <div class="clear"></div>
+<?php }?>
+
 <button type="button" class="float-right" onclick="location.href='<?=site_url('/panel/obras/form/')?>'">Nuevo</button>
 
 <div class="table tbl-obras">
@@ -14,7 +21,7 @@
 $n=0;
 foreach( $listObras as $row ) {
     $n++;
-    $url = site_url('/obras/form/'.$row['obra_id']);
+    $url = site_url('/panel/obras/form/'.$row['obra_id']);
     $class = $n%2 ? 'row-even' : '';
 ?>
         <li class="row <?=$class?>">
@@ -32,6 +39,6 @@ foreach( $listObras as $row ) {
 
 <script type="text/javascript">
 <!--
-    //Account.initializer();
+    Obras.initializer('<?=$this->session->flashdata('status')?>');
 -->
 </script>

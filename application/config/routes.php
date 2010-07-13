@@ -50,6 +50,7 @@ $route['productos/:any'] = "productos/show_products/$1";
 
 //$route['panel'] = "panel/index";
 $route['panel/login'] = "panel/index/login";
+$route['panel/logout'] = "panel/index/logout";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

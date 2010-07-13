@@ -4,7 +4,8 @@ var PictureGallery = new (function(){
     **************************************************************************/
    this.initializer = function(_params){
        params = _params;
-       $(params.sel_iframe).bind('load', iframe_load);
+       $(params.sel_iframe).bind('load', _iframe_load);
+       $(params.sel_gallery+' li a.jq-removeimg').bind('click', _remove_image);
    };
 
   /* PUBLIC METHODS
@@ -21,13 +22,51 @@ var PictureGallery = new (function(){
         }
    };
 
+   this.get_images_new = function(){
+       var data = new Array();
+        $(params.sel_gallery + ' li').each(function(){
+            var li = $(this);
+            var tagA = li.find('a.jq-image');
+            var tagImg = tagA.find('img');
+
+            if( li.data('au-newthumb') ){
+                data.push({
+                    image_full  : _get_filename(tagA.attr('href')),
+                    image_thumb : _get_filename(tagImg.attr('src'))
+                });
+            }
+        });
+       return data;
+   };
+
+   this.get_images_del = function(){
+       return array_images_del;
+   };
+
+   this.get_orders = function(){
+       var data = new Array();
+       var n = 0;
+        $(params.sel_gallery + ' li').each(function(){
+            n++;
+            var li = $(this);
+            data.push({
+                image_full : _get_filename(li.find('a.jq-image').attr('href')),
+                order      : n
+            });
+        });
+        return data;
+   };
+      
+
    /* PRIVATE PROPERTIES
     **************************************************************************/
     var params;
+    var array_images_del = new Array();
+    var array_images_orders = new Array();
 
    /* PRIVATE METHODS
     **************************************************************************/
-    var iframe_load = function(){
+    var _iframe_load = function(){
         var content = this.contentDocument || this.contentWindow.document;
             content = content.body.innerHTML;
 
@@ -53,25 +92,18 @@ var PictureGallery = new (function(){
                 li.find('a.jq-image').attr('href', data.image.full);
                 li.find('img:first').attr('src', data.image.thumb);
 
-                var audata = {
-                    image_full  : data.image.full,
-                    image_thumb : data.image.thumb,
-                    image_basename : data.image.basename,
-                    image_ext : data.image.ext
-                };
-
                 if( !ul.is(':visible') ){
-                    li.find('a.jq-removeimg').bind('click', remove_image);
-                    li.data('au-data', audata);
-
+                    //li.find('a.jq-removeimg').bind('click', _remove_image);
+                    li.data('au-newthumb', true);
                     ul.show();
                 }else{
                     ul.find('li:last').after('<li>'+li.html()+'</li>');
-                    ul.find('li:last').find('a.jq-removeimg').bind('click', remove_image)
-                    ul.find('li:last').data('au-data', audata);
+                    ul.find('li:last').find('a.jq-removeimg').bind('click', _remove_image);
+                    ul.find('li:last').data('au-newthumb', true);
                 }
 
                 $(params.sel_input).val('');
+                params.callback();
 
             }else alert(data.message);
         }
@@ -79,22 +111,45 @@ var PictureGallery = new (function(){
         return false;
     };
 
-    var remove_image = function(e){
+    var _get_filename = function(str){
+        var arr = str.split('/');
+        return arr[arr.length-1].toLowerCase();
+    };
+
+    var _remove_image = function(e){
         e.preventDefault();
 
         if( confirm('¿Está seguro de quitar la imágen?') ){
             var li = $(e.target).parent().parent();
 
-            $.post(baseURI+'ajax_upload/delete', {au_filename_image : li.data('au-data').image_full, au_filename_thumb : li.data('au-data').image_thumb}, function(data){
-                if( data=="ok" ){
-                    var ul = $(params.sel_gallery);
-                    if( ul.find('li').length==1 ){
-                        ul.hide();
-                    }else li.remove();
-                }else alert("ERROR DELETE:\n"+data);
-            });
-        }
+            var remove = function(){
+                var ul = $(params.sel_gallery);
+                if( ul.find('li').length==1 ){
+                    ul.hide();
+                }else li.remove();
+            };
 
+            var tagA = li.find('a.jq-image');
+            var tagImg = tagA.find('img');
+            var image_full = tagA.attr('href');
+            var image_thumb = tagImg.attr('src');
+
+            if( li.data('au-newthumb') ){
+
+                $.post(baseURI+'ajax_upload/delete', {au_filename_image : image_full, au_filename_thumb : image_thumb}, function(data){
+                    if( data=="ok" ){
+                        remove();
+
+                    }else alert("ERROR DELETE:\n"+data);
+                });
+            }else{
+                array_images_del.push({
+                    image_full  : _get_filename(image_full),
+                    image_thumb : _get_filename(image_thumb)
+                });
+                remove();
+            }
+        }
     };
 
 

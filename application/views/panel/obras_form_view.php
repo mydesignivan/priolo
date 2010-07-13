@@ -1,9 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<?php if( $this->session->flashdata('msgerror')!='' ){?>
-<div class="error">
-    Los datos no han podido ser guardados.
-</div>
+<?php if( $this->session->flashdata('status')!='' ){?>
+    <div class="<?=$this->session->flashdata('status')?>">
+        <?=$this->session->flashdata('message')?>
+    </div>
 <?php }?>
 
 <form id="form1" action="" method="post">
@@ -14,24 +14,24 @@
     <fieldset class="gallery-panel">
         <legend>Galer&iacute;a de Im&aacute;genes</legend>
 
-        <ul id="gallery-image" class="hide">
-<?php if( isset($info) ){?>
-        <?php foreach( $info['gallery'] as $row ){?>
+        <ul id="gallery-image" <?php if( !isset($info) || (isset($info) && count($info['gallery'])==0) ){?>class="hide"<?php }?>>
+<?php if( isset($info) && count($info['gallery'])>0 ){?>
+    <?php foreach( $info['gallery'] as $row ){?>
             <li>
-                <a href="<?=$row['image']?>" class="float-left jq-image"><img src="<?=$row['thumb']?>" alt="<?=$row['thumb']?>" width="100" height="" /></a>
+                <a href="<?=UPLOAD_DIR_OBRAS.$row['image']?>" class="float-left jq-image" rel="group"><img src="<?=UPLOAD_DIR_OBRAS.$row['thumb']?>" alt="<?=$row['thumb']?>" width="100" height="" /></a>
                 <div class="clear">
                     <a href="javascript:void(0)" class="link2 float-left jq-removeimg">Quitar</a>
-                    <a href="javascript:void(0)" class="float-right"><img src="images/icon_arrow_move2.png" alt="" width="16" height="16" /></a>
+                    <a href="javascript:void(0)" class="float-right handle"><img src="images/icon_arrow_move2.png" alt="" width="16" height="16" /></a>
                 </div>
             </li>
-
-        <?php }?>
+    <?php }?>
+            
 <?php }else{?>
             <li>
-                <a href="" class="float-left jq-image"><img src="" alt="" width="100" height="" /></a>
+                <a href="" class="float-left jq-image" rel="group"><img src="" alt="" width="100" height="" /></a>
                 <div class="clear">
                     <a href="javascript:void(0)" class="link2 float-left jq-removeimg">Quitar</a>
-                    <a href="javascript:void(0)" class="float-right"><img src="images/icon_arrow_move2.png" alt="" width="16" height="16" /></a>
+                    <a href="javascript:void(0)" class="float-right handle"><img src="images/icon_arrow_move2.png" alt="" width="16" height="16" /></a>
                 </div>
             </li>
 <?php }?>
@@ -50,6 +50,7 @@
         </div>
     </div>
 
+    <input type="hidden" name="obra_id" value="<?=@$info['obra_id']?>" />
     <input type="hidden" name="au_dir" value="<?=UPLOAD_DIR_OBRAS?>" />
     <input type="hidden" name="au_image_width" value="<?=IMAGE_ORIGINAL_WIDTH_OBRAS?>" />
     <input type="hidden" name="au_image_height" value="<?=IMAGE_ORIGINAL_HEIGHT_OBRAS?>" />
@@ -69,7 +70,8 @@
 <script type="text/javascript">
 <!--
     Obras.initializer({
-        mode       : '<?=isset($info) ? 'edit' : 'create'?>'
+        mode   : '<?=isset($info) ? 'edit' : 'create'?>',
+        status : '<?=$this->session->flashdata('status')?>'
     });
 -->
 </script>

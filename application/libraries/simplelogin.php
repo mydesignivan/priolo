@@ -53,7 +53,12 @@ class Simplelogin{
             unset($row['password']);
 
             //Set session data
-            $this->CI->session->set_userdata($row);
+            //$this->CI->session->set_userdata($row);
+            $this->CI->session->set_userdata(array(
+                'username' => $row['username'],
+                'user_id'  => $row['user_id']
+            ));
+
 
             //Set logged_in to true
             $this->CI->session->set_userdata(array('logged_in' => true));
