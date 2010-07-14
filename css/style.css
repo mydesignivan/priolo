@@ -469,6 +469,41 @@ ul.menu{
 }
 
 /*------------------------------------------------------------------------------
+ - ESTILOS PARA LA TABLA "PRODUCTS"
+ -----------------------------------------------------------------------------*/
+.tbl-products .cell1{
+    width: 300px;
+}
+    .tbl-products .head .cell1{
+        padding-left: 5px;
+    }
+    .tbl-products .body .cell1{
+        padding-left: 6px !important;
+    }
+.tbl-products .cell2{
+    width: 133px;
+}
+.tbl-products .cell3{
+    width: 90px;
+    text-align: center;
+}
+.tbl-products .cell4{
+    width: 90px;
+    text-align: center;
+}
+.tbl-products .cell5{
+    width: 90px;
+    text-align: center;
+}
+    .tbl-products .body .row{
+        height: 100px !important;
+    }
+    .tbl-products .body .row-even li{
+        height: 100px !important;
+    }
+
+
+/*------------------------------------------------------------------------------
  - ESTILOS PARA FORM CONTACT
  -----------------------------------------------------------------------------*/
 .contact-col1{

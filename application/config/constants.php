@@ -49,6 +49,8 @@ define('TBL_CATEGORIES', 'categories');
 define('TBL_IMAGES', 'images');
 define('TBL_OBRAS', 'obras');
 define('TBL_OBRASGALLERY', 'obras_gallery');
+define('TBL_PROVEEDORES', 'proveedores');
+define('TBL_PROVGALLERY', 'proveedores_gallery');
 
 
 /*
@@ -105,6 +107,19 @@ define('IMAGE_THUMB_WIDTH_OBRAS', 153);
 define('IMAGE_THUMB_HEIGHT_OBRAS', 103);
 define('IMAGE_ORIGINAL_WIDTH_OBRAS', 800);
 define('IMAGE_ORIGINAL_HEIGHT_OBRAS', 600);
+
+/*
+|--------------------------------------------------------------------------
+| UPLOAD FILE PARA IMAGENES PROVEEDORES
+|--------------------------------------------------------------------------
+*/
+define('UPLOAD_DIR_PROV', './uploads/proveedores/');
+define('UPLOAD_DIR_TMP_PROV', './uploads/proveedores/.tmp/');
+
+define('IMAGE_THUMB_WIDTH_PROV', 167);
+define('IMAGE_THUMB_HEIGHT_PROV', 100);
+define('IMAGE_ORIGINAL_WIDTH_PROV', 800);
+define('IMAGE_ORIGINAL_HEIGHT_PROV', 600);
 
 /*
 |--------------------------------------------------------------------------

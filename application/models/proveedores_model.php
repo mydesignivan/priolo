@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Obras_model extends Model {
+class Proveedores_model extends Model {
 
     /* CONSTRUCTOR
      **************************************************************************/
@@ -18,15 +18,15 @@ class Obras_model extends Model {
 
         $data = array(
             'name'       => $_POST['txtName'],
-            'order'      => $this->_get_num_order(TBL_OBRAS),
+            'order'      => $this->_get_num_order(TBL_PROVEEDORES),
             'date_added' => date('Y-m-d H:i:s')
         );
 
         $this->db->trans_start(); // INICIO TRANSACCION
 
-        if( $this->db->insert(TBL_OBRAS, $data) ){
-            $obra_id = $this->db->insert_id();
-            if( !$this->_copy_images($json->images_new, $obra_id) ) return array('status'=>'error');
+        if( $this->db->insert(TBL_PROVEEDORES, $data) ){
+            $prov_id = $this->db->insert_id();
+            if( !$this->_copy_images($json->images_new, $prov_id) ) return array('status'=>'error');
 
         }else return array('status'=>'error');
 
@@ -49,9 +49,9 @@ class Obras_model extends Model {
         $this->db->trans_off();
         $this->db->trans_start(); // INICIO TRANSACCION
 
-        $this->db->where('obra_id', $_POST['obra_id']);
-        if( $this->db->update(TBL_OBRAS, $data) ){
-            if( !$this->_copy_images($json->images_new, $_POST['obra_id'], true) ) return array('status'=>'error');
+        $this->db->where('proveedor_id', $_POST['proveedor_id']);
+        if( $this->db->update(TBL_PROVEEDORES, $data) ){
+            if( !$this->_copy_images($json->images_new, $_POST['proveedor_id'], true) ) return array('status'=>'error');
             
         }else array('status'=>'error');
 
@@ -60,9 +60,9 @@ class Obras_model extends Model {
         // Elimina las imagenes quitadas
         foreach( $json->images_del as $row ){
 
-            if( $this->db->delete(TBL_OBRASGALLERY, array('image'=>$row->image_full)) ){
-                @unlink(UPLOAD_DIR_OBRAS . $row->image_full);
-                @unlink(UPLOAD_DIR_OBRAS . $row->image_thumb);
+            if( $this->db->delete(TBL_PROVGALLERY, array('image'=>$row->image_full)) ){
+                @unlink(UPLOAD_DIR_PROV . $row->image_full);
+                @unlink(UPLOAD_DIR_prov . $row->image_thumb);
             }else return array('status'=>'error');
             
         }
@@ -70,7 +70,7 @@ class Obras_model extends Model {
         // Reordena los thumbs
         foreach( $json->images_order as $row ){
             $this->db->where('image', $row->image_full);
-            $this->db->update(TBL_OBRASGALLERY, array('order' => $row->order));
+            $this->db->update(TBL_PROVGALLERY, array('order' => $row->order));
         }
         
         $this->db->trans_complete(); // COMPLETO LA TRANSACCION
@@ -79,15 +79,15 @@ class Obras_model extends Model {
     }
 
     public function delete($id){
-        if( $this->db->delete(TBL_OBRAS, array('obra_id'=>$id)) ){
-            $this->db->where('obra_id', $id);
+        if( $this->db->delete(TBL_PROVEEDORES, array('proveedor_id'=>$id)) ){
+            $this->db->where('proveedor_id', $id);
 
-            $list = $this->db->get_where(TBL_OBRASGALLERY, array('obra_id' => $id));
+            $list = $this->db->get_where(TBL_PROVGALLERY, array('proveedor_id' => $id));
             if( $list->num_rows>0 ){
-                if( $this->db->delete(TBL_OBRASGALLERY, array('obra_id'=>$id)) ){
+                if( $this->db->delete(TBL_PROVGALLERY, array('proveedor_id'=>$id)) ){
                     foreach( $list->result_array() as $row ){
-                        @unlink(UPLOAD_DIR_OBRAS . $row['image']);
-                        @unlink(UPLOAD_DIR_OBRAS . $row['thumb']);
+                        @unlink(UPLOAD_DIR_PROV . $row['image']);
+                        @unlink(UPLOAD_DIR_PROV . $row['thumb']);
                     }
                 }else return false;
             }
@@ -98,15 +98,15 @@ class Obras_model extends Model {
 
     public function get_list_front(){
         $this->db->order_by('order', 'asc');
-        $listObras = $this->db->get(TBL_OBRAS)->result_array();
+        $listProv = $this->db->get(TBL_PROVEEDORES)->result_array();
 
-        $result['listObras'] = $listObras;
+        $result['listProv'] = $listProv;
 
-        foreach( $listObras as $row ){
-            $this->db->where('obra_id', $row['obra_id']);
+        foreach( $listProv as $row ){
+            $this->db->where('proveedor_id', $row['proveedor_id']);
             $this->db->order_by('order', 'asc');
-            $listObrasGallery = $this->db->get(TBL_OBRASGALLERY);
-            if( $listObrasGallery->num_rows>0 ) $result['listGallery'][$row['obra_id']] = $listObrasGallery->result_array();
+            $listProvGallery = $this->db->get(TBL_PROVGALLERY);
+            if( $listProvGallery->num_rows>0 ) $result['listGallery'][$row['proveedor_id']] = $listProvGallery->result_array();
         }
 
         //print_array($result, true);
@@ -116,14 +116,14 @@ class Obras_model extends Model {
 
     public function get_list_panel(){
         $this->db->order_by('order', 'asc');
-        return $this->db->get(TBL_OBRAS);
+        return $this->db->get(TBL_PROVEEDORES);
     }
 
     public function get_info($id){
-        $result = $this->db->get_where(TBL_OBRAS, array('obra_id'=>$id))->row_array();
+        $result = $this->db->get_where(TBL_PROVEEDORES, array('proveedor_id'=>$id))->row_array();
 
         $this->db->order_by('order', 'asc');
-        $gallery = $this->db->get_where(TBL_OBRASGALLERY, array('obra_id'=>$id))->result_array();
+        $gallery = $this->db->get_where(TBL_PROVGALLERY, array('proveedor_id'=>$id))->result_array();
         $result['gallery'] = $gallery;
 
         return $result;
@@ -136,9 +136,9 @@ class Obras_model extends Model {
         //print_array($rows, true);
 
         foreach( $rows as $row ){
-            $obra_id = substr($row, 3);
-            $this->db->where('obra_id', $obra_id);
-            if( !$this->db->update(TBL_OBRAS, array('order' => $order)) ) return false;
+            $proveedor_id = substr($row, 3);
+            $this->db->where('proveedor_id', $proveedor_id);
+            if( !$this->db->update(TBL_PROVEEDORES, array('order' => $order)) ) return false;
             $order++;
         }
 
@@ -155,7 +155,7 @@ class Obras_model extends Model {
     }
 
     private function _delete_images_tmp(){
-        $dir = UPLOAD_DIR_OBRAS.".tmp/";
+        $dir = UPLOAD_DIR_PROV.".tmp/";
         $d = opendir($dir);
         while( $file = readdir($d) ){
             if( $file!="." AND $file!=".." ){
@@ -164,26 +164,24 @@ class Obras_model extends Model {
         }
     }
 
-    private function _copy_images($json, $obra_id, $mode_edit=false){
+    private function _copy_images($json, $proveedor_id, $mode_edit=false){
         $n=0;
         foreach( $json as $row ){
             $n++;
-            $cp1 = @copy(UPLOAD_DIR_OBRAS.".tmp/".$row->image_full, UPLOAD_DIR_OBRAS.$row->image_full);
-            $cp2 = @copy(UPLOAD_DIR_OBRAS.".tmp/".$row->image_thumb, UPLOAD_DIR_OBRAS.$row->image_thumb);
+            $cp1 = @copy(UPLOAD_DIR_PROV.".tmp/".$row->image_full, UPLOAD_DIR_PROV.$row->image_full);
+            $cp2 = @copy(UPLOAD_DIR_PROV.".tmp/".$row->image_thumb, UPLOAD_DIR_PROV.$row->image_thumb);
 
             if( $cp1 && $cp2 ){
                 $data = array(
-                    'obra_id'    => $obra_id,
+                    'proveedor_id'    => $proveedor_id,
                     'image'      => $row->image_full,
                     'thumb'      => $row->image_thumb,
-                    'width'      => $row->width,
-                    'height'     => $row->height,
                     'date_added' => date('Y-m-d H:i:s')
                 );
 
-                if( !$mode_edit ) $data['order'] = $n;
+                if( $mode_edit ) $data['order'] = $n;
 
-                if( !$this->db->insert(TBL_OBRASGALLERY, $data) ) return false;
+                if( !$this->db->insert(TBL_PROVGALLERY, $data) ) return false;
             }else return false;
         }
 

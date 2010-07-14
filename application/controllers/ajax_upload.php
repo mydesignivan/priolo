@@ -14,7 +14,9 @@ class Ajax_upload extends Controller {
                 'full'  => '',
                 'thumb' => '',
                 'basename' => '',
-                'ext'      => ''
+                'ext'      => '',
+                'width' => '',
+                'height' => ''
             ),
             'message' => ''
         );
@@ -80,6 +82,10 @@ class Ajax_upload extends Controller {
             $this->image_lib->clear();
             $this->image_lib->initialize($config);
             if( $this->image_lib->resize() ) {
+                $sizeThumb = getimagesize($dir_tmp . $basename.'_thumb.'.$ext);
+                $this->_ajax['image']['width'] = $sizeThumb[0];
+                $this->_ajax['image']['height'] = $sizeThumb[1];
+
                 // Dimensiona la imagen original   (ORIGINAL)
                 if( $sizes[0] > $this->_params['image_width'] || $sizes[1] > $this->_params['image_height'] ){
                     $config = array();

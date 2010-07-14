@@ -5,7 +5,7 @@
     <div class="middle">
         <h3>Aire Acondicionado</h3>
         <div class="line"></div>
-        <img src="images/proveedores/carrier.jpg" alt="" width="167" height="" /><br />
+        <img src="images/proveedores/carrier.jpg" alt="" width="167" height="100" /><br />
         <img src="images/proveedores/toshiba.jpg" alt="" width="167" height="" />
 
         <h3>Calderas y Radiadores</h3>

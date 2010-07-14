@@ -29,6 +29,7 @@
         <li <?php if( $page=="products" ) echo 'class="current"';?>><a href="<?=site_url('/panel/products/')?>">Productos</a><div class="shadow"></div></li>
         <li <?php if( $page=="obras" ) echo 'class="current"';?>><a href="<?=site_url('/panel/obras/')?>">Obras</a><div class="shadow"></div></li>
         <li <?php if( $page=="proveedores" ) echo 'class="current"';?>><a href="<?=site_url('/panel/proveedores/')?>">Proveedores</a><div class="shadow"></div></li>
+        <li <?php if( $page=="pages" ) echo 'class="current"';?>><a href="<?=site_url('/panel/pages/')?>">P&aacute;ginas</a><div class="shadow"></div></li>
         <li <?php if( $page=="logout" ) echo 'class="current"';?>><a href="<?=site_url('/panel/logout/')?>">Logout</a><div class="shadow"></div></li>
     </ul>
 </div>

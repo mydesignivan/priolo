@@ -1,4 +1,4 @@
-var Obras = new (function(){
+var Proveedores = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
@@ -6,6 +6,7 @@ var Obras = new (function(){
         _params = params;
 
         if( $('#sortable').length>0 ){
+
             var initorder = $('#sortable li.row:first').attr('id').substr(3);
 
             $("#sortable").sortable({
@@ -16,7 +17,7 @@ var Obras = new (function(){
                                     $('#sortable li.row:even').addClass('row-even');
 
                                     var arr = $("#sortable").sortable("toArray");
-                                    $.post(baseURI+'panel/obras/ajax_order/', {rows : JSON.encode(arr), initorder : initorder}, function(data){
+                                    $.post(baseURI+'panel/proveedores/ajax_order/', {rows : JSON.encode(arr), initorder : initorder}, function(data){
                                         $("#sortable").sortable( "option", "disabled", false );
                                     });
                                 }
@@ -24,13 +25,13 @@ var Obras = new (function(){
                           .disableSelection()
                           .sortable({ handle: '.handle' });
         }
-        
+
        MessageShowHide(document, _params.status);
     };
 
     this.del = function(id){
         if( confirm('¿Confirma la eliminación?') ){
-            location.href = baseURI+'panel/obras/delete/'+id;
+            location.href = baseURI+'panel/proveedores/delete/'+id;
         }
     };
 

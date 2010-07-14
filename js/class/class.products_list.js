@@ -1,4 +1,4 @@
-var Obras = new (function(){
+var Products = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/

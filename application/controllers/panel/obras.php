@@ -27,7 +27,7 @@ class Obras extends Controller {
 
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'   =>  'panel/obras_list_view.php',
-            'tlp_script'    =>  array('sortable', 'obras_list'),
+            'tlp_script'    =>  array('sortable', 'json', 'obras_list'),
             'listObras'     =>  $this->obras_model->get_list_panel()
         ));
         $this->load->view('template_panel_view', $this->_data);
@@ -86,11 +86,13 @@ class Obras extends Controller {
     }
 
     public function delete(){
-        if( !$this->obras_model->delete($this->uri->segment(4)) ){
-            $this->session->set_flashdata('status', 'error');
-            $this->session->set_flashdata('message', 'No se pudo eliminar la obra seleccionada.');
+        if( is_numeric($this->uri->segment(4)) ){
+            if( !$this->obras_model->delete($this->uri->segment(4)) ){
+                $this->session->set_flashdata('status', 'error');
+                $this->session->set_flashdata('message', 'No se pudo eliminar la obra seleccionada.');
+            }
+            redirect('/panel/obras/');
         }
-        redirect('/panel/obras/');
     }
 
 
@@ -98,6 +100,10 @@ class Obras extends Controller {
      **************************************************************************/
     public function ajax_check_exists(){
         die($this->obras_model->check() ? "yes" : "no");
+    }
+    public function ajax_order(){
+        echo $this->obras_model->order() ? "success" : "error";
+        die();
     }
 
     /* PRIVATE FUNCTIONS
