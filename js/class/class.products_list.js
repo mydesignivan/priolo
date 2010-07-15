@@ -16,7 +16,7 @@ var Products = new (function(){
                                     $('#sortable li.row:even').addClass('row-even');
 
                                     var arr = $("#sortable").sortable("toArray");
-                                    $.post(baseURI+'panel/obras/ajax_order/', {rows : JSON.encode(arr), initorder : initorder}, function(data){
+                                    $.post(baseURI+'panel/products/ajax_order/', {rows : JSON.encode(arr), initorder : initorder}, function(data){
                                         $("#sortable").sortable( "option", "disabled", false );
                                     });
                                 }
@@ -30,7 +30,7 @@ var Products = new (function(){
 
     this.del = function(id){
         if( confirm('¿Confirma la eliminación?') ){
-            location.href = baseURI+'panel/obras/delete/'+id;
+            location.href = baseURI+'panel/products/delete/'+id;
         }
     };
 

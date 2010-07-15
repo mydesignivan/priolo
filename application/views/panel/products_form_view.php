@@ -23,7 +23,7 @@
     <?php if( isset($info) ){?>
     <div class="row">
         <label for="txtUploadFile" class="label-contact float-left">*Im&aacute;gen:</label>
-        <img src="<?=UPLOAD_DIR_PRODUCTS.$info['thumb'];?>" alt="<?=$info['thumb'];?>" width="<?=$info['thumb_width'];?>" height="<?=$info['thumb_height'];?>" class="float-left" />
+        <a href="<?=UPLOAD_DIR_PRODUCTS.$info['image']?>" class="float-left jq-fancybox" rel="group"><img src="<?=UPLOAD_DIR_PRODUCTS.$info['thumb'];?>" alt="<?=$info['thumb'];?>" width="<?=$info['thumb_width'];?>" height="<?=$info['thumb_height'];?>" /></a>
     </div>    
     <?php }?>
 
@@ -45,7 +45,7 @@
 <script type="text/javascript">
 <!--
     Products.initializer({
-        mode   : '<?=isset($info) ? 'edit' : 'create'?>',
+        mode   : '<?=$action?>',
         status : '<?=$this->session->flashdata('status')?>'
     });
 -->

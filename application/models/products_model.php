@@ -77,6 +77,58 @@ class Products_model extends Model {
         return 'success';
     }
 
+    public function edit($outUpload){
+        //print_array($outUpload, true);
+
+        $data['product_name'] = $_POST['txtName'];
+        $data['last_modified'] = date('Y-m-d H:i:s');
+        if( is_array($outUpload) ){
+            $data['image'] = $outUpload['filename_image'];
+            $data['thumb'] = $outUpload['filename_thumb'];
+            $data['thumb_width'] = $outUpload['thumb_width'];
+            $data['thumb_height'] = $outUpload['thumb_height'];
+            $dataProd = $this->db->get_where(TBL_PRODUCTS, array('products_id'=>$_POST['products_id']))->row_array();
+        }
+
+        if( $this->db->update(TBL_PRODUCTS, $data) ) {
+
+            if( is_array($outUpload) ){
+                @unlink(UPLOAD_DIR_PRODUCTS . $dataProd['image']);
+                @unlink(UPLOAD_DIR_PRODUCTS . $dataProd['thumb']);
+            }
+
+            $exists_cat = $this->db->get_where(TBL_PRODUCTSCATEGORIES, array('categories_id' => $_POST['cboCategories']))->num_rows > 0;
+
+            if( !$exists_cat ){
+                $categorie_parent = $this->db->get_where(TBL_CATEGORIES, array('categories_id' => $_POST['cboCategories']))->row_array();
+
+                $data = array(
+                    'products_id'      => $_POST['products_id'],
+                    'categories_id'    => $_POST['cboCategories'],
+                    'categorie_parent' => $categorie_parent['parent_id']
+                );
+                if( !$this->db->update(TBL_PRODUCTSCATEGORIES, $data) ) return "error";
+            }
+
+        }else return 'error';
+
+        return 'success';
+    }
+
+    public function delete($id){
+        $dataProd = $this->db->get_where(TBL_PRODUCTS, array('products_id'=>$id))->row_array();
+
+        $del1 = $this->db->delete(TBL_PRODUCTS, array('products_id'=>$id));
+        $del2 = $this->db->delete(TBL_PRODUCTSCATEGORIES, array('products_id'=>$id));
+
+        if( $del1 && $del2 ){
+            @unlink(UPLOAD_DIR_PRODUCTS . $dataProd['image']);
+            @unlink(UPLOAD_DIR_PRODUCTS . $dataProd['thumb']);
+            return true;
+        }else return false;
+
+    }
+
     public function get_info($where){
         $this->db->from(TBL_PRODUCTS);
         $this->db->join(TBL_PRODUCTSCATEGORIES, TBL_PRODUCTS.'.products_id = '.TBL_PRODUCTSCATEGORIES.'.products_id');
@@ -100,8 +152,11 @@ class Products_model extends Model {
     /* PRIVATE FUNCTIONS
      **************************************************************************/
     private function _get_num_order(){
-        $this->db->select_max('`order`');
-        $row = $this->db->get(TBL_PRODUCTS)->row_array();
+        $this->db->select_max(TBL_PRODUCTS.'.`order`');
+        $this->db->from(TBL_PRODUCTS);
+        $this->db->join(TBL_PRODUCTSCATEGORIES, TBL_PRODUCTS.'.products_id = '.TBL_PRODUCTSCATEGORIES.'.products_id');
+        $this->db->where(TBL_PRODUCTSCATEGORIES.'.categories_id', $_POST['cboCategories']);
+        $row = $this->db->get()->row_array();
         return is_null($row['order']) ? 1 : $row['order']+1;
     }
 

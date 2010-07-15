@@ -9,9 +9,17 @@ var Products = new (function(){
             effect_show     : 'slidefade',
             validateOne     : true
         });
-        $('#txtName, #cboCategories, #txtUploadFile').validator({
+        $('#txtName, #cboCategories').validator({
             v_required  : true
         });
+
+        if( params.mode=="create" ){
+            $('#txtUploadFile').validator({
+                v_required  : true
+            });
+        }else{
+            $('a.jq-fancybox').fancybox();
+        }
 
        MessageShowHide(document, _params.status);
     };

@@ -16,13 +16,13 @@ class Products extends Controller {
         $this->_data = $this->dataview->get_data();
 
         $this->load->library('superupload', array(
-            'path' => UPLOAD_DIR_PRODUCTS,
-            'thumb_width' => IMAGE_THUMB_WIDTH_PRODUCTS,
-            'thumb_height' => IMAGE_THUMB_HEIGHT_PRODUCTS,
-            'image_width' => IMAGE_ORIGINAL_WIDTH_PRODUCTS,
-            'image_height' => IMAGE_ORIGINAL_HEIGHT_PRODUCTS,
-            'maxsize' => UPLOAD_MAXSIZE_IMG,
-            'filetype' => UPLOAD_FILETYPE_IMG
+            'path'          => UPLOAD_DIR_PRODUCTS,
+            'thumb_width'   => IMAGE_THUMB_WIDTH_PRODUCTS,
+            'thumb_height'  => IMAGE_THUMB_HEIGHT_PRODUCTS,
+            'image_width'   => IMAGE_ORIGINAL_WIDTH_PRODUCTS,
+            'image_height'  => IMAGE_ORIGINAL_HEIGHT_PRODUCTS,
+            'maxsize'       => UPLOAD_MAXSIZE_IMG,
+            'filetype'      => UPLOAD_FILETYPE_IMG
         ));
 
 
@@ -65,7 +65,7 @@ class Products extends Controller {
 
         $id = $this->uri->segment(4);
 
-        $tlp_script = array('fancybox', 'validator', 'json', 'products_form');
+        $tlp_script = array('fancybox', 'validator', 'products_form');
         $listCategories = $this->categories_model->get_categories_combo();
 
 
@@ -100,15 +100,16 @@ class Products extends Controller {
                 $status = $this->products_model->create($outUpload[0]);
 
                 if( $status=="error" ){
-                    $this->session->set_flashdata('status', 'error');
-                    $this->session->set_flashdata('message', 'Los datos no han podido ser guardado.');
+                    $message = 'Los datos no han podido ser guardado.';
 
                     @unlink(UPLOAD_DIR_PRODUCTS . $outUpload[0]['filename_image']);
                     @unlink(UPLOAD_DIR_PRODUCTS . $outUpload[0]['filename_thumb']);
                 }
-            }else{
-                $this->session->set_flashdata('status', 'error');
-                $this->session->set_flashdata('message', $outUpload[0]['error_msg']);
+            }else $message = $outUpload[0]['error_msg'];
+
+            if( $status=="error"){
+                $this->session->set_flashdata('status', $status);
+                $this->session->set_flashdata('message', $message);
             }
 
             redirect($status=="success" ? '/panel/products/' : '/panel/products/form/');
@@ -118,14 +119,30 @@ class Products extends Controller {
     public function edit(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
 
-            $res = $this->products_model->edit();
-            $this->session->set_flashdata('status', $res['status']);
-            if( $res['status']=="error" ){
-                $this->session->set_flashdata('message', 'Los datos no han podido ser guardado.');
-            }else{
-                $this->session->set_flashdata('message', 'Los datos han sido guardado con &eacute;xito.');
+            $uploaded = $_FILES['txtUploadFile']['name']!='';
+            $status="success";
+
+            if( $uploaded ) {
+                $outUpload = $this->superupload->upload();
+                $status = $outUpload[0]['status'];
             }
 
+            if( $status=="success" ){
+                $status = $this->products_model->edit($uploaded ? $outUpload[0] : null);
+
+                if( $status=="error" ){
+                    $message = 'Los datos no han podido ser guardado.';
+
+                    if( $uploaded ) {
+                        @unlink(UPLOAD_DIR_PRODUCTS . $outUpload[0]['filename_image']);
+                        @unlink(UPLOAD_DIR_PRODUCTS . $outUpload[0]['filename_thumb']);
+                    }
+
+                }else $message = 'Los datos han sido guardado con &eacute;xito.';
+            }else $message = $outUpload[0]['error_msg'];
+
+            $this->session->set_flashdata('status', $status);
+            $this->session->set_flashdata('message', $message);
             redirect('/panel/products/form/'.$_POST['products_id']);
         }
     }
@@ -147,7 +164,7 @@ class Products extends Controller {
         die($this->products_model->check() ? "yes" : "no");
     }
     public function ajax_order(){
-        echo $this->proveedores_model->order() ? "success" : "error";
+        echo $this->products_model->order() ? "success" : "error";
         die();
     }
 

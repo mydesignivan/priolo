@@ -97,9 +97,9 @@ var PictureGallery = new (function(){
 
                 if( ul.is(':visible') ) li = li.clone();
 
-                li.find('a.jq-image').attr('href', data.image.full);
-                li.find('img:first').attr('src', data.image.thumb);
-                var audata = {width : data.image.width, height : data.image.height};
+                li.find('a.jq-image').attr('href', data.image.href_image_full);
+                li.find('img:first').attr('src', data.image.href_image_thumb);
+                var audata = {width : data.image.thumb_width, height : data.image.thumb_height};
 
                 if( !ul.is(':visible') ){
                     //li.find('a.jq-removeimg').bind('click', _remove_image);

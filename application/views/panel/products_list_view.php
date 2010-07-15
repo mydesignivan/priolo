@@ -50,6 +50,6 @@ foreach( $listProducts->result_array() as $row ) {
 
 <script type="text/javascript">
 <!--
-    //Products.initializer('<?=$this->session->flashdata('status')?>');
+    Products.initializer('<?=$this->session->flashdata('status')?>');
 -->
 </script>
