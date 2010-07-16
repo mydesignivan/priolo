@@ -1,7 +1,16 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
-
-<p>
-Ingeniería Termomecánica Priolo es una empresa familiar que se inició a fines de la década del `60, en el área de reparaciones y mantenimiento de equipos de refrigeración domiciliaria.
-Desde la década del ´90 empezó a proyectar, comercializar y ejecutar sistemas de refrigeración, calefacción y ventilación; siempre respetando normas nacionales e internacionales, y utilizando maquinarías de tecnología de punta, únicas en nuestra provincia.
-Desde hace ya más de 10 años es Concesionario y Dealer Oficial CARRIER en Mendoza.
-</p>
+<div class="frame frame-empresa">
+    <div class="top"></div>
+    <div class="middle text-size-90">
+        <div class="span-10"><?=$info['content']?></div>
+        <div class="float-right">
+            <ul class="gallery">
+                <li><img src="images/empresa/imagen_1.png" alt="" width="135" height="88" /></li>
+                <li><img src="images/empresa/imagen_3.png" alt="" width="135" height="88" /></li>
+                <li><img src="images/empresa/imagen_4.png" alt="" width="135" height="88" /></li>
+                <li><img src="images/empresa/imagen_2.png" alt="" width="135" height="88" /></li>
+            </ul>
+        </div>
+    </div>
+    <div class="bottom"></div>
+</div>

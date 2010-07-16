@@ -6,11 +6,15 @@ class Index extends Controller {
     function __construct(){
         parent::Controller();
 
+        $this->load->model('pages_model');
+        $this->load->model('proveedores_model');
+
         $this->load->library('dataview', array(
             'tlp_section'          =>  'frontpage/index_view.php',
             'tlp_title'            =>  TITLE_INDEX,
             'tlp_meta_description' => META_DESCRIPTION_INDEX,
-            'tlp_meta_keywords'    => META_KEYWORDS_INDEX
+            'tlp_meta_keywords'    => META_KEYWORDS_INDEX,
+            'tlp_sidebar'          => $this->proveedores_model->get_list_front()
         ));
         $this->_data = $this->dataview->get_data();
     }
@@ -22,6 +26,13 @@ class Index extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
+        $this->_data = $this->dataview->set_data(array(
+            'info' => array(
+                'home-cont1' => $this->pages_model->get_info('home-cont1'),
+                'home-cont2' => $this->pages_model->get_info('home-cont2'),
+                'home-cont3' => $this->pages_model->get_info('home-cont3')
+            )
+        ));
         $this->load->view('template_frontpage_view', $this->_data);
     }
 

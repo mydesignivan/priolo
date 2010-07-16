@@ -9,6 +9,7 @@ class Myaccount extends Controller {
         if( !$this->session->userdata('logged_in') ) redirect($this->config->item('base_url'));
         
         $this->load->model("users_model");
+
         $this->load->library('dataview', array(
             'tlp_section'        =>  'panel/myaccount_view.php',
             'tlp_title'          =>  TITLE_INDEX,

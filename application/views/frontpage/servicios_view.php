@@ -1,10 +1,22 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
-<ul>
-    <li>Asesoramiento realizado por reconocido profesionales del medio.</li>
-    <li>Proyecto de todo tipo de sistemas de aire acondicionado, calefacción y ventilación. </li>
-    <li>Instalaciones termomecánicas de aire acondicionado y calefacción. </li>
-    <li>Ventilación industrial. </li>
-    <li>Mantenimiento programado de todo tipo de instalaciones. </li>
-    <li>Mantenimiento de pretemporada.     </li>
-</ul>
+<div class="frame frame-servicios">
+    <div class="top"></div>
+    <div class="middle text-size-90">
+        <div class="span-12" id="jq-list"><?=$info['content']?></div>
+        <div class="float-right">
+            <ul class="gallery">
+                <li><img src="images/servicios/imagen_1.png" alt="" width="170" height="112" /></li>
+                <li><img src="images/servicios/imagen_2.png" alt="" width="170" height="112" /></li>
+            </ul>
+        </div>
+    </div>
+    <div class="bottom"></div>
+</div>
+
+
+<script type="text/javascript">
+<!--
+$('#jq-list li:even').css('background-color', '#fff');
+-->
+</script>

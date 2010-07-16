@@ -81,37 +81,44 @@ class SuperUpload{
                 if( !$this->CI->image_lib->watermark() ) $this->_show_error($this->CI->image_lib->display_errors());
             }
 
-            // Crea una copia y dimensiona la imagen  (THUMB)
-            $config = array();
-            $config['source_image'] = $this->_params['path'] . $filename;
-            $config['new_image'] = $this->_params['path'] . $filename_thumb;
-            $config['width'] = $this->_params['thumb_width'];
-            $config['height'] = $this->_params['thumb_height'];
+            $sizes = getimagesize($this->_params['path'] . $filename);
 
-            $this->CI->image_lib->clear();
-            $this->CI->image_lib->initialize($config);
-            if( $this->CI->image_lib->resize() ) {
-                $sizes = getimagesize($this->_params['path'] . $filename_thumb);
+            $output['thumb_width'] = $sizes[0];
+            $output['thumb_height'] = $sizes[1];
 
-                $output['thumb_width'] = $sizes[0];
-                $output['thumb_height'] = $sizes[1];
+            if( $sizes[0] > $this->_params['thumb_width'] || $sizes[1] > $this->_params['thumb_height'] ){
 
-                $sizes = getimagesize($this->_params['path'] . $filename);
+                // Crea una copia y dimensiona la imagen  (THUMB)
+                $config = array();
+                $config['source_image'] = $this->_params['path'] . $filename;
+                $config['new_image'] = $this->_params['path'] . $filename_thumb;
+                $config['width'] = $this->_params['thumb_width'];
+                $config['height'] = $this->_params['thumb_height'];
 
-                // Dimensiona la imagen original   (ORIGINAL)
-                if( $sizes[0] > $this->_params['image_width'] || $sizes[1] > $this->_params['image_height'] ){
-                    $config = array();
-                    $config['source_image'] = $this->_params['path'] . $filename;
-                    if( $sizes[0] > $this->_params['image_width'] ) $config['width'] = $this->_params['image_width'];
-                    if( $sizes[1] > $this->_params['image_height'] ) $config['height'] = $this->_params['image_height'];
+                $this->CI->image_lib->clear();
+                $this->CI->image_lib->initialize($config);
 
-                    $this->CI->image_lib->clear();
-                    $this->CI->image_lib->initialize($config);
+                if( $this->CI->image_lib->resize() ) {
+                    $sizes = getimagesize($this->_params['path'] . $filename);
 
-                    if( !$this->CI->image_lib->resize() ) $this->_save_error($output, $this->CI->image_lib->display_errors());
-                }
+                    // Dimensiona la imagen original   (ORIGINAL)
+                    if( $sizes[0] > $this->_params['image_width'] || $sizes[1] > $this->_params['image_height'] ){
+                        $config = array();
+                        $config['source_image'] = $this->_params['path'] . $filename;
+                        if( $sizes[0] > $this->_params['image_width'] ) $config['width'] = $this->_params['image_width'];
+                        if( $sizes[1] > $this->_params['image_height'] ) $config['height'] = $this->_params['image_height'];
 
-            }else $this->_save_error($output, $this->CI->image_lib->display_errors());
+                        $this->CI->image_lib->clear();
+                        $this->CI->image_lib->initialize($config);
+
+                        if( !$this->CI->image_lib->resize() ) $this->_save_error($output, $this->CI->image_lib->display_errors());
+                    }
+
+                }else $this->_save_error($output, $this->CI->image_lib->display_errors());
+
+            }else{
+                copy($this->_params['path'].$filename, $this->_params['path'].$filename_thumb);
+            }
 
         }else $this->_save_error($output, $resultValid);
 

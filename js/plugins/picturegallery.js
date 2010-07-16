@@ -70,7 +70,6 @@ var PictureGallery = new (function(){
     **************************************************************************/
     var params;
     var array_images_del = new Array();
-    var array_images_orders = new Array();
 
    /* PRIVATE METHODS
     **************************************************************************/

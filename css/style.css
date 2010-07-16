@@ -10,6 +10,7 @@
 .prepend-top-small{margin-top:10px !important;}
 .border{border:1px solid red !important;}
 
+.text-size-90{font-size: 90% !important;}
 
 h1.title_header{
     float:left;
@@ -143,6 +144,14 @@ input.input-login{
     float:left;
     width: 150px;
 }
+input.input-categorie{
+    width: 250px;
+    margin: 0;
+}
+input.input-small{width: 100px;}
+input.input-medium{width: 250px;}
+input.input-large{width: 400px;}
+
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA TEXTAREA
@@ -160,9 +169,9 @@ textarea.textarea-large2{
  - ESTILOS PARA BUTTON
  -----------------------------------------------------------------------------*/
 button{
-    display: block;
     background: url(../images/menu.jpg) repeat-x;
-    width: 72px;
+    /*width: 72px;*/
+    padding: 0 10px 0 10px;
     height: 26px;
     text-align: center;
     color:#fff;
@@ -175,7 +184,7 @@ button{
  -----------------------------------------------------------------------------*/
 fieldset{
     float:left;
-    width: 665px;
+    width: 850px;
     border: 1px solid #ccc;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -447,7 +456,7 @@ ul.menu{
  - ESTILOS PARA LA TABLA "OBRAS"
  -----------------------------------------------------------------------------*/
 .tbl-obras .cell1{
-    width: 432px;
+    width: 633px;
 }
     .tbl-obras .head .cell1{
         padding-left: 5px;
@@ -472,7 +481,7 @@ ul.menu{
  - ESTILOS PARA LA TABLA "PRODUCTS"
  -----------------------------------------------------------------------------*/
 .tbl-products .cell1{
-    width: 300px;
+    width: 100px;
 }
     .tbl-products .head .cell1{
         padding-left: 5px;
@@ -481,27 +490,64 @@ ul.menu{
         padding-left: 6px !important;
     }
 .tbl-products .cell2{
-    width: 133px;
+    width: 533px;
 }
+    .tbl-products .body .cell2{
+        padding-top: 30px !important;
+    }
 .tbl-products .cell3{
     width: 90px;
     text-align: center;
 }
+    .tbl-products .body .cell3{
+        padding-top: 30px !important;
+    }
 .tbl-products .cell4{
     width: 90px;
     text-align: center;
 }
+    .tbl-products .body .cell4{
+        padding-top: 30px !important;
+    }
 .tbl-products .cell5{
     width: 90px;
     text-align: center;
 }
+    .tbl-products .body .cell5{
+        padding-top: 30px !important;
+    }
     .tbl-products .body .row{
-        height: 100px !important;
+        /*height: 80px !important;*/
+        padding-bottom: 25px !important;
     }
     .tbl-products .body .row-even li{
-        height: 100px !important;
+        /*height: 80px !important;*/
+        padding-bottom: 20px !important;
     }
 
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TABLA (pages)
+ -----------------------------------------------------------------------------*/
+.tbl-pages{
+    width:900px;
+    font-size: 100% !important;
+    /*border: 1px solid;*/
+}
+    .tbl-pages .cell1{
+        width: 750px;
+        /*border:1px solid #000;*/
+    }
+        .tbl-pages .cell1 a{
+            color: #144D92;
+            font-size: 90%;
+        }
+    .tbl-pages .cell2{
+        width: 40px;
+        vertical-align: top;
+    }
+    .tbl-pages tbody tr.row-even{
+        background-color: #ECECEC;
+    }
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA FORM CONTACT
@@ -564,28 +610,38 @@ ul.gallery-product{
     margin: 0 0 20px;
     float: left;
     clear: left;
+    border:1px solid red;
 }
     ul.gallery-product li{
         list-style-type: none;
         display: inline;
         float: left;
-        width: 152px;
+        width: 142px;
         height: inherit;
-        margin: 0 5px 20px 0;
-        /*border: 1px solid;*/
+        padding: 10px 0 10px 10px;
+        margin: 0 4px 20px 0;
+
+        background-color: #CBDEEF;
+        border: 2px solid #8CB1D5;
     }
-        ul.gallery-product li a{
-            float: left;
-            display: block;
-            width: 152px;
-            height: 152px;
-            padding: 2px;
+    .frame-image{
+        float: left;
+        width: 130px;
+        height: 120px;
+        background-color: #fff;
+        border:1px solid #8CB1D5;
+    }
+        .frame-image img{
+            margin: 0 auto !important;
         }
-        ul.gallery-product li span{
-            float: left;
+
+        ul.gallery-product li div.label{
             clear: left;
-            font-size: 90%;
+            float:left;
+            width: 130px;
+            font-size: 80%;
             margin-top: 2px;
+            /*border:1px solid red;*/
         }
 
 /*------------------------------------------------------------------------------
@@ -622,3 +678,70 @@ ul.gallery-product{
     float:right;
     width: 482px;
 }
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LA SECCION EMPRESA
+ -----------------------------------------------------------------------------*/
+.main-container .frame-empresa{
+    margin-top: -20px;
+}
+    .main-container .frame-empresa .gallery{
+        width: 280px;
+    }
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LA SECCION EMPRESA
+ -----------------------------------------------------------------------------*/
+.main-container .frame-servicios{
+    margin-top: -20px;
+}
+    .main-container .frame-servicios ul{
+        margin: 0;
+        padding: 0;
+    }
+        .main-container .frame-servicios ul li{
+            list-style-type: none;
+            padding: 5px 0 5px 5px;
+        }
+    .main-container .frame-servicios .gallery{
+        width: 190px;
+        margin-top: -10px;
+    }
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LA SECCION EMPRESA
+ -----------------------------------------------------------------------------*/
+.tbl-categories{
+    float:left;
+    width: 910px;
+    background-color: #F6F7F9;
+}
+    .tbl-categories ul{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+        .tbl-categories ul li{
+            list-style-type: none;
+            display: inline;
+            float:left;
+            margin: 0;
+            padding: 0;
+        }
+    .tbl-categories .parent{
+        width: 892px;
+        padding:5px 8px 5px 8px;
+        background-color: #92CEF0;
+        /*border:1px solid #144D92;*/
+    }
+    .tbl-categories .child{
+        width: 892px;
+        padding:5px 8px 5px 8px;
+        background-color: #F6F7F9;
+        /*border:1px solid #144D92;*/
+    }
+    .tbl-categories .label{
+        float: left;
+        font-size: 90%;
+    }

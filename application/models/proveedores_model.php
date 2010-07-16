@@ -173,10 +173,12 @@ class Proveedores_model extends Model {
 
             if( $cp1 && $cp2 ){
                 $data = array(
-                    'proveedor_id'    => $proveedor_id,
-                    'image'      => $row->image_full,
-                    'thumb'      => $row->image_thumb,
-                    'date_added' => date('Y-m-d H:i:s')
+                    'proveedor_id' => $proveedor_id,
+                    'image'        => $row->image_full,
+                    'thumb'        => $row->image_thumb,
+                    'width'        => $row->width,
+                    'height'       => $row->height,
+                    'date_added'   => date('Y-m-d H:i:s')
                 );
 
                 if( $mode_edit ) $data['order'] = $n;

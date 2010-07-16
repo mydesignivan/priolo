@@ -51,6 +51,9 @@ define('TBL_OBRAS', 'obras');
 define('TBL_OBRASGALLERY', 'obras_gallery');
 define('TBL_PROVEEDORES', 'proveedores');
 define('TBL_PROVGALLERY', 'proveedores_gallery');
+define('TBL_PAGES', 'pages');
+define('TBL_V_CATEGORIES', 'v_categories');
+define('TBL_V_PRODUCTS', 'v_products');
 
 
 /*

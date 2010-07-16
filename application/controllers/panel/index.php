@@ -5,6 +5,7 @@ class Index extends Controller {
      **************************************************************************/
     function __construct(){
         parent::Controller();
+
         $this->load->library("simplelogin");
         $this->load->library('dataview', array(
             'tlp_section'        =>  'panel/login_view.php',

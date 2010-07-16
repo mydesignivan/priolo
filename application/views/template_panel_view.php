@@ -25,17 +25,11 @@
         <!-- ================  END HEADER  ================ -->
 
         <!-- =============== CONTAINER =============== -->
-        <div class="clear span-18 main-container"> 
+        <div class="clear span-23 main-container"> 
             <h1 class="title_section"><?=$tlp_title_section;?></h1>
             <?php require($tlp_section);?>
         </div>
         <!-- =============== END CONTAINER =============== -->
-
-        <!-- =============== SIDEBAR =============== -->
-        <div class="span-5 last"> 
-            <?php require('includes/sidebar_inc.php');?>
-        </div>
-        <!-- =============== END SIDEBAR =============== -->
 
         <!-- =============== FOOTER =============== -->
         <div class="clear span-24 last footer"> 

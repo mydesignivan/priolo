@@ -7,12 +7,15 @@ class Obras extends Controller {
         parent::Controller();
 
         $this->load->model('obras_model');
+        $this->load->model('proveedores_model');
+
         $this->load->library('dataview', array(
             'tlp_section'          =>  'frontpage/obras_view.php',
             'tlp_title'            =>  TITLE_OBRAS,
             'tlp_title_section'    =>  "Obras",
             'tlp_meta_description' => META_DESCRIPTION_OBRAS,
-            'tlp_meta_keywords'    => META_KEYWORDS_OBRAS
+            'tlp_meta_keywords'    => META_KEYWORDS_OBRAS,
+            'tlp_sidebar'          => $this->proveedores_model->get_list_front()
         ));
         $this->_data = $this->dataview->get_data();
     }

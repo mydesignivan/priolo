@@ -27,8 +27,8 @@ $class = $rowSubCat['reference']==$this->uri->segment(2) ? 'option-select' : '';
     <ul class="gallery-product">
 <?php foreach( $listProducts->result_array() as $row ) {?>
         <li>
-            <img src="<?=UPLOAD_DIR_PRODUCTS.$row['thumb'];?>" alt="<?=$row['thumb']?>" width="152" height="152" />
-            <span><?=$row['product_name']?></span>
+            <div class="frame-image"><a href="<?=UPLOAD_DIR_PRODUCTS.$row['image'];?>"><img src="<?=UPLOAD_DIR_PRODUCTS.$row['thumb'];?>" alt="<?=$row['thumb']?>" width="90" height="" /></a></div>
+            <div class="label"><?=$row['product_name']?></div>
         </li>
 <?php }?>
     </ul>

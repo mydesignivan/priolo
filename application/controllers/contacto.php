@@ -7,12 +7,15 @@ class Contacto extends Controller {
         parent::Controller();
 
         $this->load->model('users_model');
+        $this->load->model('proveedores_model');
+
         $this->load->library('dataview', array(
             'tlp_section'          => 'frontpage/contacto_view.php',
             'tlp_title'            => TITLE_CONTACT,
             'tlp_title_section'    => "Contacto",
             'tlp_meta_description' => META_DESCRIPTION_CONTACT,
-            'tlp_meta_keywords'    => META_KEYWORDS_CONTACT
+            'tlp_meta_keywords'    => META_KEYWORDS_CONTACT,
+            'tlp_sidebar'          => $this->proveedores_model->get_list_front()
         ));
         $this->_data = $this->dataview->get_data();
     }

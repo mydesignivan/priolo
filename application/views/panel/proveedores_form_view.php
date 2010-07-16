@@ -57,7 +57,7 @@
     <input type="hidden" name="au_thumb_width" value="<?=IMAGE_THUMB_WIDTH_PROV?>" />
     <input type="hidden" name="au_thumb_height" value="<?=IMAGE_THUMB_HEIGHT_PROV?>" />
     <input type="hidden" name="json" id="json" value="" />
-    <iframe id="iframe" name="iframe" src="about:blank" frameborder="1" width="600" height="150" style="border:1px solid green;"></iframe>
+    <iframe id="iframe" name="iframe" src="about:blank" frameborder="1" width="600" height="150" class="hide" style="border:1px solid green;"></iframe>
 </form>
 
 

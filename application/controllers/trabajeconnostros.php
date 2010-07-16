@@ -7,13 +7,16 @@ class Trabajeconnostros extends Controller {
         parent::Controller();
 
         $this->load->model('users_model');
+        $this->load->model('proveedores_model');
+        
         $this->load->library('dataview', array(
             'tlp_section'          =>  'frontpage/trabajeconnostros_view.php',
             'tlp_title'            =>  TITLE_TRABAJECONNOSOTROS,
             'tlp_title_section'    =>  "Trabaje con Nosotros",
             'tlp_script'           => array('validator', 'trabnosotros'),
             'tlp_meta_description' => META_DESCRIPTION_TRABAJECONNOSOTROS,
-            'tlp_meta_keywords'    => META_KEYWORDS_TRABAJECONNOSOTROS
+            'tlp_meta_keywords'    => META_KEYWORDS_TRABAJECONNOSOTROS,
+            'tlp_sidebar'          => $this->proveedores_model->get_list_front()
         ));
         $this->_data = $this->dataview->get_data();
     }

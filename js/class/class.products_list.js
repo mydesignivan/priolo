@@ -5,18 +5,19 @@ var Products = new (function(){
     this.initializer = function(params){
         _params = params;
 
-        if( $('#sortable').length>0 ){
-            var initorder = $('#sortable li.row:first').attr('id').substr(3);
+        if( $('ul.sortable').length>0 ){
+            var initorder = $('ul.sortable li.row:first').attr('id').substr(3);
 
-            $("#sortable").sortable({
+            $("ul.sortable").sortable({
                                 stop : function(){
-                                    $("#sortable").sortable( "option", "disabled", true );
+                                    $("ul.sortable").sortable( "option", "disabled", true );
 
-                                    $('#sortable li.row').removeClass('row-even');
-                                    $('#sortable li.row:even').addClass('row-even');
+                                    $('ul.sortable li.row').removeClass('row-even');
+                                    $('ul.sortable li.row:even').addClass('row-even');
 
-                                    var arr = $("#sortable").sortable("toArray");
+                                    var arr = $(this).sortable("toArray");
                                     $.post(baseURI+'panel/products/ajax_order/', {rows : JSON.encode(arr), initorder : initorder}, function(data){
+                                        //alert(data);
                                         $("#sortable").sortable( "option", "disabled", false );
                                     });
                                 }

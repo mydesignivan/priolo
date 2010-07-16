@@ -7,6 +7,7 @@ class Productos extends Controller {
         parent::Controller();
 
         $this->load->model(array('products_model', 'categories_model'));
+        $this->load->model('proveedores_model');
         $this->load->library('connmodel', array('model_name'=>'categories_model'));
         $this->load->library('pagination');
 
@@ -16,7 +17,8 @@ class Productos extends Controller {
             'tlp_title_section'    =>  "Productos",
             'tlp_script'           =>  "fancybox",
             'tlp_meta_description' => META_DESCRIPTION_PRODUCTS,
-            'tlp_meta_keywords'    => META_KEYWORDS_PRODUCTS
+            'tlp_meta_keywords'    => META_KEYWORDS_PRODUCTS,
+            'tlp_sidebar'          => $this->proveedores_model->get_list_front()
         ));
         $this->_data = $this->dataview->get_data();
 

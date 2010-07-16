@@ -5,6 +5,7 @@ class Products_model extends Model {
      **************************************************************************/
     function  __construct() {
         parent::Model();
+        $this->load->model('categories_model');
     }
 
     /* PUBLIC FUNCTIONS
@@ -27,23 +28,36 @@ class Products_model extends Model {
         return $ret;
     }
 
-    public function get_list_panel($limit, $offset){
+    public function get_list_panel($limit, $offset, $categories_id){
         $ret = array();
 
         $sql = TBL_PRODUCTS.".*,";
-        $sql.= TBL_CATEGORIES.'.categorie_name';
+        $sql.= TBL_CATEGORIES.'.categorie_name,';
+        $sql.= TBL_CATEGORIES.'.categories_id';
 
         $this->db->select($sql, false);
         $this->db->from(TBL_PRODUCTS);
         $this->db->join(TBL_PRODUCTSCATEGORIES, TBL_PRODUCTS.'.products_id = '.TBL_PRODUCTSCATEGORIES.'.products_id');
         $this->db->join(TBL_CATEGORIES, TBL_PRODUCTSCATEGORIES.'.categories_id = '.TBL_CATEGORIES.'.categories_id');
+        if( $categories_id!=0 ) $this->db->where(TBL_CATEGORIES.'.categories_id', $categories_id);
         $ret['count_rows'] = $this->db->count_all_results();
 
         $this->db->select($sql, false);
         $this->db->join(TBL_PRODUCTSCATEGORIES, TBL_PRODUCTS.'.products_id = '.TBL_PRODUCTSCATEGORIES.'.products_id');
         $this->db->join(TBL_CATEGORIES, TBL_PRODUCTSCATEGORIES.'.categories_id = '.TBL_CATEGORIES.'.categories_id');
+        $this->db->order_by(TBL_CATEGORIES.'.order', 'asc');
         $this->db->order_by(TBL_PRODUCTS.'.order', 'asc');
+        if( $categories_id!=0 ) $this->db->where(TBL_CATEGORIES.'.categories_id', $categories_id);
         $ret['result'] = $this->db->get(TBL_PRODUCTS, $limit, $offset);
+
+        $output = array();
+        foreach( $ret['result']->result_array() as $row ){
+                $arr_path = $this->categories_model->get_path($row['categories_id']);
+                $key = implode(' > ', $arr_path);
+                $output[$key][] = $row;
+        }
+
+        $ret['result'] = $output;
 
         return $ret;
     }
@@ -148,6 +162,23 @@ class Products_model extends Model {
 
         return $query->num_rows>0;
     }
+
+    public function order(){
+        $order = $_POST['initorder'];
+        $rows = json_decode($_POST['rows']);
+
+        //print_array($rows, true);
+
+        foreach( $rows as $row ){
+            $id = substr($row, 3);
+            $this->db->where('products_id', $id);
+            if( !$this->db->update(TBL_PRODUCTS, array('order' => $order)) ) return false;
+            $order++;
+        }
+
+        return true;
+    }
+
 
     /* PRIVATE FUNCTIONS
      **************************************************************************/

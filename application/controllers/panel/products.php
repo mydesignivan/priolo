@@ -9,6 +9,8 @@ class Products extends Controller {
         if( !$this->session->userdata('logged_in') ) redirect($this->config->item('base_url'));
         
         $this->load->model("products_model");
+        $this->load->model("categories_model");
+
         $this->load->library('dataview', array(
             'tlp_title'          =>  TITLE_INDEX,
             'tlp_title_section'  => "Productos"
@@ -27,7 +29,7 @@ class Products extends Controller {
 
 
         $this->_count_per_page=5;
-        $uri = $this->uri->uri_to_assoc(1);
+        $uri = $this->uri->uri_to_assoc(2);
         $this->_offset = !isset($uri['page']) ? 0 : $uri['page'];
     }
 
@@ -40,33 +42,46 @@ class Products extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
+        $this->display();
+    }
+
+    public function display(){
         $this->load->library('pagination');
         $this->load->helper('text');
 
-        $listProducts = $this->products_model->get_list_panel($this->_count_per_page, $this->_offset);
-        
-        $config['base_url'] = site_url('/panel/products/index/page/');
+        $categories_id = $this->uri->segment(4);
+        if( !is_numeric($categories_id) ) {
+            $categories_id = 0;
+            $base_url = site_url('/panel/products/index/page/');
+        }else{
+            $base_url = site_url('/panel/products/display/'.$categories_id.'/page/');
+        }
+
+        $listProducts = $this->products_model->get_list_panel($this->_count_per_page, $this->_offset, $categories_id);
+
+        $config['base_url'] = $base_url;
         $config['total_rows'] = $listProducts['count_rows'];
         $config['per_page'] = $this->_count_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
         $this->pagination->initialize($config);
-
+        
         $this->_data = $this->dataview->set_data(array(
-            'tlp_section'     =>  'panel/products_list_view.php',
-            'tlp_script'      =>  array('sortable', 'json', 'products_list'),
-            'listProducts'    =>  $listProducts['result']
+            'tlp_section'     => 'panel/products_list_view.php',
+            'tlp_script'      => array('sortable', 'json', 'products_list'),
+            'listProducts'    => $listProducts['result'],
+            'listCategories'  => $this->categories_model->get_combo_catprod(array('0'=>'Todos')),
+            'categories_id'   => $categories_id
         ));
         $this->load->view('template_panel_view', $this->_data);
     }
 
     public function form(){
-        $this->load->model("categories_model");
         $this->load->helper('form');
 
         $id = $this->uri->segment(4);
 
         $tlp_script = array('fancybox', 'validator', 'products_form');
-        $listCategories = $this->categories_model->get_categories_combo();
+        $listCategories = $this->categories_model->get_combo_categories();
 
 
         if( $id ){  // Edit

@@ -13,6 +13,8 @@ var Proveedores = new (function(){
             v_required  : true
         });
 
+        $('a.jq-image').fancybox();
+        
         PictureGallery.initializer({
             sel_iframe     : '#iframe',
             sel_input      : '#txtUploadFile',
