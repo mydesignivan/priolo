@@ -73,6 +73,7 @@ class Productos extends Controller {
         $this->pagination->initialize($config);
 
         $this->_data = $this->dataview->set_data(array(
+            'tlp_script'      => array('fancybox'),
             'listCategories'  => $listCategories,
             'listProducts'    => $listProducts['result'],
             'model'           => $this->connmodel->model['categories_model'],

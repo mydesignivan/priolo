@@ -27,7 +27,7 @@ $class = $rowSubCat['reference']==$this->uri->segment(2) ? 'option-select' : '';
     <ul class="gallery-product">
 <?php foreach( $listProducts->result_array() as $row ) {?>
         <li>
-            <div class="frame-image"><a href="<?=UPLOAD_DIR_PRODUCTS.$row['image'];?>"><img src="<?=UPLOAD_DIR_PRODUCTS.$row['thumb'];?>" alt="<?=$row['thumb']?>" width="90" height="" /></a></div>
+            <div class="frame-image"><a href="<?=UPLOAD_DIR_PRODUCTS.$row['image'];?>" class="jq-fancybox" rel="group" title="<?=$row['product_name']?>"><img src="<?=UPLOAD_DIR_PRODUCTS.$row['thumb'];?>" alt="<?=$row['thumb']?>" width="128" height="" /></a></div>
             <div class="label"><?=$row['product_name']?></div>
         </li>
 <?php }?>
@@ -36,3 +36,9 @@ $class = $rowSubCat['reference']==$this->uri->segment(2) ? 'option-select' : '';
 
 <div class="row text-center"><?=$this->pagination->create_links();?></div>
 </div>
+
+<script type="text/javascript">
+<!--
+$('a.jq-fancybox').fancybox();
+-->
+</script>

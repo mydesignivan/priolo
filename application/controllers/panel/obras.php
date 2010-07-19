@@ -14,21 +14,36 @@ class Obras extends Controller {
             'tlp_title_section'  => "Obras"
         ));
         $this->_data = $this->dataview->get_data();
+        
+        $this->_count_per_page = 10;
+        $uri = $this->uri->uri_to_assoc(2);
+        $this->_offset = !isset($uri['page']) ? 0 : $uri['page'];
     }
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
     private $_data;
+    private $_count_per_page;
+    private $_offset;
 
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
         $this->load->helper('text');
+        $this->load->library('pagination');
+
+        $listObras = $this->obras_model->get_list_panel($this->_count_per_page, $this->_offset);
+
+        $config['base_url'] = site_url('/panel/obras/index/page/');
+        $config['total_rows'] = $listObras['count_rows'];
+        $config['per_page'] = $this->_count_per_page;
+        $config['uri_segment'] = $this->uri->total_segments();
+        $this->pagination->initialize($config);
 
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'   =>  'panel/obras_list_view.php',
             'tlp_script'    =>  array('sortable', 'json', 'obras_list'),
-            'listObras'     =>  $this->obras_model->get_list_panel()
+            'listObras'     =>  $listObras['result']
         ));
         $this->load->view('template_panel_view', $this->_data);
     }

@@ -51,7 +51,7 @@
     </div>
 
     <input type="hidden" name="obra_id" value="<?=@$info['obra_id']?>" />
-    <input type="hidden" name="au_dir" value="<?=UPLOAD_DIR_OBRAS.'.tmp/'?>" />
+    <input type="hidden" name="au_dir" value="<?=UPLOAD_DIR_TMP_OBRAS?>" />
     <input type="hidden" name="au_image_width" value="<?=IMAGE_ORIGINAL_WIDTH_OBRAS?>" />
     <input type="hidden" name="au_image_height" value="<?=IMAGE_ORIGINAL_HEIGHT_OBRAS?>" />
     <input type="hidden" name="au_thumb_width" value="<?=IMAGE_THUMB_WIDTH_OBRAS?>" />

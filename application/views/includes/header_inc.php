@@ -7,22 +7,24 @@
 </div>
 
 <!-- =============== SLIDER =============== -->
+<?php if( $this->uri->segment(1)!="panel" ) {?>
 <div class="clear span-24 last"> 
     <div id="slider" class="header_slider">
-        <img src="images/slider/imagen1.jpg" alt="" width="942" height="323" />
-        <img src="images/slider/imagen1.jpg" alt="" width="938" height="240" />
-        <img src="images/slider/imagen1.jpg" alt="" width="938" height="240" />
-        <img src="images/slider/imagen1.jpg" alt="" width="938" height="240" />
+        <img src="images/slider/0.jpg" alt="" width="918" height="316" />
+        <img src="images/slider/1.jpg" alt="" width="918" height="316" />
+        <img src="images/slider/2.jpg" alt="" width="918" height="316" />
+        <img src="images/slider/3.jpg" alt="" width="918" height="316" />
+        <img src="images/slider/4.jpg" alt="" width="918" height="316" />
     </div>
 </div>
-
+<?php }?>
 <!-- =============== MENU =============== -->
 
 <?php if( $this->session->userdata('logged_in') && $this->uri->segment(1)=="panel" ) {
     $page = $this->uri->segment(2);?>
 
 <div class="clear span-24 last"> 
-    <ul class="menu">
+    <ul class="menu menu-header">
         <li><a href="<?=$this->config->item('base_url');?>">Home</a><div class="shadow"></div></li>
         <li <?php if( $page=="myaccount" ) echo 'class="current"';?>><a href="<?=site_url('/panel/myaccount/')?>">Mi Cuenta</a><div class="shadow"></div></li>
         <li <?php if( $page=="categories" ) echo 'class="current"';?>><a href="<?=site_url('/panel/categories/')?>">Categor&iacute;as</a><div class="shadow"></div></li>
@@ -30,7 +32,7 @@
         <li <?php if( $page=="obras" ) echo 'class="current"';?>><a href="<?=site_url('/panel/obras/')?>">Obras</a><div class="shadow"></div></li>
         <li <?php if( $page=="proveedores" ) echo 'class="current"';?>><a href="<?=site_url('/panel/proveedores/')?>">Proveedores</a><div class="shadow"></div></li>
         <li <?php if( $page=="pages" ) echo 'class="current"';?>><a href="<?=site_url('/panel/pages/')?>">P&aacute;ginas</a><div class="shadow"></div></li>
-        <li <?php if( $page=="logout" ) echo 'class="current"';?>><a href="<?=site_url('/panel/logout/')?>">Logout</a><div class="shadow"></div></li>
+        <li class="no-line <?php if( $page=="logout" ) echo 'current';?>"><a href="<?=site_url('/panel/logout/')?>">Logout</a><div class="shadow"></div></li>
     </ul>
 </div>
 
@@ -45,7 +47,7 @@
         <li <?php if( $page=="servicios" ) echo 'class="current"';?>><a href="<?=site_url('/servicios/')?>">Servicios</a><div class="shadow"></div></li>
         <li <?php if( $page=="productos" ) echo 'class="current"';?>><a href="<?=site_url('/productos/')?>">Productos</a><div class="shadow"></div></li>
         <li <?php if( $page=="trabaje-con-nosotros") echo 'class="current"';?>><a href="<?=site_url('/trabaje-con-nosotros/')?>">Trabaje con Nosotros</a><div class="shadow"></div></li>
-        <li <?php if( $page=="contacto" ) echo 'class="current"';?>><a href="<?=site_url('/contacto/')?>">Contacto</a><div class="shadow"></div></li>
+        <li class="no-line <?php if( $page=="contacto" ) echo 'current';?>"><a href="<?=site_url('/contacto/')?>">Contacto</a><div class="shadow"></div></li>
     </ul>
 </div>
 

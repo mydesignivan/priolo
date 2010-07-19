@@ -18,18 +18,34 @@ class Obras extends Controller {
             'tlp_sidebar'          => $this->proveedores_model->get_list_front()
         ));
         $this->_data = $this->dataview->get_data();
+
+        $this->_count_per_page = 10;
+        $uri = $this->uri->uri_to_assoc(2);
+        $this->_offset = !isset($uri['page']) ? 0 : $uri['page'];
     }
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
     private $_data;
+    private $_count_per_page;
+    private $_offset;
 
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
+        $this->load->library('pagination');
+
+        $listObras = $this->obras_model->get_list_front($this->_count_per_page, $this->_offset);
+
+        $config['base_url'] = site_url('/obras/page/');
+        $config['total_rows'] = $listObras['count_rows'];
+        $config['per_page'] = $this->_count_per_page;
+        $config['uri_segment'] = $this->uri->total_segments();
+        $this->pagination->initialize($config);
+
         $this->_data = $this->dataview->set_data(array(
             'tlp_script' => array('fancybox'),
-            'list'  => $this->obras_model->get_list_front()
+            'list'       => $listObras['result']
         ));
         $this->load->view('template_frontpage_view', $this->_data);
     }

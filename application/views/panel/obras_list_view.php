@@ -9,6 +9,7 @@
 
 <button type="button" class="float-right" onclick="location.href='<?=site_url('/panel/obras/form/')?>'">Nuevo</button>
 
+<?php if( $listObras->num_rows>0 ) {?>
 <div class="table tbl-obras">
     <ul class="head">
         <li class="cell1">T&iacute;tulo</li>
@@ -17,7 +18,6 @@
         <li class="cell4">Eliminar</li>
     </ul>
 
-<?php if( $listObras->num_rows>0 ) {?>
     <ul id="sortable" class="body">
 <?php
 $n=0;
@@ -36,8 +36,10 @@ foreach( $listObras->result_array() as $row ) {
         </li>
 <?php }?>
     </ul>
-<?php }?>
 </div>
+
+<div class="row text-center"><?=$this->pagination->create_links();?></div>
+<?php }?>
 
 
 <script type="text/javascript">

@@ -21,3 +21,5 @@ foreach( $list['listObras'] as $row ){
     </ul>
 
 <?php }?>
+
+<div class="row text-center"><?=$this->pagination->create_links();?></div>

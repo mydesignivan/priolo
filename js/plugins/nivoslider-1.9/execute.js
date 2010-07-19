@@ -1,9 +1,9 @@
-$(window).load(function() {
+$(window).ready(function() {
     $('#slider').nivoSlider({
-        effect : 'fade',
+        effect : 'sliceDown',
         slices : 15,
         animSpeed : 500,
-        pauseTime : 3000,
+        pauseTime : 4000,
         startSlide : 0, //Set starting Slide (0 index)
         directionNav : false, //Next & Prev
         directionNavHide : false, //Only show on hover

@@ -28,7 +28,7 @@ class Products extends Controller {
         ));
 
 
-        $this->_count_per_page=5;
+        $this->_count_per_page=10;
         $uri = $this->uri->uri_to_assoc(2);
         $this->_offset = !isset($uri['page']) ? 0 : $uri['page'];
     }

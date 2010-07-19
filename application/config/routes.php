@@ -48,6 +48,9 @@ $route['trabaje-con-nosotros/send'] = "trabajeconnostros/send";
 
 $route['productos/:any'] = "productos/show_products/$1";
 
+$route['obras/page/:num'] = "obras/index/page/$1";
+$route['obras/page'] = "obras/index";
+
 //$route['panel'] = "panel/index";
 $route['panel/login'] = "panel/index/login";
 $route['panel/logout'] = "panel/index/logout";

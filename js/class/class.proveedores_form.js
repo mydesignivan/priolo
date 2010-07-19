@@ -30,10 +30,10 @@ var Proveedores = new (function(){
         $("#gallery-image").sortable({
                                 stop : function(){
                                     $('a.jq-image').fancybox();
-                                }
-                           })
-                           .disableSelection()
-                           .sortable({ handle: '.handle' })
+                                },
+                                revert: true,
+                                handle : '.handle'
+                           }).disableSelection();
 
        MessageShowHide(document, _params.status);
     };

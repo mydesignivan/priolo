@@ -85,5 +85,36 @@ class Categories_model extends Model {
         return array_reverse($path);
     }
 
+    public function get_list($parent_id=0, &$output=array()){
+        $this->db->order_by('`order`', 'asc');
+        $query = $this->db->get_where(TBL_CATEGORIES, array('parent_id'=>$parent_id));
+
+
+        foreach( $query->result_array() as $row ){
+
+            $val = $row['categorie_name'];
+            if( $row['level']!=0 ) {
+                $separator='';
+                for( $n=1; $n<=$row['level']; $n++ ) $separator.= $this->_combo_separator;
+                $val = $separator . $val;
+            }
+
+            $this->db->where('parent_id', $row['categories_id']);
+            $this->db->from(TBL_CATEGORIES);
+            $count_child = $this->db->count_all_results();
+
+            $output[] = array(
+                'count_child'    => $count_child,
+                'categories_id'  => $row['categories_id'],
+                'categorie_name' => $val,
+                'level'          => $row['level']
+            );
+                
+            $this->get_list($row['categories_id'], $output);
+        }
+
+        return $output;
+    }
+
 }
 ?>

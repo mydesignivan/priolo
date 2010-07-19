@@ -149,6 +149,7 @@ input.input-categorie{
     margin: 0;
 }
 input.input-small{width: 100px;}
+input.input-small2{width: 200px;}
 input.input-medium{width: 250px;}
 input.input-large{width: 400px;}
 
@@ -247,13 +248,22 @@ fieldset{
  - ESTILOS PARA EL HEADER
  -----------------------------------------------------------------------------*/
 .header_slider{
-    width:942px;
-    height:323px;
-    margin: 0 auto;
-    background-color: #ccc;
-    margin-top: -18px;
+    width:918px;
+    height:316px;
+    float:left;
+    margin-left:11px;
     overflow: hidden;
+    position:relative;
+    background:url(../images/ajax-loader2.gif) no-repeat center;
+    background-color: #202834;
+    /*border:1px solid red;*/
 }
+    .header_slider img{
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+    }
 
 
 /*------------------------------------------------------------------------------
@@ -272,13 +282,13 @@ ul.menu{
         height: 50px;
         padding-top: 2px;
         text-align: center;
-        margin-right: 3px;        
     }
         ul.menu li a{
             display: block;
             font-size: 90%;
             color: #fff;
-            padding: 0 32px 0 32px;
+            padding: 0 33px 0 33px;
+            border-right: 1px solid #fff;
         }
         ul.menu li div.shadow{
             float:left;
@@ -292,13 +302,21 @@ ul.menu{
     
     ul.menu li.current{
         background: url(../images/menu_over.jpg) repeat-x;
+        margin-left: -1px;
     }
         ul.menu li.current a{
             color: #173E77;
             border-left: 1px solid #8098B4;
             border-right: 1px solid #8098B4;
         }
+    ul.menu li.no-line a{border-right: none !important;}
 
+ul.menu-header{
+    margin: 2px 0 0 10px;
+}
+    ul.menu-header li a{
+        padding: 0 29px 0 29px;
+    }
 
 
 /*------------------------------------------------------------------------------
@@ -550,6 +568,48 @@ ul.menu{
     }
 
 /*------------------------------------------------------------------------------
+ - ESTILOS PARA TABLA (CATEGORIAS)
+ -----------------------------------------------------------------------------*/
+.tbl-categorie{
+    float:left;
+    margin-top: 10px;
+    width:100%;
+    font-size: 90%;
+    /*border: 1px solid;*/
+}
+    .tbl-categorie thead{
+        font-weight: bold;
+        background: url(../images/menu.jpg) repeat-x top left #154585;
+        color: #fff;    
+    }
+    .tbl-categorie tbody tr.row-even{
+        background-color: #C4E8F7;
+        color: #144D91;
+    }
+    
+    .tbl-categorie .cell1{
+        width: 10px;
+        text-align: center;
+    }
+        .tbl-categorie .cell1 input{padding: 0; margin: 0;}
+    .tbl-categorie .cell2{
+        width: 550px;
+    }
+    .tbl-categorie .cell3{
+        width: 90px;
+        text-align: center;
+    }
+    .tbl-categorie .cell4{
+        width: 90px;
+        text-align: center;
+    }
+    .tbl-categorie .cell5{
+        width: 90px;
+        text-align: center;
+    }
+
+
+/*------------------------------------------------------------------------------
  - ESTILOS PARA FORM CONTACT
  -----------------------------------------------------------------------------*/
 .contact-col1{
@@ -610,14 +670,14 @@ ul.gallery-product{
     margin: 0 0 20px;
     float: left;
     clear: left;
-    border:1px solid red;
 }
     ul.gallery-product li{
         list-style-type: none;
         display: inline;
         float: left;
         width: 142px;
-        height: inherit;
+        height: 180px;
+        /*min-height: 180px;*/
         padding: 10px 0 10px 10px;
         margin: 0 4px 20px 0;
 
@@ -630,8 +690,16 @@ ul.gallery-product{
         height: 120px;
         background-color: #fff;
         border:1px solid #8CB1D5;
+        text-align: center;
     }
         .frame-image img{
+            position: relative;
+            top:10%;
+            /*border:1px solid red;*/
+        }
+        .frame-image a{
+            width: inherit;
+            height: inherit;
             margin: 0 auto !important;
         }
 
@@ -718,6 +786,8 @@ ul.gallery-product{
     background-color: #F6F7F9;
 }
     .tbl-categories ul{
+        float:left;
+        clear:left;
         margin: 0;
         padding: 0;
         width: 100%;

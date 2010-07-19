@@ -51,7 +51,7 @@
     </div>
 
     <input type="hidden" name="proveedor_id" value="<?=@$info['proveedor_id']?>" />
-    <input type="hidden" name="au_dir" value="<?=UPLOAD_DIR_PROV.'.tmp/'?>" />
+    <input type="hidden" name="au_dir" value="<?=UPLOAD_DIR_TMP_PROV?>" />
     <input type="hidden" name="au_image_width" value="<?=IMAGE_ORIGINAL_WIDTH_PROV?>" />
     <input type="hidden" name="au_image_height" value="<?=IMAGE_ORIGINAL_HEIGHT_PROV?>" />
     <input type="hidden" name="au_thumb_width" value="<?=IMAGE_THUMB_WIDTH_PROV?>" />

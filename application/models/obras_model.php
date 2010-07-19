@@ -96,9 +96,14 @@ class Obras_model extends Model {
         return true;
     }
 
-    public function get_list_front(){
+    public function get_list_front($limit, $offset){
+        $ret = array();
+
+        $this->db->from(TBL_OBRAS);
+        $ret['count_rows'] = $this->db->count_all_results();
+
         $this->db->order_by('order', 'asc');
-        $listObras = $this->db->get(TBL_OBRAS)->result_array();
+        $listObras = $this->db->get(TBL_OBRAS, $limit, $offset)->result_array();
 
         $result['listObras'] = $listObras;
 
@@ -109,14 +114,23 @@ class Obras_model extends Model {
             if( $listObrasGallery->num_rows>0 ) $result['listGallery'][$row['obra_id']] = $listObrasGallery->result_array();
         }
 
+        $ret['result'] = $result;
+
         //print_array($result, true);
         
-        return $result;
+        return $ret;
     }
 
-    public function get_list_panel(){
+    public function get_list_panel($limit, $offset){
+        $ret = array();
+
+        $this->db->from(TBL_OBRAS);
+        $ret['count_rows'] = $this->db->count_all_results();
+
         $this->db->order_by('order', 'asc');
-        return $this->db->get(TBL_OBRAS);
+        $ret['result'] = $query = $this->db->get(TBL_OBRAS, $limit, $offset);
+
+        return $ret;
     }
 
     public function get_info($id){
