@@ -64,7 +64,7 @@ class Products extends Controller {
         $config['per_page'] = $this->_count_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
         $this->pagination->initialize($config);
-        
+
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'     => 'panel/products_list_view.php',
             'tlp_script'      => array('sortable', 'json', 'products_list'),
@@ -163,8 +163,11 @@ class Products extends Controller {
     }
 
     public function delete(){
-        if( is_numeric($this->uri->segment(4)) ){
-            if( !$this->products_model->delete($this->uri->segment(4)) ){
+        $uri = $this->uri->segment_array();
+        $uri = array_slice($uri, 3);
+
+        if( count($uri)>0 ){
+            if( !$this->products_model->delete($uri) ){
                 $this->session->set_flashdata('status', 'error');
                 $this->session->set_flashdata('message', 'No se pudo eliminar el producto seleccionado.');
             }

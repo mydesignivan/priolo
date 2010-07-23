@@ -10,7 +10,7 @@ class Index extends Controller {
         $this->load->library('dataview', array(
             'tlp_section'        =>  'panel/login_view.php',
             'tlp_title'          =>  TITLE_INDEX,
-            'tlp_title_section'  => "Iniciar Sessi&oacute;n"
+            'tlp_title_section'  => "Iniciar Sesi&oacute;n"
         ));
         $this->_data = $this->dataview->get_data();
     }

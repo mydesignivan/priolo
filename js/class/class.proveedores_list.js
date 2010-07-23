@@ -20,10 +20,9 @@ var Proveedores = new (function(){
                                     $.post(baseURI+'panel/proveedores/ajax_order/', {rows : JSON.encode(arr), initorder : initorder}, function(data){
                                         $("#sortable").sortable( "option", "disabled", false );
                                     });
-                                }
-                           })
-                          .disableSelection()
-                          .sortable({ handle: '.handle' });
+                                },
+                                handle: '.handle'
+                           }).disableSelection();
         }
 
        MessageShowHide(document, _params.status);

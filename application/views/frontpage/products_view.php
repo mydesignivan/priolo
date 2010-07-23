@@ -24,17 +24,27 @@ $class = $rowSubCat['reference']==$this->uri->segment(2) ? 'option-select' : '';
     <h2 class="title-product"><?=$title_categorie?></h2>
 
 <?php if( $listProducts->num_rows>0 ) {?>
-    <ul class="gallery-product">
-<?php foreach( $listProducts->result_array() as $row ) {?>
-        <li>
-            <div class="frame-image"><a href="<?=UPLOAD_DIR_PRODUCTS.$row['image'];?>" class="jq-fancybox" rel="group" title="<?=$row['product_name']?>"><img src="<?=UPLOAD_DIR_PRODUCTS.$row['thumb'];?>" alt="<?=$row['thumb']?>" width="128" height="" /></a></div>
-            <div class="label"><?=$row['product_name']?></div>
-        </li>
-<?php }?>
-    </ul>
+
+    <table cellpadding="0" cellspacing="0" class="gallery-product">
+<?php 
+    $n=0;
+    foreach( $listProducts->result_array() as $row ) {
+    $n++;
+    
+        if( $n==1 ) echo '<tr>';
+?>
+            <td>
+                <div class="frame-image"><a href="<?=UPLOAD_DIR_PRODUCTS.$row['image'];?>" class="jq-fancybox" rel="group"><img src="<?=UPLOAD_DIR_PRODUCTS.$row['thumb'];?>" alt="<?=$row['thumb']?>" width="<?=$row['thumb_width']?>" height="<?=$row['thumb_height']?>" /></a></div>
+                <div class="label"><?=$row['product_name']?></div>
+            </td>
+<?php 
+        if( $n==3 || $listProducts->num_rows==$n ) {echo '</tr>';$n=0;}
+    }?>
+    </table>
+
 <?php }?>
 
-<div class="row text-center"><?=$this->pagination->create_links();?></div>
+    <div class="row text-center"><?=$this->pagination->create_links();?></div>
 </div>
 
 <script type="text/javascript">

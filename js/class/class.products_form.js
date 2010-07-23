@@ -24,8 +24,8 @@ var Products = new (function(){
        MessageShowHide(document, _params.status);
     };
 
-    this.save = function(btn){
-        $(btn).hide();
+    this.save = function(){
+        $('#btnSave').hide();
         $('#ajax-loader2').show();
 
         $.validator.validate('#form1 .validate', function(error){
@@ -38,15 +38,15 @@ var Products = new (function(){
                 };
 
                 $.post(baseURI+'panel/products/ajax_check_exists', Params, function(data){
-                    $(btn).show();
+                    $('#btnSave').show();
                     $('#ajax-loader2').hide();
-
+                    
                     if( data=="yes" ) show_error('#txtName', 'El producto ya existe.');
                     else $('#form1').submit();
                 });
 
             }else{
-                $(btn).show();
+                $('#btnSave').show();
                 $('#ajax-loader2').hide();
             }
         });

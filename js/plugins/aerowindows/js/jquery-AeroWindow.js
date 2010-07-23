@@ -47,33 +47,7 @@
   $.fn.extend({ 
     //plugin name - Aero Window (like Windows7 Style) 
     AeroWindow: function(options) {
-    
-      //Identify clearly this window ----------------------------------------
-      WindowID = $(this).attr('id');
-      if (($('body').data(WindowID)) == null) {
-        var $WindowAllwaysRegistered = false;
-        //Register this Window
-        $('body').data( WindowID , 1);
-      } else {
-        //Window exists
-        var $WindowAllwaysRegistered = true;
-      }
-      //If the window is registered, just show it and set focus ---------------     
-      if ($WindowAllwaysRegistered == true) {
-        Window = $(this).find(".AeroWindow");
-        $(this).find(".AeroWindow").css('display', 'block'); 
-        $(".AeroWindow").removeClass('active');
-        if (Window.hasClass('AeroWindow')) Window.addClass('active');
-        if (($('body').data('AeroWindowMaxZIndex')) == null) {
-          $('body').data( 'AeroWindowMaxZIndex' , Window.css('z-index'));
-        }
-        i = $('body').data('AeroWindowMaxZIndex');
-        i++;
-        Window.css('z-index', i);
-        $('body').data( 'AeroWindowMaxZIndex' , Window.css('z-index')); 
-        return;
-      }
-    
+
       //Settings Window and the default values---------------------------------
       var defaults = {
         WindowTitle:          null,
@@ -90,9 +64,10 @@
         WindowDraggable:      true,          /* true, false*/
         WindowStatus:         'regular',     /* 'regular', 'maximized', 'minimized' */
         WindowAnimationSpeed: 500,
-        WindowAnimation:      'easeOutElastic'
+        WindowAnimation:      'easeOutElastic',
+        callback : Function()
       };
-      
+
       /*-----------------------------------------------------------------------
       Posible WindowAnimation:
       - easeInQuad
@@ -124,11 +99,41 @@
       - easeInOutBack
       - easeInBounce
       - easeOutBounce
-      - easeInOutBounce      
+      - easeInOutBounce
       -----------------------------------------------------------------------*/
-      
+
       //Assign current element to variable, in this case is UL element
       var options = $.extend(defaults, options);
+
+      //Identify clearly this window ----------------------------------------
+      WindowID = $(this).attr('id');
+      if (($('body').data(WindowID)) == null) {
+        var $WindowAllwaysRegistered = false;
+        //Register this Window
+        $('body').data( WindowID , 1);
+      } else {
+        //Window exists
+        var $WindowAllwaysRegistered = true;
+      }
+      //If the window is registered, just show it and set focus ---------------     
+      if ($WindowAllwaysRegistered == true) {
+        Window = $(this).find(".AeroWindow");
+        $(this).find(".AeroWindow").css('display', 'block'); 
+        $(".AeroWindow").removeClass('active');
+        if (Window.hasClass('AeroWindow')) Window.addClass('active');
+        if (($('body').data('AeroWindowMaxZIndex')) == null) {
+          $('body').data( 'AeroWindowMaxZIndex' , Window.css('z-index'));
+        }
+        i = $('body').data('AeroWindowMaxZIndex');
+        i++;
+        Window.css('z-index', i);
+        $('body').data( 'AeroWindowMaxZIndex' , Window.css('z-index'));
+
+        options.callback();
+
+        return;
+      }
+   
     
       return this.each(function() {
         var o =options;
@@ -317,10 +322,16 @@
           if ((typeof(o.WindowPositionLeft) == 'string') && (o.WindowPositionLeft.substring(0, 1) == '-')) o.WindowPositionLeft = 0;
           Window.animate({ 
             top: o.WindowPositionTop, 
-            left: o.WindowPositionLeft}, {
+            left: o.WindowPositionLeft
+          }, {
             duration: o.WindowAnimationSpeed,
-            easing: o.WindowAnimation
+            easing: o.WindowAnimation,
+            complete : function(){
+                o.callback()
+            }
           });
+
+
           o.WindowStatus = 'regular';
           return(false);          
         }
@@ -456,3 +467,7 @@
     }
   });
 })(jQuery);
+
+var AeroWindowClose = function(){
+    $(document).find('.AeroWindow .win-close-btn').trigger('click');
+};

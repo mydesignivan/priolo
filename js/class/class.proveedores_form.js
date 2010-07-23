@@ -38,8 +38,8 @@ var Proveedores = new (function(){
        MessageShowHide(document, _params.status);
     };
 
-    this.save = function(btn){
-        $(btn).hide();
+    this.save = function(){
+        $('#btnSave').hide();
         $('#ajax-loader2').show();
 
         $.validator.validate('#form1 .validate', function(error){
@@ -59,7 +59,7 @@ var Proveedores = new (function(){
                            .submit();
 
             }else{
-                $(btn).show();
+                $('#btnSave').show();
                 $('#ajax-loader2').hide();
             }
         });

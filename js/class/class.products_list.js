@@ -5,25 +5,25 @@ var Products = new (function(){
     this.initializer = function(params){
         _params = params;
 
-        if( $('ul.sortable').length>0 ){
-            var initorder = $('ul.sortable li.row:first').attr('id').substr(3);
+        var list = $('tbody.sortable');
 
-            $("ul.sortable").sortable({
-                                stop : function(){
-                                    $("ul.sortable").sortable( "option", "disabled", true );
+        if( list.length>0 ){
 
-                                    $('ul.sortable li.row').removeClass('row-even');
-                                    $('ul.sortable li.row:even').addClass('row-even');
+            list.sortable({
+                stop : function(){
+                    list.sortable( "option", "disabled", true );
+                    $('tbody.sortable tr').removeClass('row-even');
+                    $('tbody.sortable tr:even').addClass('row-even');
 
-                                    var arr = $(this).sortable("toArray");
-                                    $.post(baseURI+'panel/products/ajax_order/', {rows : JSON.encode(arr), initorder : initorder}, function(data){
-                                        //alert(data);
-                                        $("#sortable").sortable( "option", "disabled", false );
-                                    });
-                                }
-                           })
-                          .disableSelection()
-                          .sortable({ handle: '.handle' });
+                    var initorder = $(this).find('tr:first').attr('id').substr(3);
+                    var arr = $(this).sortable("toArray");
+
+                    $.post(baseURI+'panel/products/ajax_order/', {rows : JSON.encode(arr), initorder : initorder}, function(data){
+                        list.sortable( "option", "disabled", false );
+                    });
+                },
+                handle: '.handle'
+            }).disableSelection();
         }
         
        MessageShowHide(document, _params.status);
@@ -34,6 +34,25 @@ var Products = new (function(){
             location.href = baseURI+'panel/products/delete/'+id;
         }
     };
+
+    this.Delete = function(){
+        var arr = Array();
+        $('tbody.sortable .cell1 input:checkbox').each(function(){
+            if( this.checked ) arr.push(this.value);
+        });
+        if( arr.length>0 ){
+            if( confirm('¿Confirma eliminar los productos seleccionados.?') ){
+                location.href = baseURI+'panel/products/delete/'+arr.join('/');
+            }
+        }
+    };
+
+    this.check_all = function(){
+        $('tbody.sortable .cell1 input:checkbox').each(function(){
+            this.checked = !this.checked;
+        });
+    };
+
 
     /* PRIVATE PROPERTIES
      **************************************************************************/

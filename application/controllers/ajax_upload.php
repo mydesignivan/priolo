@@ -7,11 +7,11 @@ class Ajax_upload extends Controller {
         parent::Controller();
 
         $this->load->library('superupload', array(
-            'path'          => $_POST['au_dir'],
-            'thumb_width'   => $_POST['au_thumb_width'],
-            'thumb_height'  => $_POST['au_thumb_height'],
-            'image_width'   => $_POST['au_image_width'],
-            'image_height'  => $_POST['au_image_height'],
+            'path'          => @$_POST['au_dir'],
+            'thumb_width'   => @$_POST['au_thumb_width'],
+            'thumb_height'  => @$_POST['au_thumb_height'],
+            'image_width'   => @$_POST['au_image_width'],
+            'image_height'  => @$_POST['au_image_height'],
             'maxsize'       => UPLOAD_MAXSIZE_IMG,
             'filetype'      => UPLOAD_FILETYPE_IMG
         ));

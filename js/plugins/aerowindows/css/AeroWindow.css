@@ -116,7 +116,8 @@ AeroWindow Style - Active
   padding: 5px;
   border: 1px solid #000;
   background-color: #fff;
-  overflow: auto;
+  overflow:hidden;
+  position: relative;
 }  
 /*-----------------------------------------------------------------------------
 AeroWindow Resizing
@@ -290,6 +291,9 @@ DEMO CONTENT
   z-index: 0;
 }
 
-
-
-
+.window{
+    left:0;
+    top:0;
+    position: absolute;
+    display: none;
+}

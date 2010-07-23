@@ -73,6 +73,11 @@ class Products_model extends Model {
         $data['order'] = $this->_get_num_order();
         $data['date_added'] = date('Y-m-d H:i:s');
 
+        $categories_id = explode("_", $_POST['cboCategories']);
+        $categories_id = $categories_id[0];
+
+        $this->db->trans_start();  //INICIA TRANSACCION
+
         if( $this->db->insert(TBL_PRODUCTS, $data) ) {
             $products_id = $this->db->insert_id();
 
@@ -80,7 +85,7 @@ class Products_model extends Model {
 
             $data = array(
                 'products_id'      => $products_id,
-                'categories_id'    => $_POST['cboCategories'],
+                'categories_id'    => $categories_id,
                 'categorie_parent' => $categorie_parent['parent_id']
             );
             
@@ -88,11 +93,16 @@ class Products_model extends Model {
 
         }else return 'error';
 
+        $this->db->trans_complete();  //COMPLETA TRANSACCION
+
         return 'success';
     }
 
     public function edit($outUpload){
         //print_array($outUpload, true);
+
+        $categories_id = explode("_", $_POST['cboCategories']);
+        $categories_id = $categories_id[0];
 
         $data['product_name'] = $_POST['txtName'];
         $data['last_modified'] = date('Y-m-d H:i:s');
@@ -104,6 +114,15 @@ class Products_model extends Model {
             $dataProd = $this->db->get_where(TBL_PRODUCTS, array('products_id'=>$_POST['products_id']))->row_array();
         }
 
+        $datProdCat = $this->db->get_where(TBL_PRODUCTSCATEGORIES, array('products_id' => $_POST['products_id']))->row_array();
+        if( $datProdCat['categories_id'] != $categories_id ){
+            $data['order'] = $this->_get_num_order();
+        }
+
+        $this->db->where('products_id', $_POST['products_id']);
+
+        $this->db->trans_start();  //INICIA TRANSACCION
+
         if( $this->db->update(TBL_PRODUCTS, $data) ) {
 
             if( is_array($outUpload) ){
@@ -111,52 +130,72 @@ class Products_model extends Model {
                 @unlink(UPLOAD_DIR_PRODUCTS . $dataProd['thumb']);
             }
 
-            $exists_cat = $this->db->get_where(TBL_PRODUCTSCATEGORIES, array('categories_id' => $_POST['cboCategories']))->num_rows > 0;
 
-            if( !$exists_cat ){
-                $categorie_parent = $this->db->get_where(TBL_CATEGORIES, array('categories_id' => $_POST['cboCategories']))->row_array();
-
+            if( $datProdCat['categories_id'] != $categories_id ){
+                $datCat = $this->db->get_where(TBL_CATEGORIES, array('categories_id' => $categories_id))->row_array();
                 $data = array(
                     'products_id'      => $_POST['products_id'],
-                    'categories_id'    => $_POST['cboCategories'],
-                    'categorie_parent' => $categorie_parent['parent_id']
+                    'categories_id'    => $categories_id,
+                    'categorie_parent' => $datCat['parent_id']
                 );
+                $this->db->where('products_id', $_POST['products_id']);
                 if( !$this->db->update(TBL_PRODUCTSCATEGORIES, $data) ) return "error";
             }
 
         }else return 'error';
+        
+        $this->db->trans_complete();  //COMPLETA TRANSACCION
 
         return 'success';
     }
 
     public function delete($id){
-        $dataProd = $this->db->get_where(TBL_PRODUCTS, array('products_id'=>$id))->row_array();
+        $this->db->where_in('products_id', $id);
+        $listProd = $this->db->get_where(TBL_PRODUCTS)->result_array();
+        
+        $this->db->trans_start(); //INICIO TRANSACCION
 
-        $del1 = $this->db->delete(TBL_PRODUCTS, array('products_id'=>$id));
-        $del2 = $this->db->delete(TBL_PRODUCTSCATEGORIES, array('products_id'=>$id));
+        $this->db->where_in('products_id', $id);
+        $del1 = $this->db->delete(TBL_PRODUCTS);
+
+        $this->db->where_in('products_id', $id);
+        $del2 = $this->db->delete(TBL_PRODUCTSCATEGORIES);
 
         if( $del1 && $del2 ){
-            @unlink(UPLOAD_DIR_PRODUCTS . $dataProd['image']);
-            @unlink(UPLOAD_DIR_PRODUCTS . $dataProd['thumb']);
+
+            foreach( $listProd as $row ){
+                @unlink(UPLOAD_DIR_PRODUCTS . $row['image']);
+                @unlink(UPLOAD_DIR_PRODUCTS . $row['thumb']);
+            }
+
+            $this->db->trans_commit();  //APLICO LOS CAMBIOS
             return true;
-        }else return false;
+
+        }else {
+            $this->db->trans_rollback(); //DESHACE LOS CAMBIOS
+            return false;
+        }
 
     }
 
     public function get_info($where){
-        $this->db->from(TBL_PRODUCTS);
-        $this->db->join(TBL_PRODUCTSCATEGORIES, TBL_PRODUCTS.'.products_id = '.TBL_PRODUCTSCATEGORIES.'.products_id');
-        if( is_numeric($where) ) $where = array(TBL_PRODUCTS.'.products_id'=>$where);
+        /*$this->db->from(TBL_PRODUCTS);
+        $this->db->join(TBL_PRODUCTSCATEGORIES, TBL_PRODUCTS.'.products_id = '.TBL_PRODUCTSCATEGORIES.'.products_id');*/
+        $this->db->from(TBL_V_PRODUCTS);
+        if( is_numeric($where) ) $where = array('products_id'=>$where);
         $this->db->where($where);
         return $this->db->get();
     }
 
     public function check(){
+        $categories_id = explode("_", $_POST['categories_id']);
+        $categories_id = $categories_id[0];
+
         $where = array(
-            TBL_PRODUCTS.'.product_name' => trim($_POST['name']),
-            TBL_PRODUCTSCATEGORIES.'.categories_id' => $_POST['categories_id']
+            'product_name' => trim($_POST['name']),
+            'categories_id' => $categories_id
         );
-        if( is_numeric($_POST['products_id']) ) $where[TBL_PRODUCTS.'.products_id <>'] = $_POST['products_id'];
+        if( is_numeric($_POST['products_id']) ) $where['products_id <>'] = $_POST['products_id'];
 
         $query = $this->get_info($where);
 

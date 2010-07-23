@@ -9,7 +9,7 @@
 
 <button type="button" class="float-right" onclick="location.href='<?=site_url('/panel/proveedores/form/')?>'">Nuevo</button>
 
-<div class="table tbl-obras">
+<div class="clear table tbl-obras">
     <ul class="head">
         <li class="cell1">T&iacute;tulo</li>
         <li class="cell2">Ordenar</li>

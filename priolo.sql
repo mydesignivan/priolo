@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-07-2010 a las 19:34:48
+-- Tiempo de generación: 23-07-2010 a las 23:16:23
 -- Versión del servidor: 5.1.37
 -- Versión de PHP: 5.3.0
 
@@ -35,21 +35,23 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`categories_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
 -- Volcar la base de datos para la tabla `categories`
 --
 
 INSERT INTO `categories` (`categories_id`, `parent_id`, `categorie_name`, `order`, `reference`, `level`, `date_added`, `last_modified`) VALUES
-(1, 0, 'Aire Acondicionado', 1, 'aire-acondicionado', 0, '2010-07-02 17:39:17', '0000-00-00 00:00:00'),
-(2, 1, 'Residencial', 1, 'residencial', 1, '2010-07-02 17:40:00', '0000-00-00 00:00:00'),
-(3, 1, 'Light Comercial', 2, 'light-comercial', 1, '2010-07-02 17:40:55', '0000-00-00 00:00:00'),
-(4, 1, 'Comercial', 3, 'comercial', 1, '2010-07-02 17:41:19', '0000-00-00 00:00:00'),
-(5, 0, 'Calerfacción', 1, 'calerfaccion', 0, '2010-07-02 17:47:54', '0000-00-00 00:00:00'),
-(6, 5, 'Calderas y Quemadores', 1, 'calderas-y-quemadores', 1, '2010-07-02 17:48:33', '0000-00-00 00:00:00'),
-(7, 5, 'Radiadores y Toalleros', 2, 'radiadores-y-toalleros', 1, '2010-07-02 17:48:53', '0000-00-00 00:00:00'),
-(8, 5, 'Piso Radiante', 3, 'piso-radiante', 1, '2010-07-02 17:49:07', '0000-00-00 00:00:00');
+(22, 0, 'Aire Acondicionado', 1, 'aire-acondicionado', 0, '2010-07-21 18:24:59', '0000-00-00 00:00:00'),
+(23, 0, 'Calefacción', 2, 'calefaccion', 0, '2010-07-21 18:25:19', '0000-00-00 00:00:00'),
+(24, 0, 'Ventilaciones Conductos', 3, 'ventilaciones-conductos', 0, '2010-07-21 18:25:43', '0000-00-00 00:00:00'),
+(25, 22, 'Comercial', 1, 'comercial', 1, '2010-07-21 18:26:47', '0000-00-00 00:00:00'),
+(26, 22, 'Light Comercial', 2, 'light-comercial', 1, '2010-07-21 18:28:00', '0000-00-00 00:00:00'),
+(27, 22, 'Residencial', 3, 'residencial', 1, '2010-07-21 18:28:17', '2010-07-21 18:34:39'),
+(28, 23, 'Calderas y Quemadores', 1, 'calderas-y-quemadores', 1, '2010-07-21 18:28:57', '0000-00-00 00:00:00'),
+(29, 23, 'Paneles Solares', 2, 'paneles-solares', 1, '2010-07-21 18:30:00', '0000-00-00 00:00:00'),
+(30, 23, 'Piso Radiante', 3, 'piso-radiante', 1, '2010-07-21 18:31:12', '0000-00-00 00:00:00'),
+(31, 23, 'Radiadores y Toalleros', 4, 'radiadores-y-toalleros', 1, '2010-07-21 18:33:29', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -71,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('fa49cf0ffcb66ee42e911790768af3e8', '192.168.0.2', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1279300810, 'a:3:{s:8:"username";s:5:"admin";s:7:"user_id";s:1:"1";s:9:"logged_in";s:1:"1";}');
+('92203f23dac4dc9535718f404c63539e', '192.168.0.2', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1279912653, 'a:3:{s:8:"username";s:5:"admin";s:7:"user_id";s:1:"1";s:9:"logged_in";s:1:"1";}');
 
 -- --------------------------------------------------------
 
@@ -86,12 +88,49 @@ CREATE TABLE IF NOT EXISTS `obras` (
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`obra_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Volcar la base de datos para la tabla `obras`
 --
 
+INSERT INTO `obras` (`obra_id`, `name`, `order`, `date_added`, `last_modified`) VALUES
+(1, 'Edificio Alto Belgrano', 1, '2010-07-16 19:49:52', '2010-07-21 16:55:48'),
+(2, 'Condominos Dalvian', 2, '2010-07-16 19:50:08', '0000-00-00 00:00:00'),
+(3, 'Banco de La Nación Argentina Sucursal San Rafael, Mendoza', 3, '2010-07-16 19:50:23', '0000-00-00 00:00:00'),
+(4, 'Banco de La Nación Argentina Sucursal Necochea y 9 de Julio, Mendoza', 4, '2010-07-16 19:50:34', '0000-00-00 00:00:00'),
+(5, 'Banco de La Nación Argentina Sucursal San Martín, Ciudad, Mendoza.', 5, '2010-07-16 19:50:47', '0000-00-00 00:00:00'),
+(6, 'Banco Creedicop, Maipú, Mendoza.', 6, '2010-07-16 19:51:01', '0000-00-00 00:00:00'),
+(7, 'Salas de Gobierno Universidad Champagnat, Mendoza', 7, '2010-07-16 19:51:27', '0000-00-00 00:00:00'),
+(8, 'Nuevo Edificio Diputados. Mendoza', 8, '2010-07-16 19:51:40', '0000-00-00 00:00:00'),
+(9, 'Clínica Francesa, Mendoza', 9, '2010-07-16 19:51:51', '0000-00-00 00:00:00'),
+(10, 'Hospital en Las Heras, Mendoza', 10, '2010-07-16 19:52:00', '0000-00-00 00:00:00'),
+(11, 'Hospital Saporitti, Rivadavia, Mendoza', 11, '2010-07-16 19:52:11', '0000-00-00 00:00:00'),
+(12, 'Instituto Imagen y Diagnóstico', 12, '2010-07-16 19:52:21', '0000-00-00 00:00:00'),
+(13, 'Teatro Independencia', 13, '2010-07-16 19:52:34', '0000-00-00 00:00:00'),
+(14, 'Mendoza Plaza Shopping', 14, '2010-07-16 19:52:44', '0000-00-00 00:00:00'),
+(15, 'Bodega Familia Zuccardi', 15, '2010-07-16 19:52:56', '0000-00-00 00:00:00'),
+(16, 'Bodega Diageo (Navarro Correas)', 16, '2010-07-16 19:53:09', '0000-00-00 00:00:00'),
+(17, 'Bodega Viñas de Agrelo, Mendoza', 17, '2010-07-16 19:53:20', '0000-00-00 00:00:00'),
+(18, 'Bodega Vista Flores', 18, '2010-07-16 19:53:34', '0000-00-00 00:00:00'),
+(19, 'Aeropuerto Argentina 2000 – Aeropuerto San Luis', 19, '2010-07-16 19:53:44', '0000-00-00 00:00:00'),
+(20, 'Call Center Telecom, Mendoza', 20, '2010-07-16 19:53:54', '0000-00-00 00:00:00'),
+(21, 'Taller Hangar Villa Reynolds, San Luis', 21, '2010-07-16 19:54:04', '0000-00-00 00:00:00'),
+(22, 'Centrales Térmicas Mendoza', 22, '2010-07-16 19:54:13', '0000-00-00 00:00:00'),
+(23, 'Planta Industrial Diario Los Andes, Mendoza', 23, '2010-07-16 19:54:24', '0000-00-00 00:00:00'),
+(24, 'Hotel Hyatt Mendoza', 24, '2010-07-16 19:54:36', '0000-00-00 00:00:00'),
+(25, 'Concesionaria de automotores Genco, Mendoza', 25, '2010-07-16 19:54:45', '0000-00-00 00:00:00'),
+(26, 'Conicet', 26, '2010-07-16 19:54:55', '0000-00-00 00:00:00'),
+(27, 'Sistema de Climatización en Bioplanta ISCAMEN, Mendoza', 27, '2010-07-16 19:55:04', '0000-00-00 00:00:00'),
+(28, 'Bolsa de Comercio, calle Sarmiento y España, Mendoza', 28, '2010-07-16 19:55:13', '0000-00-00 00:00:00'),
+(29, 'Oficinas varias Ministerio de Seguridad de Mendoza', 29, '2010-07-16 19:55:23', '0000-00-00 00:00:00'),
+(30, 'Casino de Mendoza', 30, '2010-07-16 19:55:35', '0000-00-00 00:00:00'),
+(31, 'Viviendas Unifamiliares', 31, '2010-07-16 19:55:45', '0000-00-00 00:00:00'),
+(32, 'Viviendas Colectivas', 32, '2010-07-16 19:55:54', '0000-00-00 00:00:00'),
+(33, 'Edificios de Oficinas', 33, '2010-07-16 19:56:03', '0000-00-00 00:00:00'),
+(34, 'Canal 7 Mendoza', 34, '2010-07-16 19:56:13', '0000-00-00 00:00:00'),
+(35, 'Hangar Departamento Vialidad Nacional en Puente del Inca, Mendoza', 35, '2010-07-16 19:56:23', '0000-00-00 00:00:00'),
+(36, 'dfgdfg', 36, '2010-07-23 11:11:18', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -110,12 +149,15 @@ CREATE TABLE IF NOT EXISTS `obras_gallery` (
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`obrasgallery_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcar la base de datos para la tabla `obras_gallery`
 --
 
+INSERT INTO `obras_gallery` (`obrasgallery_id`, `obra_id`, `image`, `thumb`, `width`, `height`, `order`, `date_added`, `last_modified`) VALUES
+(1, 1, '12797421284c4750b0a17cd__100_5023.jpg', '12797421284c4750b0a17cd__100_5023_thumb.jpg', 138, 103, 1, '2010-07-21 16:55:32', '0000-00-00 00:00:00'),
+(2, 1, '12797421444c4750c0e5354__edificio_buci-banco_frances_051.jpg', '12797421444c4750c0e5354__edificio_buci-banco_frances_051_thumb.jpg', 138, 103, 2, '2010-07-21 16:55:48', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -160,20 +202,39 @@ CREATE TABLE IF NOT EXISTS `products` (
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`products_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Volcar la base de datos para la tabla `products`
 --
 
 INSERT INTO `products` (`products_id`, `product_name`, `image`, `thumb`, `thumb_width`, `thumb_height`, `order`, `date_added`, `last_modified`) VALUES
-(1, 'Centrífugas y por Absorción', '12792989324c408d74a4d96__centrífugas-y-por-absorción.jpg', '12792989324c408d74a4d96__centrífugas-y-por-absorción_thumb.jpg', 200, 148, 1, '2010-07-16 13:48:52', '0000-00-00 00:00:00'),
-(2, 'Controladores de Campo CCN', '12792989554c408d8b7bed9__controladores-_de_campo_ccn.jpg', '12792989554c408d8b7bed9__controladores-_de_campo_ccn_thumb.jpg', 200, 148, 2, '2010-07-16 13:49:15', '0000-00-00 00:00:00'),
-(3, 'Controles de Integración', '12792989724c408d9ceebd3__controles-de-integración.jpg', '12792989724c408d9ceebd3__controles-de-integración_thumb.jpg', 121, 82, 3, '2010-07-16 13:49:32', '0000-00-00 00:00:00'),
-(4, 'Enfriadoras de Líquido Especiales', '12792990014c408db991fed__enfriadoras-de-líquido-especiales.jpg', '12792990014c408db991fed__enfriadoras-de-líquido-especiales_thumb.jpg', 200, 148, 4, '2010-07-16 13:50:01', '0000-00-00 00:00:00'),
-(5, 'Enfriadoras de Líquido por Absorción Carrier Sanyo', '12792990374c408ddd8a428__enfriadoras-de-líquido-por-absorción-carrier-sanyo.jpg', '12792990374c408ddd8a428__enfriadoras-de-líquido-por-absorción-carrier-sanyo_thumb.jpg', 200, 148, 5, '2010-07-16 13:50:37', '0000-00-00 00:00:00'),
-(6, 'Equipos de Precisión', '12792990554c408def5e1a8__equipos-de-precisión.jpg', '12792990554c408def5e1a8__equipos-de-precisión_thumb.jpg', 200, 148, 6, '2010-07-16 13:50:55', '0000-00-00 00:00:00'),
-(7, 'Interfases de red', '12792990714c408dff205ab__interfases-de-red.jpg', '12792990714c408dff205ab__interfases-de-red_thumb.jpg', 200, 148, 7, '2010-07-16 13:51:11', '0000-00-00 00:00:00');
+(15, 'Centrífugas y por Absorción', '12797482484c4768981bb99__centrífugas-y-por-absorción.jpg', '12797482484c4768981bb99__centrífugas-y-por-absorción_thumb.jpg', 128, 95, 1, '2010-07-21 18:37:28', '0000-00-00 00:00:00'),
+(16, 'Controladores de Campo CCN', '12797482994c4768cb7c3d7__controladores-_de_campo_ccn.jpg', '12797482994c4768cb7c3d7__controladores-_de_campo_ccn_thumb.jpg', 128, 95, 2, '2010-07-21 18:38:19', '0000-00-00 00:00:00'),
+(17, 'Controles de Integración', '12797490604c476bc4c3229__controles-de-integración.jpg', '12797490604c476bc4c3229__controles-de-integración_thumb.jpg', 121, 82, 3, '2010-07-21 18:51:00', '0000-00-00 00:00:00'),
+(18, 'Enfriadoras de Líquido Especiales', '12797490914c476be36c218__enfriadoras-de-líquido-especiales.jpg', '12797490914c476be36c218__enfriadoras-de-líquido-especiales_thumb.jpg', 128, 95, 4, '2010-07-21 18:51:31', '0000-00-00 00:00:00'),
+(19, 'Enfriadoras de Líquido por Absorción Carrier Sanyo', '12797491274c476c0777bcd__enfriadoras-de-líquido-por-absorción-carrier-sanyo.jpg', '12797491274c476c0777bcd__enfriadoras-de-líquido-por-absorción-carrier-sanyo_thumb.jpg', 128, 95, 5, '2010-07-21 18:52:07', '0000-00-00 00:00:00'),
+(20, 'Equipos de Precisión', '12797491564c476c240852f__equipos-de-precisión.jpg', '12797491564c476c240852f__equipos-de-precisión_thumb.jpg', 128, 95, 6, '2010-07-21 18:52:36', '0000-00-00 00:00:00'),
+(21, 'Interfases de red', '12797491864c476c4289223__interfases-de-red.jpg', '12797491864c476c4289223__interfases-de-red_thumb.jpg', 128, 95, 7, '2010-07-21 18:53:06', '0000-00-00 00:00:00'),
+(22, 'Periféricos Control Sensores de Temperatura y Humedad', '12797492264c476c6ab3fab__periféricos-control----sensores-de-temperatura-y-humedad.jpg', '12797492264c476c6ab3fab__periféricos-control----sensores-de-temperatura-y-humedad_thumb.jpg', 128, 95, 8, '2010-07-21 18:53:46', '0000-00-00 00:00:00'),
+(23, 'Sistemas Separados Comerciales 40MS 38KF QF AKA AQA', '12797514024c4774eaf3320__sistemas-separados-comerciales-40ms--38kf_qf_aka_aqa.jpg', '12797514024c4774eaf3320__sistemas-separados-comerciales-40ms--38kf_qf_aka_aqa_thumb.jpg', 128, 95, 9, '2010-07-21 19:30:03', '0000-00-00 00:00:00'),
+(24, 'Sistemas Separados Comerciales 40MZ-38KF AQA', '12797514704c47752e95c9e__sistemas-separados-comerciales-40mz--38kf_aqa.jpg', '12797514704c47752e95c9e__sistemas-separados-comerciales-40mz--38kf_aqa_thumb.jpg', 102, 118, 10, '2010-07-21 19:31:10', '0000-00-00 00:00:00'),
+(25, 'Sistema VVT 3V', '12797514944c47754652668__sistema-vvt-3v.jpg', '12797514944c47754652668__sistema-vvt-3v_thumb.jpg', 128, 97, 11, '2010-07-21 19:31:34', '0000-00-00 00:00:00'),
+(26, 'Unidades Autocontenidas Condensación por Agua 50BPB_BP', '12797517694c477659c05f7__unidades-autocontenidas-condensación-por-agua-50bpb_bp.jpg', '12797517694c477659c05f7__unidades-autocontenidas-condensación-por-agua-50bpb_bp_thumb.jpg', 128, 82, 12, '2010-07-21 19:36:09', '0000-00-00 00:00:00'),
+(27, 'Unidades Enfriadoras Condensación por Agua Compresor Scroll-30HK 30HR', '12797518124c477684d58d2__unidades-enfriadoras-condensación-por-agua-compresor-scroll-30hk_30hr.jpg', '12797518124c477684d58d2__unidades-enfriadoras-condensación-por-agua-compresor-scroll-30hk_30hr_thumb.jpg', 128, 95, 13, '2010-07-21 19:36:52', '0000-00-00 00:00:00'),
+(28, 'Unidades Enfriadoras Condensación por Aire Compresor Scroll', '12797518434c4776a30f989__unidades-enfriadoras-condensación-por-aire-compresor-scroll.jpg', '12797518434c4776a30f989__unidades-enfriadoras-condensación-por-aire-compresor-scroll_thumb.jpg', 128, 95, 14, '2010-07-21 19:37:23', '0000-00-00 00:00:00'),
+(29, 'Unidades Enfriadoras Condensación por Aire Compresor Scroll 30RB', '12797518714c4776bf27864__unidades-enfriadoras-condensación-por-aire-compresor-scroll-30rb.jpg', '12797518714c4776bf27864__unidades-enfriadoras-condensación-por-aire-compresor-scroll-30rb_thumb.jpg', 119, 118, 15, '2010-07-21 19:37:51', '0000-00-00 00:00:00'),
+(30, 'Unidades Enfriadoras Ecológicas Condensación por Agua Compresor Screw 30HX', '12797519104c4776e6ef4dd__unidades-enfriadoras-ecológicas-condensación-por-agua-compresor-screw-–-30hx.jpg', '12797519104c4776e6ef4dd__unidades-enfriadoras-ecológicas-condensación-por-agua-compresor-screw-–-30hx_thumb.jpg', 128, 95, 16, '2010-07-21 19:38:30', '0000-00-00 00:00:00'),
+(31, 'Unidades Enfriadoras Ecológicas Condensación por Aire Compresor Screw 30GX', '12797519494c47770decb28__unidades-enfriadoras-ecológicas-condensación-por-aire-compresor-screw-30gx.jpg', '12797519494c47770decb28__unidades-enfriadoras-ecológicas-condensación-por-aire-compresor-screw-30gx_thumb.jpg', 128, 95, 17, '2010-07-21 19:39:09', '0000-00-00 00:00:00'),
+(32, 'Unidades Enfriadoras Ecológicas Condensación por Aire Compresor Screw 30XA Aquaforce', '12797523674c4778afe23cb__unidades-enfriadoras-ecológicas-condensación-por-aire-compresor-screw-30xa-aquaforce.jpg', '12797523674c4778afe23cb__unidades-enfriadoras-ecológicas-condensación-por-aire-compresor-screw-30xa-aquaforce_thumb.jpg', 128, 66, 18, '2010-07-21 19:46:07', '0000-00-00 00:00:00'),
+(33, 'Unidades Fan Coil Agua Fría Terminales 42LSA', '12797528274c477a7b891d2__unidades-fan-coil-agua-fría-terminales-42lsa.jpg', '12797528274c477a7b891d2__unidades-fan-coil-agua-fría-terminales-42lsa_thumb.jpg', 128, 95, 19, '2010-07-21 19:53:47', '0000-00-00 00:00:00'),
+(34, 'Unidades Fan Coil Baja Silueta Agua Fría 42 B', '12797528604c477a9c9ec92__unidades-fan-coil-baja-silueta-agua-fría-42-b.jpg', '12797528604c477a9c9ec92__unidades-fan-coil-baja-silueta-agua-fría-42-b_thumb.jpg', 128, 95, 20, '2010-07-21 19:54:20', '0000-00-00 00:00:00'),
+(35, 'Unidades Fan Coil Terminales Agua Fría 42 N', '12797528984c477ac238bc5__unidades-fan-coil-terminales-agua-fría-42-n.jpg', '12797528984c477ac238bc5__unidades-fan-coil-terminales-agua-fría-42-n_thumb.jpg', 128, 95, 21, '2010-07-21 19:54:58', '0000-00-00 00:00:00'),
+(36, 'Unidades Manejadoras de Aire Agua Fría 39 ITC', '12797529284c477ae019aca__unidades-manejadoras-de-aire-agua-fría-39-itc.jpg', '12797529284c477ae019aca__unidades-manejadoras-de-aire-agua-fría-39-itc_thumb.jpg', 128, 95, 22, '2010-07-21 19:55:28', '0000-00-00 00:00:00'),
+(37, 'Unidades Manejadoras de Aire Modulares Agua Fría 39CMA Cubo mágico', '12797542974c478039678c6__unidades-manejadoras-de-aire-modulares-agua-fría-39cma-cubo-mágico.jpg', '12797542974c478039678c6__unidades-manejadoras-de-aire-modulares-agua-fría-39cma-cubo-mágico_thumb.jpg', 128, 40, 23, '2010-07-21 20:18:17', '0000-00-00 00:00:00'),
+(38, 'Unidades Roof Top 50TJN 48TJND 50TQN', '12797543204c4780505bbc1__unidades-roof-top--50tjn_48tjnd_50tqn.jpg', '12797543204c4780505bbc1__unidades-roof-top--50tjn_48tjnd_50tqn_thumb.jpg', 128, 60, 24, '2010-07-21 20:18:40', '0000-00-00 00:00:00'),
+(39, 'Unidades Roof Top Ecológicas', '12797543424c47806602f03__unidades-roof-top--ecológicas.jpg', '12797543424c47806602f03__unidades-roof-top--ecológicas_thumb.jpg', 128, 60, 25, '2010-07-21 20:19:02', '0000-00-00 00:00:00'),
+(40, 'Unidades-tipo-Cassette', '12797543664c47807e14bab__unidades-tipo-cassette.jpg', '12797543664c47807e14bab__unidades-tipo-cassette_thumb.jpg', 128, 95, 26, '2010-07-21 20:19:26', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -192,13 +253,32 @@ CREATE TABLE IF NOT EXISTS `products_to_categories` (
 --
 
 INSERT INTO `products_to_categories` (`products_id`, `categories_id`, `categorie_parent`) VALUES
-(1, 4, 1),
-(2, 4, 1),
-(3, 4, 1),
-(4, 4, 1),
-(5, 4, 1),
-(6, 4, 1),
-(7, 4, 1);
+(15, 25, 22),
+(16, 25, 22),
+(17, 25, 22),
+(18, 25, 22),
+(19, 25, 22),
+(20, 25, 22),
+(21, 25, 22),
+(22, 25, 22),
+(23, 25, 22),
+(24, 25, 22),
+(25, 25, 22),
+(26, 25, 22),
+(27, 25, 22),
+(28, 25, 22),
+(29, 25, 22),
+(30, 25, 22),
+(31, 25, 22),
+(32, 25, 22),
+(33, 25, 22),
+(34, 25, 22),
+(35, 25, 22),
+(36, 25, 22),
+(37, 25, 22),
+(38, 25, 22),
+(39, 25, 22),
+(40, 25, 22);
 
 -- --------------------------------------------------------
 
@@ -281,7 +361,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `phone1`, `phone2`, `address1`, `address2`, `date_added`, `last_modified`) VALUES
-(1, 'admin', 'PihkQ4pWJhOI1o8z/kWDyHQPfH6KekSHzQ/muA==', 'ingpriolo@speedy.com.ar', '(0261) 4200441 – 4250361', '(0261) 4473336', 'Laprida 228 – Ciudad - Mendoza', 'Parque Industrial Eje Norte entre calle 7 esq. 4 - Las Heras - Mendoza', '2010-06-15 00:00:00', '2010-07-01 17:54:10');
+(1, 'admin', 'PihkQ4pWJhOI1o8z/kWDyHQPfH6KekSHzQ/muA==', 'ingpriolo@speedy.com.ar', '(0261) 4200441 – 4250361', '(0261) 4473336', 'Laprida 228 – Ciudad - Mendoza', 'Parque Industrial Eje Norte entre calle 7 esq. 4 - Las Heras - Mendoza', '2010-06-15 00:00:00', '2010-07-23 11:31:55');
 
 -- --------------------------------------------------------
 
@@ -315,6 +395,7 @@ CREATE TABLE IF NOT EXISTS `v_products` (
 ,`last_modified` datetime
 ,`categorie_name` varchar(200)
 ,`categories_id` int(11)
+,`level` int(11)
 );
 -- --------------------------------------------------------
 
@@ -332,4 +413,4 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_products`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_products` AS select `products`.`products_id` AS `products_id`,`products`.`product_name` AS `product_name`,`products`.`image` AS `image`,`products`.`thumb` AS `thumb`,`products`.`thumb_width` AS `thumb_width`,`products`.`thumb_height` AS `thumb_height`,`products`.`order` AS `order`,`products`.`date_added` AS `date_added`,`products`.`last_modified` AS `last_modified`,`categories`.`categorie_name` AS `categorie_name`,`categories`.`categories_id` AS `categories_id` from ((`products` join `products_to_categories` on((`products`.`products_id` = `products_to_categories`.`products_id`))) join `categories` on((`products_to_categories`.`categories_id` = `categories`.`categories_id`))) order by `products`.`order`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_products` AS select `products`.`products_id` AS `products_id`,`products`.`product_name` AS `product_name`,`products`.`image` AS `image`,`products`.`thumb` AS `thumb`,`products`.`thumb_width` AS `thumb_width`,`products`.`thumb_height` AS `thumb_height`,`products`.`order` AS `order`,`products`.`date_added` AS `date_added`,`products`.`last_modified` AS `last_modified`,`categories`.`categorie_name` AS `categorie_name`,`categories`.`categories_id` AS `categories_id`,`categories`.`level` AS `level` from ((`products` join `products_to_categories` on((`products`.`products_id` = `products_to_categories`.`products_id`))) join `categories` on((`products_to_categories`.`categories_id` = `categories`.`categories_id`))) order by `products`.`order`;

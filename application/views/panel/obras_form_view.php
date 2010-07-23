@@ -6,7 +6,7 @@
     </div>
 <?php }?>
 
-<form id="form1" action="" method="post">
+<form id="form1" action="" method="post" onsubmit="return Obras.save()">
     <div class="row">
         <label for="txtName" class="label-contact">*Obra:</label>
         <div class="float-left"><input type="text" name="txtName" id="txtName" class="input-contact validate" value="<?=@$info['name']?>" /></div>
@@ -58,13 +58,12 @@
     <input type="hidden" name="au_thumb_height" value="<?=IMAGE_THUMB_HEIGHT_OBRAS?>" />
     <input type="hidden" name="json" id="json" value="" />
     <iframe id="iframe" name="iframe" src="about:blank" frameborder="1" width="600" height="150" class="hide" style="border:1px solid green;"></iframe>
+
+    <div class="row prepend-top">
+        <br />
+        <center><button type="submit" id="btnSave">Guardar</button><img id="ajax-loader2" src="images/ajax-loader2.gif" alt="" width="32" height="32" class="hide" /></center>
+    </div>
 </form>
-
-
-<div class="row prepend-top">
-    <br />
-    <center><button type="button" onclick="Obras.save(this)">Guardar</button><img id="ajax-loader2" src="images/ajax-loader2.gif" alt="" width="32" height="32" class="hide" /></center>
-</div>
 
 
 <script type="text/javascript">

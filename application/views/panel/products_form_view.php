@@ -8,7 +8,7 @@
 
 <?php $action = isset($info) ? 'edit' : 'create';?>
 
-<form id="form1" action="<?=site_url('panel/products/'.$action)?>" method="post" enctype="multipart/form-data">
+<form id="form1" action="<?=site_url('panel/products/'.$action)?>" method="post" enctype="multipart/form-data" onsubmit="return Products.save()">
     <div class="row">
         <label for="txtName" class="label-contact">*Producto:</label>
         <div class="float-left"><input type="text" name="txtName" id="txtName" class="input-contact validate" value="<?=@$info['product_name']?>" /></div>
@@ -16,7 +16,7 @@
     <div class="row">
         <label for="cboCategories" class="label-contact">*Categor&iacute;a:</label>
         <div class="float-left">
-            <?=form_dropdown('cboCategories', $listCategories, @$info['categories_id'], 'id="cboCategories" class="validate float-left"');?>
+            <?=form_dropdown('cboCategories', $listCategories, @$info['categories_id']."_".@$info['level'], 'id="cboCategories" class="validate float-left"');?>
         </div>
     </div>
     
@@ -33,13 +33,13 @@
     </div>
 
     <input type="hidden" name="products_id" id="products_id" value="<?=@$info['products_id']?>" />
+
+    <div class="row prepend-top">
+        <br />
+        <center><button type="submit" id="btnSave">Guardar</button><img id="ajax-loader2" src="images/ajax-loader2.gif" alt="" width="32" height="32" class="hide" /></center>
+    </div>
 </form>
 
-
-<div class="row prepend-top">
-    <br />
-    <center><button type="button" onclick="Products.save(this)">Guardar</button><img id="ajax-loader2" src="images/ajax-loader2.gif" alt="" width="32" height="32" class="hide" /></center>
-</div>
 
 
 <script type="text/javascript">

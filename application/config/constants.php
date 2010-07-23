@@ -147,6 +147,13 @@ define('UPLOAD_FILETYPE_CV', 'doc|pdf|docx|odt');
 define('UPLOAD_MAXSIZE_CV', 2048); //Expresado en Kylobytes
 
 
+/*
+|--------------------------------------------------------------------------
+| OPCIONES PARA CATALOGO DE PRODUCTO
+|--------------------------------------------------------------------------
+*/
+define('CATEGORIE_MAX_LEVEL', 1);
+
 
 /*
 |--------------------------------------------------------------------------
