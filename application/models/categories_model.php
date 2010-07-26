@@ -138,15 +138,13 @@ class Categories_model extends Model {
     }
 
     public function get_combo_catprod($itemDefault=array('0'=>'Seleccione una Categor&iacute;a')){
+        $this->db->select('categorie_name, categories_id');
+        $this->db->order_by('categorie_name', 'asc');
+        $output = $this->db->get(TBL_V_CATEGORIES)->result_array();
 
-        $list = $this->db->get(TBL_V_CATEGORIES)->result_array();
-        $output = array();
+        $output = array_merge($itemDefault, $output);
 
-        $output[key($itemDefault)] = current($itemDefault);
 
-        foreach( $list as $row ){
-            $output[$row['categories_id']] = implode(" > ", $this->get_path($row['categories_id']));
-        }
         return $output;
     }
 

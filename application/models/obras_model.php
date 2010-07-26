@@ -144,7 +144,8 @@ class Obras_model extends Model {
     }
 
     public function order(){
-        $order = $_POST['initorder'];
+        $res = $this->db->query('SELECT `order` FROM '.TBL_OBRAS.' WHERE obra_id='.$_POST['initorder'])->row_array();
+        $order = $res['order'];
         $rows = json_decode($_POST['rows']);
 
         //print_array($rows, true);

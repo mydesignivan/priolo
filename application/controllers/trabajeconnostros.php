@@ -46,12 +46,9 @@ class Trabajeconnostros extends Controller {
                 );
 
                 $usersdata = $this->users_model->get_info();
-                //$to = $usersdata['email'];
-                $to = 'ivan@mydesign.com.ar';
-
 
                 $this->email->from($_POST['txtEmail'], $_POST['txtName']);
-                $this->email->to($to);
+                $this->email->to($usersdata['emailcv']);
                 $this->email->subject(EMAIL_TCN_SUBJECT);
                 $this->email->attach(UPLOAD_DIR_CV . $this->_filename);
                 $this->email->message($message);

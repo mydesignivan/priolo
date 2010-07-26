@@ -15,7 +15,7 @@ class Obras extends Controller {
         ));
         $this->_data = $this->dataview->get_data();
         
-        $this->_count_per_page = 10;
+        $this->_count_per_page = 15;
         $uri = $this->uri->uri_to_assoc(2);
         $this->_offset = !isset($uri['page']) ? 0 : $uri['page'];
     }

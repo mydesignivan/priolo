@@ -38,10 +38,12 @@ var Products = new (function(){
                 };
 
                 $.post(baseURI+'panel/products/ajax_check_exists', Params, function(data){
-                    $('#btnSave').show();
-                    $('#ajax-loader2').hide();
                     
-                    if( data=="yes" ) show_error('#txtName', 'El producto ya existe.');
+                    if( data=="yes" ) {
+                        $('#ajax-loader2').hide();
+                        $('#btnSave').show();
+                        show_error('#txtName', 'El producto ya existe.');
+                    }
                     else $('#form1').submit();
                 });
 

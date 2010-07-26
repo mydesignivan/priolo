@@ -28,7 +28,7 @@ class Products_model extends Model {
         return $ret;
     }
 
-    public function get_list_panel($limit, $offset, $categories_id){
+    public function get_list_panel($limit, $offset, $categorie_id=0){
         $ret = array();
 
         $sql = TBL_PRODUCTS.".*,";
@@ -39,25 +39,25 @@ class Products_model extends Model {
         $this->db->from(TBL_PRODUCTS);
         $this->db->join(TBL_PRODUCTSCATEGORIES, TBL_PRODUCTS.'.products_id = '.TBL_PRODUCTSCATEGORIES.'.products_id');
         $this->db->join(TBL_CATEGORIES, TBL_PRODUCTSCATEGORIES.'.categories_id = '.TBL_CATEGORIES.'.categories_id');
-        if( $categories_id!=0 ) $this->db->where(TBL_CATEGORIES.'.categories_id', $categories_id);
+        if( $categorie_id!=0 ) $this->db->where(TBL_CATEGORIES.'.categories_id', $categorie_id);
         $ret['count_rows'] = $this->db->count_all_results();
 
         $this->db->select($sql, false);
         $this->db->join(TBL_PRODUCTSCATEGORIES, TBL_PRODUCTS.'.products_id = '.TBL_PRODUCTSCATEGORIES.'.products_id');
         $this->db->join(TBL_CATEGORIES, TBL_PRODUCTSCATEGORIES.'.categories_id = '.TBL_CATEGORIES.'.categories_id');
-        $this->db->order_by(TBL_CATEGORIES.'.order', 'asc');
+        $this->db->order_by(TBL_CATEGORIES.'.categorie_name', 'asc');
         $this->db->order_by(TBL_PRODUCTS.'.order', 'asc');
-        if( $categories_id!=0 ) $this->db->where(TBL_CATEGORIES.'.categories_id', $categories_id);
+        if( $categorie_id!=0 ) $this->db->where(TBL_CATEGORIES.'.categories_id', $categorie_id);
         $ret['result'] = $this->db->get(TBL_PRODUCTS, $limit, $offset);
 
-        $output = array();
+        /*$output = array();
         foreach( $ret['result']->result_array() as $row ){
                 $arr_path = $this->categories_model->get_path($row['categories_id']);
                 $key = implode(' > ', $arr_path);
                 $output[$key][] = $row;
         }
 
-        $ret['result'] = $output;
+        $ret['result'] = $output;*/
 
         return $ret;
     }
@@ -203,11 +203,19 @@ class Products_model extends Model {
     }
 
     public function order(){
-        $order = $_POST['initorder'];
-        $rows = json_decode($_POST['rows']);
+
+        if( isset($_POST['indexreg']) ){
+            
+
+        }else{
+            $initorder = $_POST['initorder'];
+            $rows = json_decode($_POST['rows']);
+        }
+
+        $res = $this->db->query('SELECT `order` FROM '.TBL_PRODUCTS.' WHERE products_id='.$initorder)->row_array();
+        $order = $res['order'];
 
         //print_array($rows, true);
-
         foreach( $rows as $row ){
             $id = substr($row, 3);
             $this->db->where('products_id', $id);
@@ -216,6 +224,30 @@ class Products_model extends Model {
         }
 
         return true;
+    }
+
+    public function get_combo_products(){
+        $this->db->select('product_name, products_id');
+        $output = $this->db->get_where(TBL_V_PRODUCTS)->result_array();
+        return $output;
+    }
+
+    public function search(){
+        echo $_SERVER['REQUEST_METHOD'];
+        die();
+        $q = strtolower($_GET["q"]);
+        if (!$q) return '';
+        
+        $query = $this->db->get_where(TBL_V_PRODUCTS, array('product_name'=>$q));
+        $output = array();
+        foreach( $query->result_array() as $row ){
+            $key = $row['products_id'];
+            $value = $row['product_name'];
+            //echo "$key|$value\n";
+            if( strpos(strtolower($key), $q) !== false ) $output[$key] = $val;
+        }
+
+        json_encode($output);
     }
 
 

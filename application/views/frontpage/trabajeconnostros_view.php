@@ -1,7 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <?php if( $this->session->flashdata('status_sendmail')=="ok" ){?>
-}
 <div class="success">
     El formulario ha sido enviado con &eacute;xito.
 </div>

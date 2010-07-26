@@ -83,9 +83,9 @@ define('EMAIL_CONTACT_MESSAGE', $msg);
 |--------------------------------------------------------------------------
 */
 $msg = '<b>Nombre:</b> %s<br /><br />';
-$msg = '<b>Email:</b> %s<br /><br />';
+$msg.= '<b>Email:</b> %s<br /><br />';
 $msg.= '<b>Comentario:</b><hr color="#000000" />%s';
-define('EMAIL_TCN_TO', 'ivan@mydesign.com.ar');
+define('EMAIL_TCN_TO', 'iwmattoni@yahoo.com');
 define('EMAIL_TCN_SUBJECT', 'RRHH');
 define('EMAIL_TCN_MESSAGE', $msg);
 

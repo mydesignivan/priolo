@@ -13,10 +13,7 @@
 
 <link href="css/style<?=$this->config->item('sufix_pack_css');?>.css" rel="stylesheet" type="text/css" />
 <!--[if IE 7]>
-<link href="css/styleIE7.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-<!--[if IE 6]>
-<link href="css/styleIE6.css" rel="stylesheet" type="text/css" />
+<link href="css/styleIE7<?=$this->config->item('sufix_pack_css');?>.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 
 <!--========== LIBRARIES ============-->
@@ -30,9 +27,6 @@
 <!--
 <?php $indexphp = index_page();if( !empty($indexphp) ) $indexphp.="/";?>
     var baseURI = $("base").attr("href")+"<?=$indexphp;?>";
-
-    /*if( $.browser.opera ) $('head').append($('<link href="css/styleOpera.css" rel="stylesheet" type="text/css" />'));
-    if( $.browser.safari ) $('head').append($('<link href="css/styleSafari.css" rel="stylesheet" type="text/css" />'));*/
 -->
 </script>
 

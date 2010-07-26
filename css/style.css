@@ -128,7 +128,7 @@ label{
 }
 .label-medium{
     float: left;
-    width: 140px;
+    width: 150px;
     margin-right: 5px;
     text-align: right;
     font-weight: bold;
@@ -162,6 +162,9 @@ input.input-categorie{
     width: 250px;
     margin: 0;
 }
+input.input-search{
+    width: 200px;
+}
 input.input-small{width: 100px;}
 input.input-small2{width: 200px;}
 input.input-medium{width: 250px;}
@@ -178,6 +181,10 @@ textarea.textarea-large{
 textarea.textarea-large2{
     width: 320px;
     height: 150px;
+}
+textarea.textarea-small{
+    width: 350px;
+    height: 60px;
 }
 
 /*------------------------------------------------------------------------------
@@ -201,8 +208,8 @@ fieldset{
     float:left;
     width: 850px;
     border: 1px solid #ccc;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+/*    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;*/
 }
     fieldset legend{
         font-size: 90%;
@@ -265,12 +272,12 @@ fieldset{
     width:918px;
     height:316px;
     float:left;
-    margin-left:11px;
+    margin-left:15px;
     overflow: hidden;
     position:relative;
     background:url(../images/ajax-loader2.gif) no-repeat center;
     background-color: #202834;
-    /*border:1px solid red;*/
+    /*border:1px solid red;*/    
 }
     .header_slider img{
 	position:absolute;
@@ -285,7 +292,7 @@ fieldset{
  -----------------------------------------------------------------------------*/
 ul.menu{
     float: left;
-    margin: 10px 0 0 10px;
+    margin: 10px 0 0 16px;
 }
     ul.menu li{
         background: url(../images/menu.jpg) repeat-x;
@@ -487,6 +494,9 @@ ul.menu-header{
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LA TABLA "OBRAS"
  -----------------------------------------------------------------------------*/
+.tbl-obras{
+    width:100%;    
+}
 .tbl-obras .cell1{
     width: 633px;
 }
@@ -512,6 +522,10 @@ ul.menu-header{
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LA TABLA "PRODUCTS"
  -----------------------------------------------------------------------------*/
+.tbl-products{
+    font-size: 90%;
+    margin-top: 20px;
+}
 .tbl-products thead{
     font-weight: bold;
     background: url(../images/menu.jpg) repeat-x top left #154585;
@@ -532,17 +546,23 @@ ul.menu-header{
     width: 100px;
 }
 .tbl-products .cell3{
-    width: 533px !important;
+    width: 350px !important;
+    /*border:1px solid;*/
 }
 .tbl-products .cell4{
-    width: 90px;
-    text-align: center;
+    width: 200px;
+    /*border:1px solid;*/
 }
 .tbl-products .cell5{
+    width: 110px;
+    text-align: center;
+    /*border:1px solid;*/
+}
+.tbl-products .cell6{
     width: 90px;
     text-align: center;
 }
-.tbl-products .cell6{
+.tbl-products .cell7{
     width: 90px;
     text-align: center;
 }
@@ -642,8 +662,8 @@ ul.menu-header{
     margin: 20px auto;
     padding:10px 10px 0 10px;
     border:2px solid #ccc;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+/*    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;*/
     font-size: 90%;
 }
 
@@ -682,11 +702,15 @@ ul.gallery{
     border-spacing: 5px !important;
 }
     .gallery-product td{
-        /*width: 152px;*/
+        width: 140px;
         background-color: #CBDEEF;
         border: 2px solid #8CB1D5;
-        padding: 10px 8px 10px 10px;
+        padding: 10px 0 10px 9px;
         vertical-align: top;
+    }
+    .gallery-product td.empty{
+        background: none;
+        border: none;
     }
 
     .gallery-product td .frame-image{
@@ -739,8 +763,8 @@ ul.gallery{
             padding:5px;
             background-color: #EEF3F6;
             border: 1px solid #003366;
-            -moz-border-radius: 2px;
-            -webkit-border-radius: 2px;
+            /*-moz-border-radius: 2px;
+            -webkit-border-radius: 2px;*/
         }
 
 

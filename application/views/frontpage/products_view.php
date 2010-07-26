@@ -25,7 +25,7 @@ $class = $rowSubCat['reference']==$this->uri->segment(2) ? 'option-select' : '';
 
 <?php if( $listProducts->num_rows>0 ) {?>
 
-    <table cellpadding="0" cellspacing="0" class="gallery-product">
+    <table cellpadding="5px" cellspacing="5px" class="gallery-product">
 <?php 
     $n=0;
     foreach( $listProducts->result_array() as $row ) {
@@ -35,10 +35,17 @@ $class = $rowSubCat['reference']==$this->uri->segment(2) ? 'option-select' : '';
 ?>
             <td>
                 <div class="frame-image"><a href="<?=UPLOAD_DIR_PRODUCTS.$row['image'];?>" class="jq-fancybox" rel="group"><img src="<?=UPLOAD_DIR_PRODUCTS.$row['thumb'];?>" alt="<?=$row['thumb']?>" width="<?=$row['thumb_width']?>" height="<?=$row['thumb_height']?>" /></a></div>
-                <div class="label"><?=$row['product_name']?></div>
+                <div class="label"><?=nl2br($row['product_name'])?></div>
             </td>
 <?php 
-        if( $n==3 || $listProducts->num_rows==$n ) {echo '</tr>';$n=0;}
+        if( $n==3 || $listProducts->num_rows==$n ) {
+            if( $n<3 ){
+                for( $z=1; $z<=(3-$n); $z++ ) echo '<td class="empty">&nbsp;</td>';
+            }
+
+            echo '</tr>';
+            $n=0;
+        }
     }?>
     </table>
 

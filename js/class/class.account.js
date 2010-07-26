@@ -13,7 +13,7 @@ var Account = new (function(){
             effect_show     : 'slidefade',
             validateOne     : true
         });
-        $('#txtEmail').validator({
+        $('#txtEmail, #txtEmailCV').validator({
             v_required  : true,
             v_email     : true
         });
@@ -36,8 +36,10 @@ var Account = new (function(){
             if( !error ){
                 if( $('#txtPssCurrent').val().length>0 ){
                     $.post(baseURI+'panel/myaccount/ajax_check_pss', 'pss='+$('#txtPssCurrent').val(), function(data){
-                        $('#imgAL').hide();                        
-                        if( data!="ok" ) show_error('#txtPssCurrent', 'La contrase&ntilde;a es incorrecta.');
+                        if( data!="ok" ) {
+                            $('#imgAL').hide();
+                            show_error('#txtPssCurrent', 'La contrase&ntilde;a es incorrecta.');
+                        }
                         else $('#form1').submit();
                     });
                 }else $('#form1').submit();

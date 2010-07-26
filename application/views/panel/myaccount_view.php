@@ -13,30 +13,41 @@
 <form id="form1" action="<?=site_url('/panel/myaccount/save/');?>" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return Account.save();">
     <fieldset class="fieldset-form">
         <legend>Datos de Contacto</legend>
-        <div class="row">
-            <label for="txtEmail" class="label-contact">*Email:</label>
-            <div class="float-left"><input type="text" name="txtEmail" id="txtEmail" class="input-contact validate" value="<?=$info['email']?>" /></div>
+
+        <div class="span-10">
+            <div class="row">
+                <label for="txtEmail" class="label-contact">*Email:</label>
+                <div class="float-left"><input type="text" name="txtEmail" id="txtEmail" class="input-contact validate" value="<?=$info['email']?>" /></div>
+            </div>
+
+            <div class="row">
+                <label for="txtAddress1" class="label-contact">Domicilio1:</label>
+                <div class="float-left"><input type="text" name="txtAddress1" id="txtAddress1" class="input-contact" value="<?=$info['address1']?>" /></div>
+            </div>
+
+            <div class="row">
+                <label for="txtAddress2" class="label-contact">Domicilio2:</label>
+                <div class="float-left"><input type="text" name="txtAddress2" id="txtAddress2" class="input-contact" value="<?=$info['address2']?>" /></div>
+            </div>
         </div>
 
-        <div class="row">
-            <label for="txtAddress1" class="label-contact">Domicilio1:</label>
-            <div class="float-left"><input type="text" name="txtAddress1" id="txtAddress1" class="input-contact" value="<?=$info['address1']?>" /></div>
+        <div class="span-11 float-right">
+            <div class="row">
+                <label for="txtPhone1" class="label-contact">Tel./Fax1:</label>
+                <div class="float-left"><input type="text" name="txtPhone1" id="txtPhone1" class="input-contact" value="<?=$info['phone1']?>" /></div>
+            </div>
+
+            <div class="row">
+                <label for="txtPhone2" class="label-contact">Tel./Fax2:</label>
+                <div class="float-left"><input type="text" name="txtPhone2" id="txtPhone2" class="input-contact" value="<?=$info['phone2']?>" /></div>
+            </div>
+            
+            <div class="row">
+                <label for="txtEmailCV" class="label-contact">*Email CV:</label>
+                <div class="float-left"><input type="text" name="txtEmailCV" id="txtEmailCV" class="input-contact validate" value="<?=$info['emailcv']?>" /></div>
+            </div>
         </div>
 
-        <div class="row">
-            <label for="txtAddress2" class="label-contact">Domicilio2:</label>
-            <div class="float-left"><input type="text" name="txtAddress2" id="txtAddress2" class="input-contact" value="<?=$info['address2']?>" /></div>
-        </div>
-
-        <div class="row">
-            <label for="txtPhone1" class="label-contact">Tel./Fax1:</label>
-            <div class="float-left"><input type="text" name="txtPhone1" id="txtPhone1" class="input-contact" value="<?=$info['phone1']?>" /></div>
-        </div>
-
-        <div class="row">
-            <label for="txtPhone2" class="label-contact">Tel./Fax2:</label>
-            <div class="float-left"><input type="text" name="txtPhone2" id="txtPhone2" class="input-contact" value="<?=$info['phone2']?>" /></div>
-        </div>
     </fieldset>
 
     <fieldset class="clear fieldset-form">

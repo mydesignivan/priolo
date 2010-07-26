@@ -11,14 +11,24 @@
 <form id="form1" action="<?=site_url('panel/products/'.$action)?>" method="post" enctype="multipart/form-data" onsubmit="return Products.save()">
     <div class="row">
         <label for="txtName" class="label-contact">*Producto:</label>
-        <div class="float-left"><input type="text" name="txtName" id="txtName" class="input-contact validate" value="<?=@$info['product_name']?>" /></div>
+        <div class="float-left"><textarea name="txtName" id="txtName" class="textarea-small validate float-left" rows="10" cols="22"><?=@$info['product_name']?></textarea></div>
     </div>
     <div class="row">
         <label for="cboCategories" class="label-contact">*Categor&iacute;a:</label>
         <div class="float-left">
-            <?=form_dropdown('cboCategories', $listCategories, @$info['categories_id']."_".@$info['level'], 'id="cboCategories" class="validate float-left"');?>
+            <?=form_dropdown('cboCategories', $comboCategories, @$info['categories_id']."_".@$info['level'], 'id="cboCategories" class="validate float-left"');?>
         </div>
     </div>
+
+    <!--<div class="row">
+        <label for="txtName" class="label-contact">*A&ntilde;adir:</label>
+        <div class="float-left">
+            <label><input type="radio" name="optOrder" value="last" checked /> Al final</label><br />
+            <label><input type="radio" name="optOrder" value="first" /> Al principio<br /></label>
+            <label><input type="radio" name="optOrder" value="after" /> Despues de</label>
+            <?//=form_dropdown('cboOrderAfter', $comboProducts, 0, 'style="width:250px" onchange="$(\'#form1\')[0].optOrder[2].checked=true"');?>
+        </div>
+    </div>-->
     
     <?php if( isset($info) ){?>
     <div class="row">
